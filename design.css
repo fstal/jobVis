@@ -1,0 +1,14 @@
+.backgroundcolor{
+  background: #336193;
+}
+
+#header {
+  height: 10%;
+}
+
+#header img {
+  width: 168px;
+  height: 27px;
+  margin-left: 2%;
+  margin-top: 1.5%; 
+}
