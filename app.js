@@ -14,17 +14,19 @@ d3.tsv("./data/data.tsv").then(function(data){
       }
     }
   //console.log(maxvalue,"ble");
-  d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
+  d3.selectAll("g").datum((d,i,k) => {return k[i];}).attr("fill", function (d){
     //console.log(d.id.replace("a", ""));
         return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
         //return "green";
 
+  })
+  .on('mouseover', function(d){
+    console.log(regioncnt[d.id.replace("a", "")])
   });
 
 });
 
 function regionCount(data) {
-  //console.log(data.region);
   if (data.region in regioncnt) {
     //console.log("hej " + data.region);
     regioncnt[data.region] = regioncnt[data.region] + 1;
