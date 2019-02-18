@@ -1,13 +1,12 @@
 var dataArray = [];
 var circles = [];
 var regioncnt = {};
-var regionlist = [];
+var regionlist;
 
+//Read regionList data form json file
 d3.json("./data/regionlist.json").then(function(data){
-    data.forEach(function(d) {
-      regionlist.push(d)
-    })
-    console.log(regionlist)
+    regionlist = data
+    
 });
 
 //list_id ;  platform  ; first_date ; last_date  ; region ; category;sub_category; subject_full ;  area  ; zipcode ;
@@ -29,7 +28,10 @@ d3.tsv("./data/data.tsv").then(function(data){
 
   })
   .on('mouseover', function(d){
-    console.log(regioncnt[d.id.replace("a", "")])
+    let formatId = d.id.replace("a", "")
+    let region = regionlist.region_list[formatId-1].name
+    console.log(region)
+    document.getElementById("hoverTarget").innerHTML = region;
   });
 
 });
