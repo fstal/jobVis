@@ -1,6 +1,13 @@
 var dataArray = [];
 var circles = [];
 var regioncnt = {};
+var regionlist;
+
+//Read regionList data form json file
+d3.json("./data/regionlist.json").then(function(data){
+    regionlist = data
+    
+});
 
 //list_id ;  platform  ; first_date ; last_date  ; region ; category;sub_category; subject_full ;  area  ; zipcode ;
 d3.tsv("./data/data.tsv").then(function(data){
@@ -20,6 +27,15 @@ d3.tsv("./data/data.tsv").then(function(data){
         return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
         //return "green";
 
+  })
+  .on('mouseover', function(d){
+    //Här vill vi kanske byta färg på regionen för att visa hover men lyckas ej atm /joel
+    //console.log(d)
+  })
+  .on('click', function(d){
+    let formatId = d.id.replace("a", "")
+    let region = regionlist.region_list[formatId-1].name
+    document.getElementById("hoverTarget").innerHTML = region + " - Amount: " + regioncnt[d.id.replace("a", "")];
   });
 
 });

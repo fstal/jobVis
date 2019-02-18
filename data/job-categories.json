@@ -1,0 +1,821 @@
+{
+	"job_categories": {
+		"categories": {
+			"category": [
+				{
+					"name": "Administration",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9251",
+								"__text": "Assistent"
+							},
+							{
+								"_scgID": "9252",
+								"__text": "Reception"
+							},
+							{
+								"_scgID": "9253",
+								"__text": "Sekreterare"
+							},
+							{
+								"_scgID": "9254",
+								"__text": "Tolk & Översättare"
+							},
+							{
+								"_scgID": "9255",
+								"__text": "Arkiv & Bibliotek"
+							},
+							{
+								"_scgID": "9256",
+								"__text": "Kontorschef"
+							},
+							{
+								"_scgID": "9257",
+								"__text": "Koordinator"
+							}
+						]
+					},
+					"_cgID": "9250"
+				},
+				{
+					"name": "Bank, Finans & Försäkring",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9552",
+								"__text": "Analys & Rådgivning"
+							},
+							{
+								"_scgID": "9553",
+								"__text": "Bank & Finans"
+							},
+							{
+								"_scgID": "9554",
+								"__text": "Försäkring"
+							}
+						]
+					},
+					"_cgID": "9550"
+				},
+				{
+					"name": "Bygg & Hantverk",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9221",
+								"__text": "Målare"
+							},
+							{
+								"_scgID": "9222",
+								"__text": "Svetsare"
+							},
+							{
+								"_scgID": "9223",
+								"__text": "Elektriker"
+							},
+							{
+								"_scgID": "9224",
+								"__text": "Snickare"
+							},
+							{
+								"_scgID": "9225",
+								"__text": "Rörmokare"
+							}
+						]
+					},
+					"_cgID": "9220"
+				},
+				{
+					"name": "Data & IT",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9231",
+								"__text": "Utvecklare"
+							},
+							{
+								"_scgID": "9232",
+								"__text": "IT-Konsult"
+							},
+							{
+								"_scgID": "9233",
+								"__text": "IT-Chef"
+							},
+							{
+								"_scgID": "9234",
+								"__text": "Nätverkstekniker"
+							},
+							{
+								"_scgID": "9235",
+								"__text": "UX & Webbdesign"
+							},
+							{
+								"_scgID": "9236",
+								"__text": "Testare"
+							},
+							{
+								"_scgID": "9421",
+								"__text": "Databasadministration"
+							},
+							{
+								"_scgID": "9422",
+								"__text": "Hårdvarudesign"
+							},
+							{
+								"_scgID": "9423",
+								"__text": "IT-Arkitektur"
+							},
+							{
+								"_scgID": "9424",
+								"__text": "IT-Kvalitetssäkring & Säkerhet"
+							},
+							{
+								"_scgID": "9425",
+								"__text": "IT-Utbildning"
+							},
+							{
+								"_scgID": "9426",
+								"__text": "Projektledare"
+							},
+							{
+								"_scgID": "9427",
+								"__text": "Support"
+							},
+							{
+								"_scgID": "9428",
+								"__text": "Systemadministration"
+							},
+							{
+								"_scgID": "9429",
+								"__text": "Systemanalytiker"
+							}
+						]
+					},
+					"_cgID": "9230"
+				},
+				{
+					"name": "Ekonomi",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9241",
+								"__text": "Ekonomiassistent"
+							},
+							{
+								"_scgID": "9242",
+								"__text": "Controller"
+							},
+							{
+								"_scgID": "9243",
+								"__text": "Redovisningsekonom"
+							},
+							{
+								"_scgID": "9244",
+								"__text": "Ekonomichef"
+							},
+							{
+								"_scgID": "9245",
+								"__text": "Konsult"
+							},
+							{
+								"_scgID": "9246",
+								"__text": "Revision"
+							},
+							{
+								"_scgID": "9247",
+								"__text": "Skatt"
+							}
+						]
+					},
+					"_cgID": "9240"
+				},
+				{
+					"name": "Försäljning",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9261",
+								"__text": "Key Account Manager"
+							},
+							{
+								"_scgID": "9262",
+								"__text": "Telefonförsäljare"
+							},
+							{
+								"_scgID": "9263",
+								"__text": "Försäljningschef"
+							},
+							{
+								"_scgID": "9264",
+								"__text": "Butik"
+							},
+							{
+								"_scgID": "9265",
+								"__text": "Kundservice"
+							},
+							{
+								"_scgID": "9266",
+								"__text": "Säljsupport"
+							}
+						]
+					},
+					"_cgID": "9260"
+				},
+				{
+					"name": "Hälsa & Sjukvård",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9321",
+								"__text": "Sjuksköterska"
+							},
+							{
+								"_scgID": "9322",
+								"__text": "Läkare"
+							},
+							{
+								"_scgID": "9323",
+								"__text": "Vård & Omsorg"
+							},
+							{
+								"_scgID": "9324",
+								"__text": "Tandvård"
+							},
+							{
+								"_scgID": "9325",
+								"__text": "Sjukgymnastik & Rehab"
+							},
+							{
+								"_scgID": "9326",
+								"__text": "Medicin & Farmaci"
+							},
+							{
+								"_scgID": "9327",
+								"__text": "Medicinsk forskning & Laboratorieverksamhet"
+							},
+							{
+								"_scgID": "9328",
+								"__text": "Optiker & Audionom"
+							},
+							{
+								"_scgID": "9329",
+								"__text": "Psykolog"
+							},
+							{
+								"_scgID": "9631",
+								"__text": "Socionom"
+							}
+						]
+					},
+					"_cgID": "9320"
+				},
+				{
+					"name": "Hotell & Restaurang",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9311",
+								"__text": "Reception"
+							},
+							{
+								"_scgID": "9312",
+								"__text": "Servering"
+							},
+							{
+								"_scgID": "9313",
+								"__text": "Kock & Kökspersonal"
+							},
+							{
+								"_scgID": "9314",
+								"__text": "Chef & Ledning"
+							},
+							{
+								"_scgID": "9315",
+								"__text": "Städ"
+							}
+						]
+					},
+					"_cgID": "9310"
+				},
+				{
+					"name": "HR & Personal",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9271",
+								"__text": "Personalchef"
+							},
+							{
+								"_scgID": "9272",
+								"__text": "Rekrytering"
+							},
+							{
+								"_scgID": "9273",
+								"__text": "Löner & Förmåner"
+							},
+							{
+								"_scgID": "9274",
+								"__text": "HR-administration"
+							},
+							{
+								"_scgID": "9275",
+								"__text": "Utbildning & Personlig utveckling"
+							}
+						]
+					},
+					"_cgID": "9270"
+				},
+				{
+					"name": "Industri & Anläggning",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9281",
+								"__text": "Montör"
+							},
+							{
+								"_scgID": "9282",
+								"__text": "Industri & Produktion"
+							},
+							{
+								"_scgID": "9283",
+								"__text": "Tillverkning"
+							},
+							{
+								"_scgID": "9284",
+								"__text": "Maskinarbete"
+							},
+							{
+								"_scgID": "9285",
+								"__text": "Anläggningsarbete"
+							},
+							{
+								"_scgID": "9286",
+								"__text": "Livsmedel"
+							},
+							{
+								"_scgID": "9287",
+								"__text": "Quality Assurance"
+							},
+							{
+								"_scgID": "9288",
+								"__text": "Reparatörer"
+							}
+						]
+					},
+					"_cgID": "9280"
+				},
+				{
+					"name": "Juridik",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9331",
+								"__text": "Advokat"
+							},
+							{
+								"_scgID": "9332",
+								"__text": "Domstol & Rättshjälp"
+							},
+							{
+								"_scgID": "9333",
+								"__text": "Juridisk rådgivning"
+							},
+							{
+								"_scgID": "9334",
+								"__text": "Affärsjuridik"
+							},
+							{
+								"_scgID": "9335",
+								"__text": "Bolagsjurist"
+							}
+						]
+					},
+					"_cgID": "9330"
+				},
+				{
+					"name": "Marknadsföring",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9341",
+								"__text": "PR & Kommunikation"
+							},
+							{
+								"_scgID": "9342",
+								"__text": "Marknadsassistent"
+							},
+							{
+								"_scgID": "9343",
+								"__text": "Marknadschef"
+							},
+							{
+								"_scgID": "9344",
+								"__text": "Art director"
+							},
+							{
+								"_scgID": "9345",
+								"__text": "Direkt marknadsföring"
+							},
+							{
+								"_scgID": "9346",
+								"__text": "Marknadskoordinator"
+							},
+							{
+								"_scgID": "9347",
+								"__text": "Marknadsundersökning"
+							},
+							{
+								"_scgID": "9348",
+								"__text": "Mediaplanerare & Inköpare"
+							}
+						]
+					},
+					"_cgID": "9340"
+				},
+				{
+					"name": "Media, Kultur & Design",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9291",
+								"__text": "Film, TV, Radio & Multimedia"
+							},
+							{
+								"_scgID": "9292",
+								"__text": "Journalistik"
+							},
+							{
+								"_scgID": "9293",
+								"__text": "Publicering"
+							},
+							{
+								"_scgID": "9294",
+								"__text": "Designer"
+							},
+							{
+								"_scgID": "9295",
+								"__text": "Foto"
+							},
+							{
+								"_scgID": "9296",
+								"__text": "Konst, Musik & Teater"
+							}
+						]
+					},
+					"_cgID": "9290"
+				},
+				{
+					"name": "Miljö & Djurvård",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9532",
+								"__text": "Djurvård"
+							},
+							{
+								"_scgID": "9533",
+								"__text": "Jordbruk & Fiske"
+							},
+							{
+								"_scgID": "9534",
+								"__text": "Naturvård"
+							}
+						]
+					},
+					"_cgID": "9530"
+				},
+				{
+					"name": "Offentlig Förvaltning",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9572",
+								"__text": "Ambassad & Diplomatiska arbeten"
+							},
+							{
+								"_scgID": "9573",
+								"__text": "Kommunal administration & Ledning"
+							},
+							{
+								"_scgID": "9574",
+								"__text": "Statstjänsteman"
+							},
+							{
+								"_scgID": "9575",
+								"__text": "Tulltjänsteman"
+							}
+						]
+					},
+					"_cgID": "9570"
+				},
+				{
+					"name": "Organisation & ledning",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9211",
+								"__text": "Managementkonsult & Rådgivare"
+							},
+							{
+								"_scgID": "9212",
+								"__text": "Chefsbefattningar"
+							},
+							{
+								"_scgID": "9213",
+								"__text": "Organisationsutveckling"
+							},
+							{
+								"_scgID": "9214",
+								"__text": "Produktionsledning"
+							},
+							{
+								"_scgID": "9215",
+								"__text": "VD & Koncernchef"
+							},
+							{
+								"_scgID": "9216",
+								"__text": "Affärsutvecklare"
+							},
+							{
+								"_scgID": "9217",
+								"__text": "Produktchef"
+							},
+							{
+								"_scgID": "9218",
+								"__text": "Projektledare"
+							}
+						]
+					},
+					"_cgID": "9210"
+				},
+				{
+					"name": "Säkerhet & Skydd",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9512",
+								"__text": "Bevakning"
+							},
+							{
+								"_scgID": "9513",
+								"__text": "Brandkår"
+							},
+							{
+								"_scgID": "9514",
+								"__text": "Militär"
+							},
+							{
+								"_scgID": "9515",
+								"__text": "Polis & Kriminalvård"
+							}
+						]
+					},
+					"_cgID": "9510"
+				},
+				{
+					"name": "Service & Kundtjänst",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9371",
+								"__text": "Resebyrå & Turism"
+							},
+							{
+								"_scgID": "9372",
+								"__text": "Serviceyrken"
+							},
+							{
+								"_scgID": "9373",
+								"__text": "Kundtjänst"
+							},
+							{
+								"_scgID": "9374",
+								"__text": "Frisör"
+							},
+							{
+								"_scgID": "9375",
+								"__text": "Skönhet & Personlig omsorg"
+							}
+						]
+					},
+					"_cgID": "9370"
+				},
+				{
+					"name": "Teknik & Ingenjör",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9351",
+								"__text": "Ingenjör"
+							},
+							{
+								"_scgID": "9352",
+								"__text": "Arkitekt"
+							},
+							{
+								"_scgID": "9353",
+								"__text": "Forskning & Utveckling"
+							},
+							{
+								"_scgID": "9354",
+								"__text": "Konstruktör"
+							},
+							{
+								"_scgID": "9355",
+								"__text": "Civilingenjör"
+							},
+							{
+								"_scgID": "9356",
+								"__text": "Energi & Miljö"
+							},
+							{
+								"_scgID": "9431",
+								"__text": "Elektronik"
+							},
+							{
+								"_scgID": "9432",
+								"__text": "Elkraft"
+							},
+							{
+								"_scgID": "9433",
+								"__text": "Kemi, Fysik & Biologi"
+							},
+							{
+								"_scgID": "9434",
+								"__text": "Matematik, Statistik & Information"
+							},
+							{
+								"_scgID": "9435",
+								"__text": "Materialteknik"
+							},
+							{
+								"_scgID": "9436",
+								"__text": "Mekanik"
+							},
+							{
+								"_scgID": "9437",
+								"__text": "Processingenjör"
+							},
+							{
+								"_scgID": "9438",
+								"__text": "Teknisk rådgivare & Försäljningsingenjör"
+							},
+							{
+								"_scgID": "9439",
+								"__text": "Teknisk skribent"
+							}
+						]
+					},
+					"_cgID": "9350"
+				},
+				{
+					"name": "Transport & Logistik",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9301",
+								"__text": "Transport"
+							},
+							{
+								"_scgID": "9302",
+								"__text": "Lager"
+							},
+							{
+								"_scgID": "9303",
+								"__text": "Inköp"
+							},
+							{
+								"_scgID": "9304",
+								"__text": "Administration & Ledning"
+							},
+							{
+								"_scgID": "9305",
+								"__text": "Distribution"
+							},
+							{
+								"_scgID": "9306",
+								"__text": "Logistik"
+							}
+						]
+					},
+					"_cgID": "9300"
+				},
+				{
+					"name": "Utbildning",
+					"subcategories": {
+						"subcategory": [
+							{
+								"_scgID": "9361",
+								"__text": "Förskolelärare"
+							},
+							{
+								"_scgID": "9362",
+								"__text": "Lärare"
+							},
+							{
+								"_scgID": "9363",
+								"__text": "Fritidspedagog"
+							},
+							{
+								"_scgID": "9364",
+								"__text": "Universitet & Högskola"
+							},
+							{
+								"_scgID": "9365",
+								"__text": "Specialpedagog"
+							},
+							{
+								"_scgID": "9366",
+								"__text": "Administration & Ledning"
+							},
+							{
+								"_scgID": "9367",
+								"__text": "Barnskötare"
+							}
+						]
+					},
+					"_cgID": "9360"
+				},
+				{
+					"name": "Övrigt",
+					"subcategories": "",
+					"_cgID": "9380"
+				}
+			]
+		},
+		"employment_list": {
+			"employment": [
+				{
+					"_emID": "1",
+					"__text": "Heltid"
+				},
+				{
+					"_emID": "2",
+					"__text": "Deltid"
+				},
+				{
+					"_emID": "3",
+					"__text": "Extrajobb"
+				},
+				{
+					"_emID": "4",
+					"__text": "Säsongsjobb"
+				},
+				{
+					"_emID": "5",
+					"__text": "Franchise"
+				},
+				{
+					"_emID": "6",
+					"__text": "Tillsvidareanställd"
+				},
+				{
+					"_emID": "7",
+					"__text": "Projekt- / Visstidsanställd"
+				},
+				{
+					"_emID": "8",
+					"__text": "Trainee"
+				},
+				{
+					"_emID": "9",
+					"__text": "Internship / Praktik"
+				},
+				{
+					"_emID": "10",
+					"__text": "Examensarbete"
+				},
+				{
+					"_emID": "11",
+					"__text": "Vikariat"
+				},
+				{
+					"_emID": "12",
+					"__text": "Frilans"
+				}
+			]
+		},
+		"job_ad_types": {
+			"job_ad_type": [
+				{
+					"_atID": "1",
+					"__text": "Direkt"
+				},
+				{
+					"_atID": "2",
+					"__text": "Rekrytering"
+				},
+				{
+					"_atID": "3",
+					"__text": "Bemanning"
+				},
+				{
+					"_atID": "4",
+					"__text": "Statlig"
+				}
+			]
+		}
+	}
+}
