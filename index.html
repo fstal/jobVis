@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+  <script src="https://unpkg.com/d3-simple-slider/build/d3-simple-slider.js"></script>
   <script src="https://d3js.org/d3.v5.js"></script>
 </head>
 <body>
@@ -15,6 +16,9 @@
 
   <div class="ui grid">
     <div class="row">
+      <h2>Time</h2>
+          <div>hellee<p id="value-range">halluuu</p></div>
+          <div><div id="slider-range"></div></div>
       <div id="mapContainer" class="left floated five wide column">
       <svg version="1.1" id="sweden_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="240px" height="540px" viewBox="0 0 240 540" enable-background="new 0 0 240 540" xml:space="preserve">
       <g id="a1">
@@ -535,18 +539,8 @@
         </select>
       </div>
     </div>
-    <div class="row">
-      <div class="left floated five wide column">
-        <button class="ui primary button">
-        Save
-        </button>
-        <button class="ui button">
-        Discard
-        </button>
-      </div>
-    </div>
   </div>
- 
+
 <div id="hoverTarget">
 
 </div>
