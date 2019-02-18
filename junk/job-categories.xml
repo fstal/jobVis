@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<job_categories>
+	<categories>
+		<category cgID="9250">
+			<name>Administration</name>
+			<subcategories>
+				<subcategory scgID="9251">Assistent</subcategory>
+				<subcategory scgID="9252">Reception</subcategory>
+				<subcategory scgID="9253">Sekreterare</subcategory>
+				<subcategory scgID="9254">Tolk &amp; Översättare</subcategory>
+				<subcategory scgID="9255">Arkiv &amp; Bibliotek</subcategory>
+				<subcategory scgID="9256">Kontorschef</subcategory>
+				<subcategory scgID="9257">Koordinator</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9550">
+			<name>Bank, Finans &amp; Försäkring</name>
+			<subcategories>
+				<subcategory scgID="9552">Analys &amp; Rådgivning</subcategory>
+				<subcategory scgID="9553">Bank &amp; Finans</subcategory>
+				<subcategory scgID="9554">Försäkring</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9220">
+			<name>Bygg &amp; Hantverk</name>
+			<subcategories>
+				<subcategory scgID="9221">Målare</subcategory>
+				<subcategory scgID="9222">Svetsare</subcategory>
+				<subcategory scgID="9223">Elektriker</subcategory>
+				<subcategory scgID="9224">Snickare</subcategory>
+				<subcategory scgID="9225">Rörmokare</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9230">
+			<name>Data &amp; IT</name>
+			<subcategories>
+				<subcategory scgID="9231">Utvecklare</subcategory>
+				<subcategory scgID="9232">IT-Konsult</subcategory>
+				<subcategory scgID="9233">IT-Chef</subcategory>
+				<subcategory scgID="9234">Nätverkstekniker</subcategory>
+				<subcategory scgID="9235">UX &amp; Webbdesign</subcategory>
+				<subcategory scgID="9236">Testare</subcategory>
+				<subcategory scgID="9421">Databasadministration</subcategory>
+				<subcategory scgID="9422">Hårdvarudesign</subcategory>
+				<subcategory scgID="9423">IT-Arkitektur</subcategory>
+				<subcategory scgID="9424">IT-Kvalitetssäkring &amp; Säkerhet</subcategory>
+				<subcategory scgID="9425">IT-Utbildning</subcategory>
+				<subcategory scgID="9426">Projektledare</subcategory>
+				<subcategory scgID="9427">Support</subcategory>
+				<subcategory scgID="9428">Systemadministration</subcategory>
+				<subcategory scgID="9429">Systemanalytiker</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9240">
+			<name>Ekonomi</name>
+			<subcategories>
+				<subcategory scgID="9241">Ekonomiassistent</subcategory>
+				<subcategory scgID="9242">Controller</subcategory>
+				<subcategory scgID="9243">Redovisningsekonom</subcategory>
+				<subcategory scgID="9244">Ekonomichef</subcategory>
+				<subcategory scgID="9245">Konsult</subcategory>
+				<subcategory scgID="9246">Revision</subcategory>
+				<subcategory scgID="9247">Skatt</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9260">
+			<name>Försäljning</name>
+			<subcategories>
+				<subcategory scgID="9261">Key Account Manager</subcategory>
+				<subcategory scgID="9262">Telefonförsäljare</subcategory>
+				<subcategory scgID="9263">Försäljningschef</subcategory>
+				<subcategory scgID="9264">Butik</subcategory>
+				<subcategory scgID="9265">Kundservice</subcategory>
+				<subcategory scgID="9266">Säljsupport</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9320">
+			<name>Hälsa &amp; Sjukvård</name>
+			<subcategories>
+				<subcategory scgID="9321">Sjuksköterska</subcategory>
+				<subcategory scgID="9322">Läkare</subcategory>
+				<subcategory scgID="9323">Vård &amp; Omsorg</subcategory>
+				<subcategory scgID="9324">Tandvård</subcategory>
+				<subcategory scgID="9325">Sjukgymnastik &amp; Rehab</subcategory>
+				<subcategory scgID="9326">Medicin &amp; Farmaci</subcategory>
+				<subcategory scgID="9327">Medicinsk forskning &amp; Laboratorieverksamhet</subcategory>
+				<subcategory scgID="9328">Optiker &amp; Audionom</subcategory>
+				<subcategory scgID="9329">Psykolog</subcategory>
+				<subcategory scgID="9631">Socionom</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9310">
+			<name>Hotell &amp; Restaurang</name>
+			<subcategories>
+				<subcategory scgID="9311">Reception</subcategory>
+				<subcategory scgID="9312">Servering</subcategory>
+				<subcategory scgID="9313">Kock &amp; Kökspersonal</subcategory>
+				<subcategory scgID="9314">Chef &amp; Ledning</subcategory>
+				<subcategory scgID="9315">Städ</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9270">
+			<name>HR &amp; Personal</name>
+			<subcategories>
+				<subcategory scgID="9271">Personalchef</subcategory>
+				<subcategory scgID="9272">Rekrytering</subcategory>
+				<subcategory scgID="9273">Löner &amp; Förmåner</subcategory>
+				<subcategory scgID="9274">HR-administration</subcategory>
+				<subcategory scgID="9275">Utbildning &amp; Personlig utveckling</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9280">
+			<name>Industri &amp; Anläggning</name>
+			<subcategories>
+				<subcategory scgID="9281">Montör</subcategory>
+				<subcategory scgID="9282">Industri &amp; Produktion</subcategory>
+				<subcategory scgID="9283">Tillverkning</subcategory>
+				<subcategory scgID="9284">Maskinarbete</subcategory>
+				<subcategory scgID="9285">Anläggningsarbete</subcategory>
+				<subcategory scgID="9286">Livsmedel</subcategory>
+				<subcategory scgID="9287">Quality Assurance</subcategory>
+				<subcategory scgID="9288">Reparatörer</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9330">
+			<name>Juridik</name>
+			<subcategories>
+				<subcategory scgID="9331">Advokat</subcategory>
+				<subcategory scgID="9332">Domstol &amp; Rättshjälp</subcategory>
+				<subcategory scgID="9333">Juridisk rådgivning</subcategory>
+				<subcategory scgID="9334">Affärsjuridik</subcategory>
+				<subcategory scgID="9335">Bolagsjurist</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9340">
+			<name>Marknadsföring</name>
+			<subcategories>
+				<subcategory scgID="9341">PR &amp; Kommunikation</subcategory>
+				<subcategory scgID="9342">Marknadsassistent</subcategory>
+				<subcategory scgID="9343">Marknadschef</subcategory>
+				<subcategory scgID="9344">Art director</subcategory>
+				<subcategory scgID="9345">Direkt marknadsföring</subcategory>
+				<subcategory scgID="9346">Marknadskoordinator</subcategory>
+				<subcategory scgID="9347">Marknadsundersökning</subcategory>
+				<subcategory scgID="9348">Mediaplanerare &amp; Inköpare</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9290">
+			<name>Media, Kultur &amp; Design</name>
+			<subcategories>
+				<subcategory scgID="9291">Film, TV, Radio &amp; Multimedia</subcategory>
+				<subcategory scgID="9292">Journalistik</subcategory>
+				<subcategory scgID="9293">Publicering</subcategory>
+				<subcategory scgID="9294">Designer</subcategory>
+				<subcategory scgID="9295">Foto</subcategory>
+				<subcategory scgID="9296">Konst, Musik &amp; Teater</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9530">
+			<name>Miljö &amp; Djurvård</name>
+			<subcategories>
+				<subcategory scgID="9532">Djurvård</subcategory>
+				<subcategory scgID="9533">Jordbruk &amp; Fiske</subcategory>
+				<subcategory scgID="9534">Naturvård</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9570">
+			<name>Offentlig Förvaltning</name>
+			<subcategories>
+				<subcategory scgID="9572">Ambassad &amp; Diplomatiska arbeten</subcategory>
+				<subcategory scgID="9573">Kommunal administration &amp; Ledning</subcategory>
+				<subcategory scgID="9574">Statstjänsteman</subcategory>
+				<subcategory scgID="9575">Tulltjänsteman</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9210">
+			<name>Organisation &amp; ledning</name>
+			<subcategories>
+				<subcategory scgID="9211">Managementkonsult &amp; Rådgivare</subcategory>
+				<subcategory scgID="9212">Chefsbefattningar</subcategory>
+				<subcategory scgID="9213">Organisationsutveckling</subcategory>
+				<subcategory scgID="9214">Produktionsledning</subcategory>
+				<subcategory scgID="9215">VD &amp; Koncernchef</subcategory>
+				<subcategory scgID="9216">Affärsutvecklare</subcategory>
+				<subcategory scgID="9217">Produktchef</subcategory>
+				<subcategory scgID="9218">Projektledare</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9510">
+			<name>Säkerhet &amp; Skydd</name>
+			<subcategories>
+				<subcategory scgID="9512">Bevakning</subcategory>
+				<subcategory scgID="9513">Brandkår</subcategory>
+				<subcategory scgID="9514">Militär</subcategory>
+				<subcategory scgID="9515">Polis &amp; Kriminalvård</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9370">
+			<name>Service &amp; Kundtjänst</name>
+			<subcategories>
+				<subcategory scgID="9371">Resebyrå &amp; Turism</subcategory>
+				<subcategory scgID="9372">Serviceyrken</subcategory>
+				<subcategory scgID="9373">Kundtjänst</subcategory>
+				<subcategory scgID="9374">Frisör</subcategory>
+				<subcategory scgID="9375">Skönhet &amp; Personlig omsorg</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9350">
+			<name>Teknik &amp; Ingenjör</name>
+			<subcategories>
+				<subcategory scgID="9351">Ingenjör</subcategory>
+				<subcategory scgID="9352">Arkitekt</subcategory>
+				<subcategory scgID="9353">Forskning &amp; Utveckling</subcategory>
+				<subcategory scgID="9354">Konstruktör</subcategory>
+				<subcategory scgID="9355">Civilingenjör</subcategory>
+				<subcategory scgID="9356">Energi &amp; Miljö</subcategory>
+				<subcategory scgID="9431">Elektronik</subcategory>
+				<subcategory scgID="9432">Elkraft</subcategory>
+				<subcategory scgID="9433">Kemi, Fysik &amp; Biologi</subcategory>
+				<subcategory scgID="9434">Matematik, Statistik &amp; Information</subcategory>
+				<subcategory scgID="9435">Materialteknik</subcategory>
+				<subcategory scgID="9436">Mekanik</subcategory>
+				<subcategory scgID="9437">Processingenjör</subcategory>
+				<subcategory scgID="9438">Teknisk rådgivare &amp; Försäljningsingenjör</subcategory>
+				<subcategory scgID="9439">Teknisk skribent</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9300">
+			<name>Transport &amp; Logistik</name>
+			<subcategories>
+				<subcategory scgID="9301">Transport</subcategory>
+				<subcategory scgID="9302">Lager</subcategory>
+				<subcategory scgID="9303">Inköp</subcategory>
+				<subcategory scgID="9304">Administration &amp; Ledning</subcategory>
+				<subcategory scgID="9305">Distribution</subcategory>
+				<subcategory scgID="9306">Logistik</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9360">
+			<name>Utbildning</name>
+			<subcategories>
+				<subcategory scgID="9361">Förskolelärare</subcategory>
+				<subcategory scgID="9362">Lärare</subcategory>
+				<subcategory scgID="9363">Fritidspedagog</subcategory>
+				<subcategory scgID="9364">Universitet &amp; Högskola</subcategory>
+				<subcategory scgID="9365">Specialpedagog</subcategory>
+				<subcategory scgID="9366">Administration &amp; Ledning</subcategory>
+				<subcategory scgID="9367">Barnskötare</subcategory>
+			</subcategories>
+		</category>
+		<category cgID="9380">
+			<name>Övrigt</name>
+			<subcategories></subcategories>
+		</category>
+	</categories>
+	<employment_list>
+		<employment emID="1">Heltid</employment>
+		<employment emID="2">Deltid</employment>
+		<employment emID="3">Extrajobb</employment>
+		<employment emID="4">Säsongsjobb</employment>
+		<employment emID="5">Franchise</employment>
+		<employment emID="6">Tillsvidareanställd</employment>
+		<employment emID="7">Projekt- / Visstidsanställd</employment>
+		<employment emID="8">Trainee</employment>
+		<employment emID="9">Internship / Praktik</employment>
+		<employment emID="10">Examensarbete</employment>
+		<employment emID="11">Vikariat</employment>
+		<employment emID="12">Frilans</employment>
+	</employment_list>
+	<job_ad_types>
+		<job_ad_type atID="1">Direkt</job_ad_type>
+		<job_ad_type atID="2">Rekrytering</job_ad_type>
+		<job_ad_type atID="3">Bemanning</job_ad_type>
+		<job_ad_type atID="4">Statlig</job_ad_type>
+	</job_ad_types>
+</job_categories>

@@ -1,0 +1,1025 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jobfeed_xml_structure>
+  <!--XML structure for ad posted to StepStone and Blocket Jobb.
+If you are in need of support please email “import@blocketjobb.se”.-->
+<ads>
+  <ad>
+    <!-- Mandatory, (external ad id) or (unique ad reference number) -->
+    <external_ad_id><![CDATA[7018]]></external_ad_id>
+
+    <!-- Mandatory, target Job board
+    Value "jobb"       :list on blocket jobb
+    Value "stepstone"  :list on stepstone
+    Value "combo"      :list on both
+    -->
+    <display_at><![CDATA[stepstone]]></display_at>
+
+    <!--
+    Mandatory, <categories> and /or <subcategories>, see our category list below.
+    Maximum, 3 main <categories> and 3 <subcategories> per main category is allowed
+    -->
+    <category cgID="9230"/>
+    <category cgID="9250">
+      <subcategory scgID="9252"/>
+    </category>
+    <category cgID="9310">
+      <subcategory scgID="9311"/>
+      <subcategory scgID="9312"/>
+    </category>
+
+    <!-- If you use category_name you are allowed to enter any category string that we will mapp to our categories.-->
+    <category_name><![CDATA[special category]]></category_name>
+
+    <!-- Mandatory, Jobb ad titel, -->
+    <subject><![CDATA[It Technician]]></subject>
+
+    <!-- Mandatory -->
+    <body><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget ipsum ullamcorper, consectetur augue ut, rutrum nisl. Sed viverra metus ac tristique rutrum. Nunc imperdiet condimentum risus pulvinar porttitor. Morbi nec odio lacinia, vulputate dolor id, varius risus. Praesent odio erat, accumsan in quam a, dictum ultrices risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla vel lorem quam. Proin eros massa, ultrices feugiat lacus quis, blandit hendrerit arcu. Maecenas sed nisl ac ex imperdiet porta. Aliquam et auctor augue. Ut ut elit turpis. Aenean faucibus arcu id eros tincidunt, quis pulvinar odio luctus. Vivamus nisl sem, varius auctor velit vel, porttitor consectetur lacus. Integer aliquet nisl non ante blandit suscipit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse vel dui eu mi dictum aliquet.]]></body>
+
+    <!--
+    Mandatory, defaults to 1 if value is missing
+    See our Category <job_ad_types> values below.
+    -->
+    <job_ad_type><![CDATA[1]]></job_ad_type>
+
+
+    <!--
+    Mandatory, defaults to 1 if value is missing
+    See our Category <employment_list> values below.
+    -->
+    <employment><![CDATA[ 1 ]]></employment>
+    <employment><![CDATA[ 2 ]]></employment>
+    <employment><![CDATA[ 6 ]]></employment>
+    <employment><![CDATA[ 12 ]]></employment>
+
+    <!-- Optional, defaults to 1 if value is missing-->
+    <job_count><![CDATA[1]]></job_count>
+
+    <!-- Mandatory, Ad end date, YYYY-MM-DD (MAX 60 days into the future, MIN 2 days from NOW) -->
+    <apply_date><![CDATA[2015-01-30]]></apply_date>
+
+    <!--
+    Mandatory,
+    conditions: Only 1 region and 1 municipality allowed
+    <region> Optional
+    <region>+<municipalities> Mandatory
+    <region>+<municipalities>+<region_name> (Optional - Highly recommended for better quality)
+    -->
+    <region><![CDATA[11]]></region>
+    <municipality><![CDATA[131]]></municipality>
+    <region_name><![CDATA[Stockholms Stad]]></region_name>
+
+    <!-- Optional -->
+    <adress><![CDATA[Company Adress]]></adress>
+
+    <!-- Optional -->
+    <zipcode><![CDATA[16474]]></zipcode>
+
+    <!-- Mandatory -->
+    <!-- This node is visible in the listing as recruiting company.
+    End customer name or Recruiting company.
+    This node can be used to filter out and redirect an end customer from the main VAT number into a different account with their own profile.-->
+    <corp_name><![CDATA[Company name]]></corp_name>
+
+    <!-- Mandatory, company VAT number -->
+    <!-- Vat Number = Recruiting company VAT number ( Customer identification number in our system, the buying customer) -->
+    <corp_orgno><![CDATA[5566351111]]></corp_orgno>
+
+    <!-- Optional -->
+    <corp_descr><![CDATA[The description of the company…]]></corp_descr>
+
+    <!-- Optional, Recruiting Company URL -->
+    <corp_url><![CDATA[http://recruitingcompany.com]]></corp_url>
+
+    <!-- Optional, name of job contact visible in the ad -->
+    <name><![CDATA[John Smith]]></name>
+
+    <!-- Optional, number to job contact visible in the ad -->
+    <phone><![CDATA[ 073-555 555 55 ]]></phone>
+
+    <!-- Optional, Local ad images -->
+    <image>
+      <!-- Optional; Main company logo; this is used mainly if the <customerLogo> is empty-->
+      <companyLogo>
+        <url><![CDATA[http://www.example.com/ComapanyLogo.jpg]]></url>
+      </companyLogo>
+      <!-- Optional; Main company header banner, 1012X360px, visible in listing-->
+      <headerLogo>
+        <url><![CDATA[http://www.example.com/HeaderLogo.jpg]]></url>
+      </headerLogo>
+      <!-- Optional recommended use; Main company or customer logo that is visible in listing-->
+      <customerLogo>
+        <url><![CDATA[http://www.example.com/CustomerLogo.jpg]]></url>
+      </customerLogo>
+    </image>
+
+    <!--  Optional, Local ad Media Object (Supporting youtube movie link, Webpage)
+    Youtube movie and End customer www adress in the listing.
+    This Will not Change the main companies Movie and www adress.
+    -->
+    <media>
+      <video type="youtube">
+        <name>Come work for us!</name>
+        <url>youtube.com/watch?0=123123412</url>
+      </video>
+      <webpage type="webpage">
+        <name>Who we are</name>
+        <url>endcustomer.com/about_us</url>
+      </webpage>
+    </media>
+
+    <!-- Optional, this field is reserved for companys that need to send additonal Billing Information per listing -->
+    <billingInformation><![CDATA[]]></billingInformation>
+
+    <!-- Mandatory, there must allways be either an <apply_email> or <apply_url> -->
+    <apply_email><![CDATA[john@smith.com]]></apply_email>
+    <apply_url><![CDATA[http://www.staffingrec.se/viewad.php?id=7018&source=Blocket]]></apply_url>
+
+    <!-- Empty value, this node will be updated in Q4 -->
+    <product_type><![CDATA[]]></product_type>
+
+    <!-- Mandatory, these dates are for cross referencing by our customer support and have no automatic functions. -->
+    <pub_date><![CDATA[2015-01-30]]></pub_date>
+    <update_date><![CDATA[2015-01-30]]></update_date>
+    <end_date><![CDATA[2015-03-30]]></end_date>
+
+    <!-- Mandatory, Static information, name of Recruitment/ATS system  -->
+    <provider_name><![CDATA[ ATS ]]></provider_name>
+
+  </ad>
+</ads>
+
+
+  <jobb_variables>
+    <region_list>
+      <region rID="1">
+            <name>Norrbotten</name>
+            <municipalities>
+            <munic mID="1">Arjeplog</munic>
+                <munic mID="2">Arvidsjaur</munic>
+                <munic mID="3">Boden</munic>
+                <munic mID="4">Gällivare</munic>
+                <munic mID="5">Haparanda</munic>
+                <munic mID="6">Jokkmokk</munic>
+                <munic mID="7">Kalix</munic>
+                <munic mID="8">Kiruna</munic>
+                <munic mID="9">Luleå</munic>
+                <munic mID="10">Pajala</munic>
+                <munic mID="11">Piteå</munic>
+                <munic mID="12">Älvsbyn</munic>
+                <munic mID="13">Överkalix</munic>
+                <munic mID="14">Övertorneå</munic>
+                
+              
+            </municipalities>
+          </region><region rID="2">
+            <name>Västerbotten</name>
+            <municipalities>
+            <munic mID="15">Bjurholm</munic>
+                <munic mID="16">Dorotea</munic>
+                <munic mID="17">Lycksele</munic>
+                <munic mID="18">Malå</munic>
+                <munic mID="19">Nordmaling</munic>
+                <munic mID="20">Norsjö</munic>
+                <munic mID="21">Robertsfors</munic>
+                <munic mID="22">Skellefteå</munic>
+                <munic mID="23">Sorsele</munic>
+                <munic mID="24">Storuman</munic>
+                <munic mID="25">Umeå</munic>
+                <munic mID="26">Vilhelmina</munic>
+                <munic mID="27">Vindeln</munic>
+                <munic mID="28">Vännäs</munic>
+                <munic mID="29">Åsele</munic>
+                
+              
+            </municipalities>
+          </region><region rID="3">
+            <name>Jämtland</name>
+            <municipalities>
+            <munic mID="30">Berg</munic>
+                <munic mID="31">Bräcke</munic>
+                <munic mID="32">Härjedalen</munic>
+                <munic mID="33">Krokom</munic>
+                <munic mID="34">Ragunda</munic>
+                <munic mID="35">Strömsund</munic>
+                <munic mID="36">Åre</munic>
+                <munic mID="37">Östersund</munic>
+                
+              
+            </municipalities>
+          </region><region rID="4">
+            <name>Västernorrland</name>
+            <municipalities>
+            <munic mID="38">Härnösand</munic>
+                <munic mID="39">Kramfors</munic>
+                <munic mID="40">Sollefteå</munic>
+                <munic mID="41">Sundsvall</munic>
+                <munic mID="42">Timrå</munic>
+                <munic mID="43">Ånge</munic>
+                <munic mID="44">Örnsköldsvik</munic>
+                
+              
+            </municipalities>
+          </region><region rID="5">
+            <name>Gävleborg</name>
+            <municipalities>
+            <munic mID="45">Bollnäs</munic>
+                <munic mID="46">Gävle</munic>
+                <munic mID="47">Hofors</munic>
+                <munic mID="48">Hudiksvall</munic>
+                <munic mID="49">Ljusdal</munic>
+                <munic mID="50">Nordanstig</munic>
+                <munic mID="51">Ockelbo</munic>
+                <munic mID="52">Ovanåker</munic>
+                <munic mID="53">Sandviken</munic>
+                <munic mID="54">Söderhamn</munic>
+                
+              
+            </municipalities>
+          </region><region rID="6">
+            <name>Dalarna</name>
+            <municipalities>
+            <munic mID="55">Avesta</munic>
+                <munic mID="56">Borlänge</munic>
+                <munic mID="57">Falun</munic>
+                <munic mID="58">Gagnef</munic>
+                <munic mID="59">Hedemora</munic>
+                <munic mID="60">Leksand</munic>
+                <munic mID="61">Ludvika</munic>
+                <munic mID="62">Malung-Sälen</munic>
+                <munic mID="63">Mora</munic>
+                <munic mID="64">Orsa</munic>
+                <munic mID="65">Rättvik</munic>
+                <munic mID="66">Smedjebacken</munic>
+                <munic mID="67">Säter</munic>
+                <munic mID="68">Vansbro</munic>
+                <munic mID="69">Älvdalen</munic>
+                
+              
+            </municipalities>
+          </region><region rID="7">
+            <name>Värmland</name>
+            <municipalities>
+            <munic mID="70">Arvika</munic>
+                <munic mID="71">Eda</munic>
+                <munic mID="72">Filipstad</munic>
+                <munic mID="73">Forshaga</munic>
+                <munic mID="74">Grums</munic>
+                <munic mID="75">Hagfors</munic>
+                <munic mID="76">Hammarö</munic>
+                <munic mID="77">Karlstad</munic>
+                <munic mID="78">Kil</munic>
+                <munic mID="79">Kristinehamn</munic>
+                <munic mID="80">Munkfors</munic>
+                <munic mID="81">Storfors</munic>
+                <munic mID="82">Sunne</munic>
+                <munic mID="83">Säffle</munic>
+                <munic mID="84">Torsby</munic>
+                <munic mID="85">Årjäng</munic>
+                
+              
+            </municipalities>
+          </region><region rID="8">
+            <name>Örebro</name>
+            <municipalities>
+            <munic mID="86">Askersund</munic>
+                <munic mID="87">Degerfors</munic>
+                <munic mID="88">Hallsberg</munic>
+                <munic mID="89">Hällefors</munic>
+                <munic mID="90">Karlskoga</munic>
+                <munic mID="91">Kumla</munic>
+                <munic mID="92">Laxå</munic>
+                <munic mID="93">Lekeberg</munic>
+                <munic mID="94">Lindesberg</munic>
+                <munic mID="95">Ljusnarsberg</munic>
+                <munic mID="96">Nora</munic>
+                <munic mID="97">Örebro stad</munic>
+                
+              
+            </municipalities>
+          </region><region rID="9">
+            <name>Västmanland</name>
+            <municipalities>
+            <munic mID="98">Arboga</munic>
+                <munic mID="99">Fagersta</munic>
+                <munic mID="100">Hallstahammar</munic>
+                <munic mID="101">Kungsör</munic>
+                <munic mID="102">Köping</munic>
+                <munic mID="103">Norberg</munic>
+                <munic mID="104">Sala</munic>
+                <munic mID="105">Skinnskatteberg</munic>
+                <munic mID="106">Surahammar</munic>
+                <munic mID="107">Västerås</munic>
+                
+              
+            </municipalities>
+          </region><region rID="10">
+            <name>Uppsala</name>
+            <municipalities>
+            <munic mID="108">Enköping</munic>
+                <munic mID="109">Heby</munic>
+                <munic mID="110">Håbo</munic>
+                <munic mID="111">Knivsta</munic>
+                <munic mID="112">Tierp</munic>
+                <munic mID="113">Uppsala stad</munic>
+                <munic mID="114">Älvkarleby</munic>
+                <munic mID="115">Östhammar</munic>
+                
+              
+            </municipalities>
+          </region><region rID="11">
+            <name>Stockholm</name>
+            <municipalities>
+            <munic mID="116">Botkyrka</munic>
+                <munic mID="117">Danderyd</munic>
+                <munic mID="118">Ekerö</munic>
+                <munic mID="119">Haninge</munic>
+                <munic mID="120">Huddinge</munic>
+                <munic mID="121">Järfälla</munic>
+                <munic mID="122">Lidingö</munic>
+                <munic mID="123">Nacka</munic>
+                <munic mID="124">Norrtälje</munic>
+                <munic mID="125">Nykvarn</munic>
+                <munic mID="126">Nynäshamn</munic>
+                <munic mID="127">Salem</munic>
+                <munic mID="128">Sigtuna</munic>
+                <munic mID="129">Sollentuna</munic>
+                <munic mID="130">Solna</munic>
+                <munic mID="131">Stockholms stad</munic>
+                <munic mID="132">Sundbyberg</munic>
+                <munic mID="133">Södertälje</munic>
+                <munic mID="134">Tyresö</munic>
+                <munic mID="135">Täby</munic>
+                <munic mID="136">Upplands Väsby</munic>
+                <munic mID="137">Upplands-Bro</munic>
+                <munic mID="138">Vallentuna</munic>
+                <munic mID="139">Vaxholm</munic>
+                <munic mID="140">Värmdö</munic>
+                <munic mID="141">Österåker</munic>
+                
+              
+            </municipalities>
+          </region><region rID="12">
+            <name>Södermanland</name>
+            <municipalities>
+            <munic mID="142">Eskilstuna</munic>
+                <munic mID="143">Flen</munic>
+                <munic mID="144">Gnesta</munic>
+                <munic mID="145">Katrineholm</munic>
+                <munic mID="146">Nyköping</munic>
+                <munic mID="147">Oxelösund</munic>
+                <munic mID="148">Strängnäs</munic>
+                <munic mID="149">Trosa</munic>
+                <munic mID="150">Vingåker</munic>
+                
+              
+            </municipalities>
+          </region><region rID="13">
+            <name>Skaraborg</name>
+            <municipalities>
+            <munic mID="151">Essunga</munic>
+                <munic mID="152">Falköping</munic>
+                <munic mID="153">Grästorp</munic>
+                <munic mID="154">Gullspång</munic>
+                <munic mID="155">Götene</munic>
+                <munic mID="156">Hjo</munic>
+                <munic mID="157">Karlsborg</munic>
+                <munic mID="158">Lidköping</munic>
+                <munic mID="159">Mariestad</munic>
+                <munic mID="160">Skara</munic>
+                <munic mID="161">Skövde</munic>
+                <munic mID="162">Tibro</munic>
+                <munic mID="163">Tidaholm</munic>
+                <munic mID="164">Töreboda</munic>
+                <munic mID="165">Vara</munic>
+                
+              
+            </municipalities>
+          </region><region rID="14">
+            <name>Östergötland</name>
+            <municipalities>
+            <munic mID="166">Boxholm</munic>
+                <munic mID="167">Finspång</munic>
+                <munic mID="168">Kinda</munic>
+                <munic mID="169">Linköping</munic>
+                <munic mID="170">Mjölby</munic>
+                <munic mID="171">Motala</munic>
+                <munic mID="172">Norrköping</munic>
+                <munic mID="173">Söderköping</munic>
+                <munic mID="174">Vadstena</munic>
+                <munic mID="175">Valdemarsvik</munic>
+                <munic mID="176">Ydre</munic>
+                <munic mID="177">Åtvidaberg</munic>
+                <munic mID="178">Ödeshög</munic>
+                
+              
+            </municipalities>
+          </region><region rID="15">
+            <name>Göteborg</name>
+            <municipalities>
+            <munic mID="179">Göteborgs stad</munic>
+                <munic mID="180">Härryda</munic>
+                <munic mID="181">Kungälv</munic>
+                <munic mID="182">Lysekil</munic>
+                <munic mID="183">Munkedal</munic>
+                <munic mID="184">Mölndal</munic>
+                <munic mID="185">Orust</munic>
+                <munic mID="186">Partille</munic>
+                <munic mID="187">Sotenäs</munic>
+                <munic mID="188">Stenungsund</munic>
+                <munic mID="189">Strömstad</munic>
+                <munic mID="190">Tanum</munic>
+                <munic mID="191">Tjörn</munic>
+                <munic mID="192">Uddevalla</munic>
+                <munic mID="193">Öckerö</munic>
+                
+              
+            </municipalities>
+          </region><region rID="16">
+            <name>Älvsborg</name>
+            <municipalities>
+            <munic mID="194">Ale</munic>
+                <munic mID="195">Alingsås</munic>
+                <munic mID="196">Bengtsfors</munic>
+                <munic mID="197">Bollebygd</munic>
+                <munic mID="198">Borås</munic>
+                <munic mID="199">Dals-Ed</munic>
+                <munic mID="200">Färgelanda</munic>
+                <munic mID="201">Herrljunga</munic>
+                <munic mID="202">Lerum</munic>
+                <munic mID="203">Lilla Edet</munic>
+                <munic mID="204">Mark</munic>
+                <munic mID="205">Mellerud</munic>
+                <munic mID="206">Svenljunga</munic>
+                <munic mID="207">Tranemo</munic>
+                <munic mID="208">Trollhättan</munic>
+                <munic mID="209">Ulricehamn</munic>
+                <munic mID="210">Vårgårda</munic>
+                <munic mID="211">Vänersborg</munic>
+                <munic mID="212">Åmål</munic>
+                
+              
+            </municipalities>
+          </region><region rID="17">
+            <name>Jönköping</name>
+            <municipalities>
+            <munic mID="213">Aneby</munic>
+                <munic mID="214">Eksjö</munic>
+                <munic mID="215">Gislaved</munic>
+                <munic mID="216">Gnosjö</munic>
+                <munic mID="217">Habo</munic>
+                <munic mID="218">Jönköping stad</munic>
+                <munic mID="219">Mullsjö</munic>
+                <munic mID="220">Nässjö</munic>
+                <munic mID="221">Sävsjö</munic>
+                <munic mID="222">Tranås</munic>
+                <munic mID="223">Vaggeryd</munic>
+                <munic mID="224">Vetlanda</munic>
+                <munic mID="225">Värnamo</munic>
+                
+              
+            </municipalities>
+          </region><region rID="18">
+            <name>Kalmar</name>
+            <municipalities>
+            <munic mID="226">Borgholm</munic>
+                <munic mID="227">Emmaboda</munic>
+                <munic mID="228">Hultsfred</munic>
+                <munic mID="229">Högsby</munic>
+                <munic mID="230">Kalmar stad</munic>
+                <munic mID="231">Mönsterås</munic>
+                <munic mID="232">Mörbylånga</munic>
+                <munic mID="233">Nybro</munic>
+                <munic mID="234">Oskarshamn</munic>
+                <munic mID="235">Torsås</munic>
+                <munic mID="236">Vimmerby</munic>
+                <munic mID="237">Västervik</munic>
+                
+              
+            </municipalities>
+          </region><region rID="19">
+            <name>Gotland</name>
+            <municipalities>
+            <munic mID="238">Gotland</munic>
+                
+              
+            </municipalities>
+          </region><region rID="20">
+            <name>Halland</name>
+            <municipalities>
+            <munic mID="239">Falkenberg</munic>
+                <munic mID="240">Halmstad</munic>
+                <munic mID="241">Hylte</munic>
+                <munic mID="242">Kungsbacka</munic>
+                <munic mID="243">Laholm</munic>
+                <munic mID="244">Varberg</munic>
+                
+              
+            </municipalities>
+          </region><region rID="21">
+            <name>Kronoberg</name>
+            <municipalities>
+            <munic mID="245">Alvesta</munic>
+                <munic mID="246">Lessebo</munic>
+                <munic mID="247">Ljungby</munic>
+                <munic mID="248">Markaryd</munic>
+                <munic mID="249">Tingsryd</munic>
+                <munic mID="250">Uppvidinge</munic>
+                <munic mID="251">Växjö</munic>
+                <munic mID="252">Älmhult</munic>
+                
+              
+            </municipalities>
+          </region><region rID="22">
+            <name>Blekinge</name>
+            <municipalities>
+            <munic mID="253">Karlshamn</munic>
+                <munic mID="254">Karlskrona</munic>
+                <munic mID="255">Olofström</munic>
+                <munic mID="256">Ronneby</munic>
+                <munic mID="257">Sölvesborg</munic>
+                
+              
+            </municipalities>
+          </region><region rID="23">
+            <name>Skåne</name>
+            <municipalities>
+            <munic mID="258">Bjuv</munic>
+                <munic mID="259">Bromölla</munic>
+                <munic mID="260">Burlöv</munic>
+                <munic mID="261">Båstad</munic>
+                <munic mID="262">Eslöv</munic>
+                <munic mID="263">Helsingborg</munic>
+                <munic mID="264">Hässleholm</munic>
+                <munic mID="265">Höganäs</munic>
+                <munic mID="266">Hörby</munic>
+                <munic mID="267">Höör</munic>
+                <munic mID="268">Klippan</munic>
+                <munic mID="269">Kristianstad</munic>
+                <munic mID="270">Kävlinge</munic>
+                <munic mID="271">Landskrona</munic>
+                <munic mID="272">Lomma</munic>
+                <munic mID="273">Lund</munic>
+                <munic mID="274">Malmö stad</munic>
+                <munic mID="275">Osby</munic>
+                <munic mID="276">Perstorp</munic>
+                <munic mID="277">Simrishamn</munic>
+                <munic mID="278">Sjöbo</munic>
+                <munic mID="279">Skurup</munic>
+                <munic mID="280">Staffanstorp</munic>
+                <munic mID="281">Svalöv</munic>
+                <munic mID="282">Svedala</munic>
+                <munic mID="283">Tomelilla</munic>
+                <munic mID="284">Trelleborg</munic>
+                <munic mID="285">Vellinge</munic>
+                <munic mID="286">Ystad</munic>
+                <munic mID="287">Åstorp</munic>
+                <munic mID="288">Ängelholm</munic>
+                <munic mID="289">Örkelljunga</munic>
+                <munic mID="290">Östra Göinge</munic>
+                
+              
+            </municipalities>
+          </region><region rID="50">
+            <name>Norge</name>
+            <municipalities>
+            <munic mID="1001">Akershus</munic>
+                <munic mID="1002">Aust-Agder</munic>
+                <munic mID="1003">Buskerud</munic>
+                <munic mID="1004">Finnmark</munic>
+                <munic mID="1005">Hedmark</munic>
+                <munic mID="1006">Hordaland</munic>
+                <munic mID="1007">Møre og Romsdal</munic>
+                <munic mID="1008">Nord-Trøndelag</munic>
+                <munic mID="1009">Nordland</munic>
+                <munic mID="1010">Oppland</munic>
+                <munic mID="1011">Oslo</munic>
+                <munic mID="1012">Rogaland</munic>
+                <munic mID="1013">Sogn og Fjordane</munic>
+                <munic mID="1014">Svalbard</munic>
+                <munic mID="1015">Sør-Trøndelag</munic>
+                <munic mID="1016">Telemark</munic>
+                <munic mID="1017">Troms</munic>
+                <munic mID="1018">Vest-Agder</munic>
+                <munic mID="1019">Vestfold</munic>
+                <munic mID="1020">Østfold</munic>
+                
+              
+            </municipalities>
+          </region><region rID="51">
+            <name>Utomlands</name>
+            <municipalities>
+            <munic mID="1">Utland</munic>
+                
+              
+            </municipalities>
+          </region>
+      
+    </region_list>
+
+    <categories>
+      <category cgID="9250">
+            <name>Administration</name>
+            <subcategories>
+            <subcategory scgID="9251">Assistent</subcategory>
+                <subcategory scgID="9252">Reception</subcategory>
+                <subcategory scgID="9253">Sekreterare</subcategory>
+                <subcategory scgID="9254">Tolk &amp; Översättare</subcategory>
+                <subcategory scgID="9255">Arkiv &amp; Bibliotek</subcategory>
+                <subcategory scgID="9256">Kontorschef</subcategory>
+                <subcategory scgID="9257">Koordinator</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9550">
+            <name>Bank, Finans &amp; Försäkring</name>
+            <subcategories>
+            <subcategory scgID="9552">Analys &amp; Rådgivning</subcategory>
+                <subcategory scgID="9553">Bank &amp; Finans</subcategory>
+                <subcategory scgID="9554">Försäkring</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9220">
+            <name>Bygg &amp; Hantverk</name>
+            <subcategories>
+            <subcategory scgID="9221">Målare</subcategory>
+                <subcategory scgID="9222">Svetsare</subcategory>
+                <subcategory scgID="9223">Elektriker</subcategory>
+                <subcategory scgID="9224">Snickare</subcategory>
+                <subcategory scgID="9225">Rörmokare</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9230">
+            <name>Data &amp; IT</name>
+            <subcategories>
+            <subcategory scgID="9231">Utvecklare</subcategory>
+                <subcategory scgID="9232">IT-Konsult</subcategory>
+                <subcategory scgID="9233">IT-Chef</subcategory>
+                <subcategory scgID="9234">Nätverkstekniker</subcategory>
+                <subcategory scgID="9235">UX &amp; Webbdesign</subcategory>
+                <subcategory scgID="9236">Testare</subcategory>
+                <subcategory scgID="9421">Databasadministration</subcategory>
+                <subcategory scgID="9422">Hårdvarudesign</subcategory>
+                <subcategory scgID="9423">IT-Arkitektur</subcategory>
+                <subcategory scgID="9424">IT-Kvalitetssäkring &amp; Säkerhet</subcategory>
+                <subcategory scgID="9425">IT-Utbildning</subcategory>
+                <subcategory scgID="9426">Projektledare</subcategory>
+                <subcategory scgID="9427">Support</subcategory>
+                <subcategory scgID="9428">Systemadministration</subcategory>
+                <subcategory scgID="9429">Systemanalytiker</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9240">
+            <name>Ekonomi</name>
+            <subcategories>
+            <subcategory scgID="9241">Ekonomiassistent</subcategory>
+                <subcategory scgID="9242">Controller</subcategory>
+                <subcategory scgID="9243">Redovisningsekonom</subcategory>
+                <subcategory scgID="9244">Ekonomichef</subcategory>
+                <subcategory scgID="9245">Konsult</subcategory>
+                <subcategory scgID="9246">Revision</subcategory>
+                <subcategory scgID="9247">Skatt</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9260">
+            <name>Försäljning</name>
+            <subcategories>
+            <subcategory scgID="9261">Key Account Manager</subcategory>
+                <subcategory scgID="9262">Telefonförsäljare</subcategory>
+                <subcategory scgID="9263">Försäljningschef</subcategory>
+                <subcategory scgID="9264">Butik</subcategory>
+                <subcategory scgID="9265">Kundservice</subcategory>
+                <subcategory scgID="9266">Säljsupport</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9320">
+            <name>Hälsa &amp; Sjukvård</name>
+            <subcategories>
+            <subcategory scgID="9321">Sjuksköterska</subcategory>
+                <subcategory scgID="9322">Läkare</subcategory>
+                <subcategory scgID="9323">Vård &amp; Omsorg</subcategory>
+                <subcategory scgID="9324">Tandvård</subcategory>
+                <subcategory scgID="9325">Sjukgymnastik &amp; Rehab</subcategory>
+                <subcategory scgID="9326">Medicin &amp; Farmaci</subcategory>
+                <subcategory scgID="9327">Medicinsk forskning &amp; Laboratorieverksamhet</subcategory>
+                <subcategory scgID="9328">Optiker &amp; Audionom</subcategory>
+                <subcategory scgID="9329">Psykolog</subcategory>
+                <subcategory scgID="9631">Socionom</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9310">
+            <name>Hotell &amp; Restaurang</name>
+            <subcategories>
+            <subcategory scgID="9311">Reception</subcategory>
+                <subcategory scgID="9312">Servering</subcategory>
+                <subcategory scgID="9313">Kock &amp; Kökspersonal</subcategory>
+                <subcategory scgID="9314">Chef &amp; Ledning</subcategory>
+                <subcategory scgID="9315">Städ</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9270">
+            <name>HR &amp; Personal</name>
+            <subcategories>
+            <subcategory scgID="9271">Personalchef</subcategory>
+                <subcategory scgID="9272">Rekrytering</subcategory>
+                <subcategory scgID="9273">Löner &amp; Förmåner</subcategory>
+                <subcategory scgID="9274">HR-administration</subcategory>
+                <subcategory scgID="9275">Utbildning &amp; Personlig utveckling</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9280">
+            <name>Industri &amp; Anläggning</name>
+            <subcategories>
+            <subcategory scgID="9281">Montör</subcategory>
+                <subcategory scgID="9282">Industri &amp; Produktion</subcategory>
+                <subcategory scgID="9283">Tillverkning</subcategory>
+                <subcategory scgID="9284">Maskinarbete</subcategory>
+                <subcategory scgID="9285">Anläggningsarbete</subcategory>
+                <subcategory scgID="9286">Livsmedel</subcategory>
+                <subcategory scgID="9287">Quality Assurance</subcategory>
+                <subcategory scgID="9288">Reparatörer</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9330">
+            <name>Juridik</name>
+            <subcategories>
+            <subcategory scgID="9331">Advokat</subcategory>
+                <subcategory scgID="9332">Domstol &amp; Rättshjälp</subcategory>
+                <subcategory scgID="9333">Juridisk rådgivning</subcategory>
+                <subcategory scgID="9334">Affärsjuridik</subcategory>
+                <subcategory scgID="9335">Bolagsjurist</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9340">
+            <name>Marknadsföring</name>
+            <subcategories>
+            <subcategory scgID="9341">PR &amp; Kommunikation</subcategory>
+                <subcategory scgID="9342">Marknadsassistent</subcategory>
+                <subcategory scgID="9343">Marknadschef</subcategory>
+                <subcategory scgID="9344">Art director</subcategory>
+                <subcategory scgID="9345">Direkt marknadsföring</subcategory>
+                <subcategory scgID="9346">Marknadskoordinator</subcategory>
+                <subcategory scgID="9347">Marknadsundersökning</subcategory>
+                <subcategory scgID="9348">Mediaplanerare &amp; Inköpare</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9290">
+            <name>Media, Kultur &amp; Design</name>
+            <subcategories>
+            <subcategory scgID="9291">Film, TV, Radio &amp; Multimedia</subcategory>
+                <subcategory scgID="9292">Journalistik</subcategory>
+                <subcategory scgID="9293">Publicering</subcategory>
+                <subcategory scgID="9294">Designer</subcategory>
+                <subcategory scgID="9295">Foto</subcategory>
+                <subcategory scgID="9296">Konst, Musik &amp; Teater</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9530">
+            <name>Miljö &amp; Djurvård</name>
+            <subcategories>
+            <subcategory scgID="9532">Djurvård</subcategory>
+                <subcategory scgID="9533">Jordbruk &amp; Fiske</subcategory>
+                <subcategory scgID="9534">Naturvård</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9570">
+            <name>Offentlig Förvaltning</name>
+            <subcategories>
+            <subcategory scgID="9572">Ambassad &amp; Diplomatiska arbeten</subcategory>
+                <subcategory scgID="9573">Kommunal administration &amp; Ledning</subcategory>
+                <subcategory scgID="9574">Statstjänsteman</subcategory>
+                <subcategory scgID="9575">Tulltjänsteman</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9210">
+            <name>Organisation &amp; ledning</name>
+            <subcategories>
+            <subcategory scgID="9211">Managementkonsult &amp; Rådgivare</subcategory>
+                <subcategory scgID="9212">Chefsbefattningar</subcategory>
+                <subcategory scgID="9213">Organisationsutveckling</subcategory>
+                <subcategory scgID="9214">Produktionsledning</subcategory>
+                <subcategory scgID="9215">VD &amp; Koncernchef</subcategory>
+                <subcategory scgID="9216">Affärsutvecklare</subcategory>
+                <subcategory scgID="9217">Produktchef</subcategory>
+                <subcategory scgID="9218">Projektledare</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9510">
+            <name>Säkerhet &amp; Skydd</name>
+            <subcategories>
+            <subcategory scgID="9512">Bevakning</subcategory>
+                <subcategory scgID="9513">Brandkår</subcategory>
+                <subcategory scgID="9514">Militär</subcategory>
+                <subcategory scgID="9515">Polis &amp; Kriminalvård</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9370">
+            <name>Service &amp; Kundtjänst</name>
+            <subcategories>
+            <subcategory scgID="9371">Resebyrå &amp; Turism</subcategory>
+                <subcategory scgID="9372">Serviceyrken</subcategory>
+                <subcategory scgID="9373">Kundtjänst</subcategory>
+                <subcategory scgID="9374">Frisör</subcategory>
+                <subcategory scgID="9375">Skönhet &amp; Personlig omsorg</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9350">
+            <name>Teknik &amp; Ingenjör</name>
+            <subcategories>
+            <subcategory scgID="9351">Ingenjör</subcategory>
+                <subcategory scgID="9352">Arkitekt</subcategory>
+                <subcategory scgID="9353">Forskning &amp; Utveckling</subcategory>
+                <subcategory scgID="9354">Konstruktör</subcategory>
+                <subcategory scgID="9355">Civilingenjör</subcategory>
+                <subcategory scgID="9356">Energi &amp; Miljö</subcategory>
+                <subcategory scgID="9431">Elektronik</subcategory>
+                <subcategory scgID="9432">Elkraft</subcategory>
+                <subcategory scgID="9433">Kemi, Fysik &amp; Biologi</subcategory>
+                <subcategory scgID="9434">Matematik, Statistik &amp; Information</subcategory>
+                <subcategory scgID="9435">Materialteknik</subcategory>
+                <subcategory scgID="9436">Mekanik</subcategory>
+                <subcategory scgID="9437">Processingenjör</subcategory>
+                <subcategory scgID="9438">Teknisk rådgivare &amp; Försäljningsingenjör</subcategory>
+                <subcategory scgID="9439">Teknisk skribent</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9300">
+            <name>Transport &amp; Logistik</name>
+            <subcategories>
+            <subcategory scgID="9301">Transport</subcategory>
+                <subcategory scgID="9302">Lager</subcategory>
+                <subcategory scgID="9303">Inköp</subcategory>
+                <subcategory scgID="9304">Administration &amp; Ledning</subcategory>
+                <subcategory scgID="9305">Distribution</subcategory>
+                <subcategory scgID="9306">Logistik</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9360">
+            <name>Utbildning</name>
+            <subcategories>
+            <subcategory scgID="9361">Förskolelärare</subcategory>
+                <subcategory scgID="9362">Lärare</subcategory>
+                <subcategory scgID="9363">Fritidspedagog</subcategory>
+                <subcategory scgID="9364">Universitet &amp; Högskola</subcategory>
+                <subcategory scgID="9365">Specialpedagog</subcategory>
+                <subcategory scgID="9366">Administration &amp; Ledning</subcategory>
+                <subcategory scgID="9367">Barnskötare</subcategory>
+                
+              
+            
+            </subcategories>
+          </category>
+        <category cgID="9380">
+            <name>Övrigt</name>
+            <subcategories>
+            
+              
+            
+            </subcategories>
+          </category>
+        
+      
+    </categories>
+    <employment_list>
+      <employment emID="1">Heltid</employment>
+          
+        <employment emID="2">Deltid</employment>
+          
+        <employment emID="3">Extrajobb</employment>
+          
+        <employment emID="4">Säsongsjobb</employment>
+          
+        <employment emID="5">Franchise</employment>
+          
+        <employment emID="6">Tillsvidareanställd</employment>
+          
+        <employment emID="7">Projekt- / Visstidsanställd</employment>
+          
+        <employment emID="8">Trainee</employment>
+          
+        <employment emID="9">Internship / Praktik</employment>
+          
+        <employment emID="10">Examensarbete</employment>
+          
+        <employment emID="11">Vikariat</employment>
+          
+        <employment emID="12">Frilans</employment>
+          
+        
+      
+    </employment_list>
+    <job_ad_types>
+      <job_ad_type atID="1">Direkt</job_ad_type>
+        <job_ad_type atID="2">Rekrytering</job_ad_type>
+        <job_ad_type atID="3">Bemanning</job_ad_type>
+        <job_ad_type atID="4">Statlig</job_ad_type>
+        
+      
+    </job_ad_types>
+    
+      <product_types>
+        <product_type>product_blocketjobb_bas</product_type>
+          <product_type>product_blocketjobb_bredd</product_type>
+          <product_type>product_blocketjobb_effekt</product_type>
+          <product_type>product_blocketjobb_premium_boost</product_type>
+          <product_type>product_blocketjobb_premium_riktad</product_type>
+          <product_type>product_blocketjobb_premium_social_media</product_type>
+          <product_type>product_blocketjobb_premium_spridning</product_type>
+          <product_type>product_blocketjobb_premium_spridning_600</product_type>
+          <product_type>product_blocketjobb_premium_webb</product_type>
+          <product_type>product_blocketjobb_social_media</product_type>
+          <product_type>product_blocketjobb_spridning</product_type>
+          <product_type>product_blocketjobb_spridning_300</product_type>
+          <product_type>product_extra_aftonbladet_jobbsnurran</product_type>
+          <product_type>product_extra_gallery</product_type>
+          <product_type>product_kombo_bas</product_type>
+          <product_type>product_kombo_bredd</product_type>
+          <product_type>product_kombo_effekt</product_type>
+          <product_type>product_kombo_premium_boost</product_type>
+          <product_type>product_kombo_premium_riktad</product_type>
+          <product_type>product_kombo_premium_screening</product_type>
+          <product_type>product_kombo_premium_selektering</product_type>
+          <product_type>product_kombo_premium_social_media</product_type>
+          <product_type>product_kombo_premium_spridning</product_type>
+          <product_type>product_kombo_premium_spridning_800</product_type>
+          <product_type>product_kombo_premium_webb</product_type>
+          <product_type>product_kombo_social_media</product_type>
+          <product_type>product_kombo_spridning</product_type>
+          <product_type>product_kombo_spridning_400</product_type>
+          <product_type>product_stepstone_bas</product_type>
+          <product_type>product_stepstone_bredd</product_type>
+          <product_type>product_stepstone_effekt</product_type>
+          <product_type>product_stepstone_premium_boost</product_type>
+          <product_type>product_stepstone_premium_riktad</product_type>
+          <product_type>product_stepstone_premium_social_media</product_type>
+          <product_type>product_stepstone_premium_spridning</product_type>
+          <product_type>product_stepstone_premium_spridning_800</product_type>
+          <product_type>product_stepstone_premium_webb</product_type>
+          <product_type>product_stepstone_social_media</product_type>
+          <product_type>product_stepstone_spridning</product_type>
+          <product_type>product_stepstone_spridning_400</product_type>
+          
+        
+      </product_types>
+    
+  </jobb_variables>
+</jobfeed_xml_structure>
