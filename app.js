@@ -28,10 +28,13 @@ d3.tsv("./data/data.tsv").then(function(data){
 
   })
   .on('mouseover', function(d){
+    //Här vill vi kanske byta färg på regionen för att visa hover men lyckas ej atm /joel
+    //console.log(d)
+  })
+  .on('click', function(d){
     let formatId = d.id.replace("a", "")
     let region = regionlist.region_list[formatId-1].name
-    console.log(region)
-    document.getElementById("hoverTarget").innerHTML = region;
+    document.getElementById("hoverTarget").innerHTML = region + " - Amount: " + regioncnt[d.id.replace("a", "")];
   });
 
 });
