@@ -1,6 +1,14 @@
 var dataArray = [];
 var circles = [];
 var regioncnt = {};
+var regionlist = [];
+
+d3.json("./data/regionlist.json").then(function(data){
+    data.forEach(function(d) {
+      regionlist.push(d)
+    })
+    console.log(regionlist)
+});
 
 //list_id ;  platform  ; first_date ; last_date  ; region ; category;sub_category; subject_full ;  area  ; zipcode ;
 d3.tsv("./data/data.tsv").then(function(data){

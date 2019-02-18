@@ -1,0 +1,2209 @@
+{
+   "region_list": [
+      {
+         "rID": "1",
+         "name": "Norrbotten",
+         "municipalities": [
+            {
+               "mID": "1",
+               "#text": "Arjeplog"
+            },
+            {
+               "mID": "2",
+               "#text": "Arvidsjaur"
+            },
+            {
+               "mID": "3",
+               "#text": "Boden"
+            },
+            {
+               "mID": "4",
+               "#text": "Gällivare"
+            },
+            {
+               "mID": "5",
+               "#text": "Haparanda"
+            },
+            {
+               "mID": "6",
+               "#text": "Jokkmokk"
+            },
+            {
+               "mID": "7",
+               "#text": "Kalix"
+            },
+            {
+               "mID": "8",
+               "#text": "Kiruna"
+            },
+            {
+               "mID": "9",
+               "#text": "Luleå"
+            },
+            {
+               "mID": "10",
+               "#text": "Pajala"
+            },
+            {
+               "mID": "11",
+               "#text": "Piteå"
+            },
+            {
+               "mID": "12",
+               "#text": "Älvsbyn"
+            },
+            {
+               "mID": "13",
+               "#text": "Överkalix"
+            },
+            {
+               "mID": "14",
+               "#text": "Övertorneå"
+            }
+         ]
+      },
+      {
+         "rID": "2",
+         "name": "Västerbotten",
+         "municipalities": [
+            {
+               "mID": "15",
+               "#text": "Bjurholm"
+            },
+            {
+               "mID": "16",
+               "#text": "Dorotea"
+            },
+            {
+               "mID": "17",
+               "#text": "Lycksele"
+            },
+            {
+               "mID": "18",
+               "#text": "Malå"
+            },
+            {
+               "mID": "19",
+               "#text": "Nordmaling"
+            },
+            {
+               "mID": "20",
+               "#text": "Norsjö"
+            },
+            {
+               "mID": "21",
+               "#text": "Robertsfors"
+            },
+            {
+               "mID": "22",
+               "#text": "Skellefteå"
+            },
+            {
+               "mID": "23",
+               "#text": "Sorsele"
+            },
+            {
+               "mID": "24",
+               "#text": "Storuman"
+            },
+            {
+               "mID": "25",
+               "#text": "Umeå"
+            },
+            {
+               "mID": "26",
+               "#text": "Vilhelmina"
+            },
+            {
+               "mID": "27",
+               "#text": "Vindeln"
+            },
+            {
+               "mID": "28",
+               "#text": "Vännäs"
+            },
+            {
+               "mID": "29",
+               "#text": "Åsele"
+            }
+         ]
+      },
+      {
+         "rID": "3",
+         "name": "Jämtland",
+         "municipalities": [
+            {
+               "mID": "30",
+               "#text": "Berg"
+            },
+            {
+               "mID": "31",
+               "#text": "Bräcke"
+            },
+            {
+               "mID": "32",
+               "#text": "Härjedalen"
+            },
+            {
+               "mID": "33",
+               "#text": "Krokom"
+            },
+            {
+               "mID": "34",
+               "#text": "Ragunda"
+            },
+            {
+               "mID": "35",
+               "#text": "Strömsund"
+            },
+            {
+               "mID": "36",
+               "#text": "Åre"
+            },
+            {
+               "mID": "37",
+               "#text": "Östersund"
+            }
+         ]
+      },
+      {
+         "rID": "4",
+         "name": "Västernorrland",
+         "municipalities": [
+            {
+               "mID": "38",
+               "#text": "Härnösand"
+            },
+            {
+               "mID": "39",
+               "#text": "Kramfors"
+            },
+            {
+               "mID": "40",
+               "#text": "Sollefteå"
+            },
+            {
+               "mID": "41",
+               "#text": "Sundsvall"
+            },
+            {
+               "mID": "42",
+               "#text": "Timrå"
+            },
+            {
+               "mID": "43",
+               "#text": "Ånge"
+            },
+            {
+               "mID": "44",
+               "#text": "Örnsköldsvik"
+            }
+         ]
+      },
+      {
+         "rID": "5",
+         "name": "Gävleborg",
+         "municipalities": [
+            {
+               "mID": "45",
+               "#text": "Bollnäs"
+            },
+            {
+               "mID": "46",
+               "#text": "Gävle"
+            },
+            {
+               "mID": "47",
+               "#text": "Hofors"
+            },
+            {
+               "mID": "48",
+               "#text": "Hudiksvall"
+            },
+            {
+               "mID": "49",
+               "#text": "Ljusdal"
+            },
+            {
+               "mID": "50",
+               "#text": "Nordanstig"
+            },
+            {
+               "mID": "51",
+               "#text": "Ockelbo"
+            },
+            {
+               "mID": "52",
+               "#text": "Ovanåker"
+            },
+            {
+               "mID": "53",
+               "#text": "Sandviken"
+            },
+            {
+               "mID": "54",
+               "#text": "Söderhamn"
+            }
+         ]
+      },
+      {
+         "rID": "6",
+         "name": "Dalarna",
+         "municipalities": [
+            {
+               "mID": "55",
+               "#text": "Avesta"
+            },
+            {
+               "mID": "56",
+               "#text": "Borlänge"
+            },
+            {
+               "mID": "57",
+               "#text": "Falun"
+            },
+            {
+               "mID": "58",
+               "#text": "Gagnef"
+            },
+            {
+               "mID": "59",
+               "#text": "Hedemora"
+            },
+            {
+               "mID": "60",
+               "#text": "Leksand"
+            },
+            {
+               "mID": "61",
+               "#text": "Ludvika"
+            },
+            {
+               "mID": "62",
+               "#text": "Malung-Sälen"
+            },
+            {
+               "mID": "63",
+               "#text": "Mora"
+            },
+            {
+               "mID": "64",
+               "#text": "Orsa"
+            },
+            {
+               "mID": "65",
+               "#text": "Rättvik"
+            },
+            {
+               "mID": "66",
+               "#text": "Smedjebacken"
+            },
+            {
+               "mID": "67",
+               "#text": "Säter"
+            },
+            {
+               "mID": "68",
+               "#text": "Vansbro"
+            },
+            {
+               "mID": "69",
+               "#text": "Älvdalen"
+            }
+         ]
+      },
+      {
+         "rID": "7",
+         "name": "Värmland",
+         "municipalities": [
+            {
+               "mID": "70",
+               "#text": "Arvika"
+            },
+            {
+               "mID": "71",
+               "#text": "Eda"
+            },
+            {
+               "mID": "72",
+               "#text": "Filipstad"
+            },
+            {
+               "mID": "73",
+               "#text": "Forshaga"
+            },
+            {
+               "mID": "74",
+               "#text": "Grums"
+            },
+            {
+               "mID": "75",
+               "#text": "Hagfors"
+            },
+            {
+               "mID": "76",
+               "#text": "Hammarö"
+            },
+            {
+               "mID": "77",
+               "#text": "Karlstad"
+            },
+            {
+               "mID": "78",
+               "#text": "Kil"
+            },
+            {
+               "mID": "79",
+               "#text": "Kristinehamn"
+            },
+            {
+               "mID": "80",
+               "#text": "Munkfors"
+            },
+            {
+               "mID": "81",
+               "#text": "Storfors"
+            },
+            {
+               "mID": "82",
+               "#text": "Sunne"
+            },
+            {
+               "mID": "83",
+               "#text": "Säffle"
+            },
+            {
+               "mID": "84",
+               "#text": "Torsby"
+            },
+            {
+               "mID": "85",
+               "#text": "Årjäng"
+            }
+         ]
+      },
+      {
+         "rID": "8",
+         "name": "Örebro",
+         "municipalities": [
+            {
+               "mID": "86",
+               "#text": "Askersund"
+            },
+            {
+               "mID": "87",
+               "#text": "Degerfors"
+            },
+            {
+               "mID": "88",
+               "#text": "Hallsberg"
+            },
+            {
+               "mID": "89",
+               "#text": "Hällefors"
+            },
+            {
+               "mID": "90",
+               "#text": "Karlskoga"
+            },
+            {
+               "mID": "91",
+               "#text": "Kumla"
+            },
+            {
+               "mID": "92",
+               "#text": "Laxå"
+            },
+            {
+               "mID": "93",
+               "#text": "Lekeberg"
+            },
+            {
+               "mID": "94",
+               "#text": "Lindesberg"
+            },
+            {
+               "mID": "95",
+               "#text": "Ljusnarsberg"
+            },
+            {
+               "mID": "96",
+               "#text": "Nora"
+            },
+            {
+               "mID": "97",
+               "#text": "Örebro stad"
+            }
+         ]
+      },
+      {
+         "rID": "9",
+         "name": "Västmanland",
+         "municipalities": [
+            {
+               "mID": "98",
+               "#text": "Arboga"
+            },
+            {
+               "mID": "99",
+               "#text": "Fagersta"
+            },
+            {
+               "mID": "100",
+               "#text": "Hallstahammar"
+            },
+            {
+               "mID": "101",
+               "#text": "Kungsör"
+            },
+            {
+               "mID": "102",
+               "#text": "Köping"
+            },
+            {
+               "mID": "103",
+               "#text": "Norberg"
+            },
+            {
+               "mID": "104",
+               "#text": "Sala"
+            },
+            {
+               "mID": "105",
+               "#text": "Skinnskatteberg"
+            },
+            {
+               "mID": "106",
+               "#text": "Surahammar"
+            },
+            {
+               "mID": "107",
+               "#text": "Västerås"
+            }
+         ]
+      },
+      {
+         "rID": "10",
+         "name": "Uppsala",
+         "municipalities": [
+            {
+               "mID": "108",
+               "#text": "Enköping"
+            },
+            {
+               "mID": "109",
+               "#text": "Heby"
+            },
+            {
+               "mID": "110",
+               "#text": "Håbo"
+            },
+            {
+               "mID": "111",
+               "#text": "Knivsta"
+            },
+            {
+               "mID": "112",
+               "#text": "Tierp"
+            },
+            {
+               "mID": "113",
+               "#text": "Uppsala stad"
+            },
+            {
+               "mID": "114",
+               "#text": "Älvkarleby"
+            },
+            {
+               "mID": "115",
+               "#text": "Östhammar"
+            }
+         ]
+      },
+      {
+         "rID": "11",
+         "name": "Stockholm",
+         "municipalities": [
+            {
+               "mID": "116",
+               "#text": "Botkyrka"
+            },
+            {
+               "mID": "117",
+               "#text": "Danderyd"
+            },
+            {
+               "mID": "118",
+               "#text": "Ekerö"
+            },
+            {
+               "mID": "119",
+               "#text": "Haninge"
+            },
+            {
+               "mID": "120",
+               "#text": "Huddinge"
+            },
+            {
+               "mID": "121",
+               "#text": "Järfälla"
+            },
+            {
+               "mID": "122",
+               "#text": "Lidingö"
+            },
+            {
+               "mID": "123",
+               "#text": "Nacka"
+            },
+            {
+               "mID": "124",
+               "#text": "Norrtälje"
+            },
+            {
+               "mID": "125",
+               "#text": "Nykvarn"
+            },
+            {
+               "mID": "126",
+               "#text": "Nynäshamn"
+            },
+            {
+               "mID": "127",
+               "#text": "Salem"
+            },
+            {
+               "mID": "128",
+               "#text": "Sigtuna"
+            },
+            {
+               "mID": "129",
+               "#text": "Sollentuna"
+            },
+            {
+               "mID": "130",
+               "#text": "Solna"
+            },
+            {
+               "mID": "131",
+               "#text": "Stockholms stad"
+            },
+            {
+               "mID": "132",
+               "#text": "Sundbyberg"
+            },
+            {
+               "mID": "133",
+               "#text": "Södertälje"
+            },
+            {
+               "mID": "134",
+               "#text": "Tyresö"
+            },
+            {
+               "mID": "135",
+               "#text": "Täby"
+            },
+            {
+               "mID": "136",
+               "#text": "Upplands Väsby"
+            },
+            {
+               "mID": "137",
+               "#text": "Upplands-Bro"
+            },
+            {
+               "mID": "138",
+               "#text": "Vallentuna"
+            },
+            {
+               "mID": "139",
+               "#text": "Vaxholm"
+            },
+            {
+               "mID": "140",
+               "#text": "Värmdö"
+            },
+            {
+               "mID": "141",
+               "#text": "Österåker"
+            }
+         ]
+      },
+      {
+         "rID": "12",
+         "name": "Södermanland",
+         "municipalities": [
+            {
+               "mID": "142",
+               "#text": "Eskilstuna"
+            },
+            {
+               "mID": "143",
+               "#text": "Flen"
+            },
+            {
+               "mID": "144",
+               "#text": "Gnesta"
+            },
+            {
+               "mID": "145",
+               "#text": "Katrineholm"
+            },
+            {
+               "mID": "146",
+               "#text": "Nyköping"
+            },
+            {
+               "mID": "147",
+               "#text": "Oxelösund"
+            },
+            {
+               "mID": "148",
+               "#text": "Strängnäs"
+            },
+            {
+               "mID": "149",
+               "#text": "Trosa"
+            },
+            {
+               "mID": "150",
+               "#text": "Vingåker"
+            }
+         ]
+      },
+      {
+         "rID": "13",
+         "name": "Skaraborg",
+         "municipalities": [
+            {
+               "mID": "151",
+               "#text": "Essunga"
+            },
+            {
+               "mID": "152",
+               "#text": "Falköping"
+            },
+            {
+               "mID": "153",
+               "#text": "Grästorp"
+            },
+            {
+               "mID": "154",
+               "#text": "Gullspång"
+            },
+            {
+               "mID": "155",
+               "#text": "Götene"
+            },
+            {
+               "mID": "156",
+               "#text": "Hjo"
+            },
+            {
+               "mID": "157",
+               "#text": "Karlsborg"
+            },
+            {
+               "mID": "158",
+               "#text": "Lidköping"
+            },
+            {
+               "mID": "159",
+               "#text": "Mariestad"
+            },
+            {
+               "mID": "160",
+               "#text": "Skara"
+            },
+            {
+               "mID": "161",
+               "#text": "Skövde"
+            },
+            {
+               "mID": "162",
+               "#text": "Tibro"
+            },
+            {
+               "mID": "163",
+               "#text": "Tidaholm"
+            },
+            {
+               "mID": "164",
+               "#text": "Töreboda"
+            },
+            {
+               "mID": "165",
+               "#text": "Vara"
+            }
+         ]
+      },
+      {
+         "rID": "14",
+         "name": "Östergötland",
+         "municipalities": [
+            {
+               "mID": "166",
+               "#text": "Boxholm"
+            },
+            {
+               "mID": "167",
+               "#text": "Finspång"
+            },
+            {
+               "mID": "168",
+               "#text": "Kinda"
+            },
+            {
+               "mID": "169",
+               "#text": "Linköping"
+            },
+            {
+               "mID": "170",
+               "#text": "Mjölby"
+            },
+            {
+               "mID": "171",
+               "#text": "Motala"
+            },
+            {
+               "mID": "172",
+               "#text": "Norrköping"
+            },
+            {
+               "mID": "173",
+               "#text": "Söderköping"
+            },
+            {
+               "mID": "174",
+               "#text": "Vadstena"
+            },
+            {
+               "mID": "175",
+               "#text": "Valdemarsvik"
+            },
+            {
+               "mID": "176",
+               "#text": "Ydre"
+            },
+            {
+               "mID": "177",
+               "#text": "Åtvidaberg"
+            },
+            {
+               "mID": "178",
+               "#text": "Ödeshög"
+            }
+         ]
+      },
+      {
+         "rID": "15",
+         "name": "Göteborg",
+         "municipalities": [
+            {
+               "mID": "179",
+               "#text": "Göteborgs stad"
+            },
+            {
+               "mID": "180",
+               "#text": "Härryda"
+            },
+            {
+               "mID": "181",
+               "#text": "Kungälv"
+            },
+            {
+               "mID": "182",
+               "#text": "Lysekil"
+            },
+            {
+               "mID": "183",
+               "#text": "Munkedal"
+            },
+            {
+               "mID": "184",
+               "#text": "Mölndal"
+            },
+            {
+               "mID": "185",
+               "#text": "Orust"
+            },
+            {
+               "mID": "186",
+               "#text": "Partille"
+            },
+            {
+               "mID": "187",
+               "#text": "Sotenäs"
+            },
+            {
+               "mID": "188",
+               "#text": "Stenungsund"
+            },
+            {
+               "mID": "189",
+               "#text": "Strömstad"
+            },
+            {
+               "mID": "190",
+               "#text": "Tanum"
+            },
+            {
+               "mID": "191",
+               "#text": "Tjörn"
+            },
+            {
+               "mID": "192",
+               "#text": "Uddevalla"
+            },
+            {
+               "mID": "193",
+               "#text": "Öckerö"
+            }
+         ]
+      },
+      {
+         "rID": "16",
+         "name": "Älvsborg",
+         "municipalities": [
+            {
+               "mID": "194",
+               "#text": "Ale"
+            },
+            {
+               "mID": "195",
+               "#text": "Alingsås"
+            },
+            {
+               "mID": "196",
+               "#text": "Bengtsfors"
+            },
+            {
+               "mID": "197",
+               "#text": "Bollebygd"
+            },
+            {
+               "mID": "198",
+               "#text": "Borås"
+            },
+            {
+               "mID": "199",
+               "#text": "Dals-Ed"
+            },
+            {
+               "mID": "200",
+               "#text": "Färgelanda"
+            },
+            {
+               "mID": "201",
+               "#text": "Herrljunga"
+            },
+            {
+               "mID": "202",
+               "#text": "Lerum"
+            },
+            {
+               "mID": "203",
+               "#text": "Lilla Edet"
+            },
+            {
+               "mID": "204",
+               "#text": "Mark"
+            },
+            {
+               "mID": "205",
+               "#text": "Mellerud"
+            },
+            {
+               "mID": "206",
+               "#text": "Svenljunga"
+            },
+            {
+               "mID": "207",
+               "#text": "Tranemo"
+            },
+            {
+               "mID": "208",
+               "#text": "Trollhättan"
+            },
+            {
+               "mID": "209",
+               "#text": "Ulricehamn"
+            },
+            {
+               "mID": "210",
+               "#text": "Vårgårda"
+            },
+            {
+               "mID": "211",
+               "#text": "Vänersborg"
+            },
+            {
+               "mID": "212",
+               "#text": "Åmål"
+            }
+         ]
+      },
+      {
+         "rID": "17",
+         "name": "Jönköping",
+         "municipalities": [
+            {
+               "mID": "213",
+               "#text": "Aneby"
+            },
+            {
+               "mID": "214",
+               "#text": "Eksjö"
+            },
+            {
+               "mID": "215",
+               "#text": "Gislaved"
+            },
+            {
+               "mID": "216",
+               "#text": "Gnosjö"
+            },
+            {
+               "mID": "217",
+               "#text": "Habo"
+            },
+            {
+               "mID": "218",
+               "#text": "Jönköping stad"
+            },
+            {
+               "mID": "219",
+               "#text": "Mullsjö"
+            },
+            {
+               "mID": "220",
+               "#text": "Nässjö"
+            },
+            {
+               "mID": "221",
+               "#text": "Sävsjö"
+            },
+            {
+               "mID": "222",
+               "#text": "Tranås"
+            },
+            {
+               "mID": "223",
+               "#text": "Vaggeryd"
+            },
+            {
+               "mID": "224",
+               "#text": "Vetlanda"
+            },
+            {
+               "mID": "225",
+               "#text": "Värnamo"
+            }
+         ]
+      },
+      {
+         "rID": "18",
+         "name": "Kalmar",
+         "municipalities": [
+            {
+               "mID": "226",
+               "#text": "Borgholm"
+            },
+            {
+               "mID": "227",
+               "#text": "Emmaboda"
+            },
+            {
+               "mID": "228",
+               "#text": "Hultsfred"
+            },
+            {
+               "mID": "229",
+               "#text": "Högsby"
+            },
+            {
+               "mID": "230",
+               "#text": "Kalmar stad"
+            },
+            {
+               "mID": "231",
+               "#text": "Mönsterås"
+            },
+            {
+               "mID": "232",
+               "#text": "Mörbylånga"
+            },
+            {
+               "mID": "233",
+               "#text": "Nybro"
+            },
+            {
+               "mID": "234",
+               "#text": "Oskarshamn"
+            },
+            {
+               "mID": "235",
+               "#text": "Torsås"
+            },
+            {
+               "mID": "236",
+               "#text": "Vimmerby"
+            },
+            {
+               "mID": "237",
+               "#text": "Västervik"
+            }
+         ]
+      },
+      {
+         "rID": "19",
+         "name": "Gotland",
+         "municipalities": {
+            "munic": {
+               "mID": "238",
+               "#text": "Gotland"
+            }
+         }
+      },
+      {
+         "rID": "20",
+         "name": "Halland",
+         "municipalities": [
+            {
+               "mID": "239",
+               "#text": "Falkenberg"
+            },
+            {
+               "mID": "240",
+               "#text": "Halmstad"
+            },
+            {
+               "mID": "241",
+               "#text": "Hylte"
+            },
+            {
+               "mID": "242",
+               "#text": "Kungsbacka"
+            },
+            {
+               "mID": "243",
+               "#text": "Laholm"
+            },
+            {
+               "mID": "244",
+               "#text": "Varberg"
+            }
+         ]
+      },
+      {
+         "rID": "21",
+         "name": "Kronoberg",
+         "municipalities": [
+            {
+               "mID": "245",
+               "#text": "Alvesta"
+            },
+            {
+               "mID": "246",
+               "#text": "Lessebo"
+            },
+            {
+               "mID": "247",
+               "#text": "Ljungby"
+            },
+            {
+               "mID": "248",
+               "#text": "Markaryd"
+            },
+            {
+               "mID": "249",
+               "#text": "Tingsryd"
+            },
+            {
+               "mID": "250",
+               "#text": "Uppvidinge"
+            },
+            {
+               "mID": "251",
+               "#text": "Växjö"
+            },
+            {
+               "mID": "252",
+               "#text": "Älmhult"
+            }
+         ]
+      },
+      {
+         "rID": "22",
+         "name": "Blekinge",
+         "municipalities": [
+            {
+               "mID": "253",
+               "#text": "Karlshamn"
+            },
+            {
+               "mID": "254",
+               "#text": "Karlskrona"
+            },
+            {
+               "mID": "255",
+               "#text": "Olofström"
+            },
+            {
+               "mID": "256",
+               "#text": "Ronneby"
+            },
+            {
+               "mID": "257",
+               "#text": "Sölvesborg"
+            }
+         ]
+      },
+      {
+         "rID": "23",
+         "name": "Skåne",
+         "municipalities": [
+            {
+               "mID": "258",
+               "#text": "Bjuv"
+            },
+            {
+               "mID": "259",
+               "#text": "Bromölla"
+            },
+            {
+               "mID": "260",
+               "#text": "Burlöv"
+            },
+            {
+               "mID": "261",
+               "#text": "Båstad"
+            },
+            {
+               "mID": "262",
+               "#text": "Eslöv"
+            },
+            {
+               "mID": "263",
+               "#text": "Helsingborg"
+            },
+            {
+               "mID": "264",
+               "#text": "Hässleholm"
+            },
+            {
+               "mID": "265",
+               "#text": "Höganäs"
+            },
+            {
+               "mID": "266",
+               "#text": "Hörby"
+            },
+            {
+               "mID": "267",
+               "#text": "Höör"
+            },
+            {
+               "mID": "268",
+               "#text": "Klippan"
+            },
+            {
+               "mID": "269",
+               "#text": "Kristianstad"
+            },
+            {
+               "mID": "270",
+               "#text": "Kävlinge"
+            },
+            {
+               "mID": "271",
+               "#text": "Landskrona"
+            },
+            {
+               "mID": "272",
+               "#text": "Lomma"
+            },
+            {
+               "mID": "273",
+               "#text": "Lund"
+            },
+            {
+               "mID": "274",
+               "#text": "Malmö stad"
+            },
+            {
+               "mID": "275",
+               "#text": "Osby"
+            },
+            {
+               "mID": "276",
+               "#text": "Perstorp"
+            },
+            {
+               "mID": "277",
+               "#text": "Simrishamn"
+            },
+            {
+               "mID": "278",
+               "#text": "Sjöbo"
+            },
+            {
+               "mID": "279",
+               "#text": "Skurup"
+            },
+            {
+               "mID": "280",
+               "#text": "Staffanstorp"
+            },
+            {
+               "mID": "281",
+               "#text": "Svalöv"
+            },
+            {
+               "mID": "282",
+               "#text": "Svedala"
+            },
+            {
+               "mID": "283",
+               "#text": "Tomelilla"
+            },
+            {
+               "mID": "284",
+               "#text": "Trelleborg"
+            },
+            {
+               "mID": "285",
+               "#text": "Vellinge"
+            },
+            {
+               "mID": "286",
+               "#text": "Ystad"
+            },
+            {
+               "mID": "287",
+               "#text": "Åstorp"
+            },
+            {
+               "mID": "288",
+               "#text": "Ängelholm"
+            },
+            {
+               "mID": "289",
+               "#text": "Örkelljunga"
+            },
+            {
+               "mID": "290",
+               "#text": "Östra Göinge"
+            }
+         ]
+      },
+      {
+         "rID": "50",
+         "name": "Norge",
+         "municipalities": [
+            {
+               "mID": "1001",
+               "#text": "Akershus"
+            },
+            {
+               "mID": "1002",
+               "#text": "Aust-Agder"
+            },
+            {
+               "mID": "1003",
+               "#text": "Buskerud"
+            },
+            {
+               "mID": "1004",
+               "#text": "Finnmark"
+            },
+            {
+               "mID": "1005",
+               "#text": "Hedmark"
+            },
+            {
+               "mID": "1006",
+               "#text": "Hordaland"
+            },
+            {
+               "mID": "1007",
+               "#text": "Møre og Romsdal"
+            },
+            {
+               "mID": "1008",
+               "#text": "Nord-Trøndelag"
+            },
+            {
+               "mID": "1009",
+               "#text": "Nordland"
+            },
+            {
+               "mID": "1010",
+               "#text": "Oppland"
+            },
+            {
+               "mID": "1011",
+               "#text": "Oslo"
+            },
+            {
+               "mID": "1012",
+               "#text": "Rogaland"
+            },
+            {
+               "mID": "1013",
+               "#text": "Sogn og Fjordane"
+            },
+            {
+               "mID": "1014",
+               "#text": "Svalbard"
+            },
+            {
+               "mID": "1015",
+               "#text": "Sør-Trøndelag"
+            },
+            {
+               "mID": "1016",
+               "#text": "Telemark"
+            },
+            {
+               "mID": "1017",
+               "#text": "Troms"
+            },
+            {
+               "mID": "1018",
+               "#text": "Vest-Agder"
+            },
+            {
+               "mID": "1019",
+               "#text": "Vestfold"
+            },
+            {
+               "mID": "1020",
+               "#text": "Østfold"
+            }
+         ]
+      },
+      {
+         "rID": "51",
+         "name": "Utomlands",
+         "municipalities": {
+            "munic": {
+               "mID": "1",
+               "#text": "Utland"
+            }
+         }
+      }
+   ],
+   "categories": [
+      {
+         "cgID": "9250",
+         "name": "Administration",
+         "subcategories": [
+            {
+               "scgID": "9251",
+               "#text": "Assistent"
+            },
+            {
+               "scgID": "9252",
+               "#text": "Reception"
+            },
+            {
+               "scgID": "9253",
+               "#text": "Sekreterare"
+            },
+            {
+               "scgID": "9254",
+               "#text": "Tolk & Översättare"
+            },
+            {
+               "scgID": "9255",
+               "#text": "Arkiv & Bibliotek"
+            },
+            {
+               "scgID": "9256",
+               "#text": "Kontorschef"
+            },
+            {
+               "scgID": "9257",
+               "#text": "Koordinator"
+            }
+         ]
+      },
+      {
+         "cgID": "9550",
+         "name": "Bank, Finans & Försäkring",
+         "subcategories": [
+            {
+               "scgID": "9552",
+               "#text": "Analys & Rådgivning"
+            },
+            {
+               "scgID": "9553",
+               "#text": "Bank & Finans"
+            },
+            {
+               "scgID": "9554",
+               "#text": "Försäkring"
+            }
+         ]
+      },
+      {
+         "cgID": "9220",
+         "name": "Bygg & Hantverk",
+         "subcategories": [
+            {
+               "scgID": "9221",
+               "#text": "Målare"
+            },
+            {
+               "scgID": "9222",
+               "#text": "Svetsare"
+            },
+            {
+               "scgID": "9223",
+               "#text": "Elektriker"
+            },
+            {
+               "scgID": "9224",
+               "#text": "Snickare"
+            },
+            {
+               "scgID": "9225",
+               "#text": "Rörmokare"
+            }
+         ]
+      },
+      {
+         "cgID": "9230",
+         "name": "Data & IT",
+         "subcategories": [
+            {
+               "scgID": "9231",
+               "#text": "Utvecklare"
+            },
+            {
+               "scgID": "9232",
+               "#text": "IT-Konsult"
+            },
+            {
+               "scgID": "9233",
+               "#text": "IT-Chef"
+            },
+            {
+               "scgID": "9234",
+               "#text": "Nätverkstekniker"
+            },
+            {
+               "scgID": "9235",
+               "#text": "UX & Webbdesign"
+            },
+            {
+               "scgID": "9236",
+               "#text": "Testare"
+            },
+            {
+               "scgID": "9421",
+               "#text": "Databasadministration"
+            },
+            {
+               "scgID": "9422",
+               "#text": "Hårdvarudesign"
+            },
+            {
+               "scgID": "9423",
+               "#text": "IT-Arkitektur"
+            },
+            {
+               "scgID": "9424",
+               "#text": "IT-Kvalitetssäkring & Säkerhet"
+            },
+            {
+               "scgID": "9425",
+               "#text": "IT-Utbildning"
+            },
+            {
+               "scgID": "9426",
+               "#text": "Projektledare"
+            },
+            {
+               "scgID": "9427",
+               "#text": "Support"
+            },
+            {
+               "scgID": "9428",
+               "#text": "Systemadministration"
+            },
+            {
+               "scgID": "9429",
+               "#text": "Systemanalytiker"
+            }
+         ]
+      },
+      {
+         "cgID": "9240",
+         "name": "Ekonomi",
+         "subcategories": [
+            {
+               "scgID": "9241",
+               "#text": "Ekonomiassistent"
+            },
+            {
+               "scgID": "9242",
+               "#text": "Controller"
+            },
+            {
+               "scgID": "9243",
+               "#text": "Redovisningsekonom"
+            },
+            {
+               "scgID": "9244",
+               "#text": "Ekonomichef"
+            },
+            {
+               "scgID": "9245",
+               "#text": "Konsult"
+            },
+            {
+               "scgID": "9246",
+               "#text": "Revision"
+            },
+            {
+               "scgID": "9247",
+               "#text": "Skatt"
+            }
+         ]
+      },
+      {
+         "cgID": "9260",
+         "name": "Försäljning",
+         "subcategories": [
+            {
+               "scgID": "9261",
+               "#text": "Key Account Manager"
+            },
+            {
+               "scgID": "9262",
+               "#text": "Telefonförsäljare"
+            },
+            {
+               "scgID": "9263",
+               "#text": "Försäljningschef"
+            },
+            {
+               "scgID": "9264",
+               "#text": "Butik"
+            },
+            {
+               "scgID": "9265",
+               "#text": "Kundservice"
+            },
+            {
+               "scgID": "9266",
+               "#text": "Säljsupport"
+            }
+         ]
+      },
+      {
+         "cgID": "9320",
+         "name": "Hälsa & Sjukvård",
+         "subcategories": [
+            {
+               "scgID": "9321",
+               "#text": "Sjuksköterska"
+            },
+            {
+               "scgID": "9322",
+               "#text": "Läkare"
+            },
+            {
+               "scgID": "9323",
+               "#text": "Vård & Omsorg"
+            },
+            {
+               "scgID": "9324",
+               "#text": "Tandvård"
+            },
+            {
+               "scgID": "9325",
+               "#text": "Sjukgymnastik & Rehab"
+            },
+            {
+               "scgID": "9326",
+               "#text": "Medicin & Farmaci"
+            },
+            {
+               "scgID": "9327",
+               "#text": "Medicinsk forskning & Laboratorieverksamhet"
+            },
+            {
+               "scgID": "9328",
+               "#text": "Optiker & Audionom"
+            },
+            {
+               "scgID": "9329",
+               "#text": "Psykolog"
+            },
+            {
+               "scgID": "9631",
+               "#text": "Socionom"
+            }
+         ]
+      },
+      {
+         "cgID": "9310",
+         "name": "Hotell & Restaurang",
+         "subcategories": [
+            {
+               "scgID": "9311",
+               "#text": "Reception"
+            },
+            {
+               "scgID": "9312",
+               "#text": "Servering"
+            },
+            {
+               "scgID": "9313",
+               "#text": "Kock & Kökspersonal"
+            },
+            {
+               "scgID": "9314",
+               "#text": "Chef & Ledning"
+            },
+            {
+               "scgID": "9315",
+               "#text": "Städ"
+            }
+         ]
+      },
+      {
+         "cgID": "9270",
+         "name": "HR & Personal",
+         "subcategories": [
+            {
+               "scgID": "9271",
+               "#text": "Personalchef"
+            },
+            {
+               "scgID": "9272",
+               "#text": "Rekrytering"
+            },
+            {
+               "scgID": "9273",
+               "#text": "Löner & Förmåner"
+            },
+            {
+               "scgID": "9274",
+               "#text": "HR-administration"
+            },
+            {
+               "scgID": "9275",
+               "#text": "Utbildning & Personlig utveckling"
+            }
+         ]
+      },
+      {
+         "cgID": "9280",
+         "name": "Industri & Anläggning",
+         "subcategories": [
+            {
+               "scgID": "9281",
+               "#text": "Montör"
+            },
+            {
+               "scgID": "9282",
+               "#text": "Industri & Produktion"
+            },
+            {
+               "scgID": "9283",
+               "#text": "Tillverkning"
+            },
+            {
+               "scgID": "9284",
+               "#text": "Maskinarbete"
+            },
+            {
+               "scgID": "9285",
+               "#text": "Anläggningsarbete"
+            },
+            {
+               "scgID": "9286",
+               "#text": "Livsmedel"
+            },
+            {
+               "scgID": "9287",
+               "#text": "Quality Assurance"
+            },
+            {
+               "scgID": "9288",
+               "#text": "Reparatörer"
+            }
+         ]
+      },
+      {
+         "cgID": "9330",
+         "name": "Juridik",
+         "subcategories": [
+            {
+               "scgID": "9331",
+               "#text": "Advokat"
+            },
+            {
+               "scgID": "9332",
+               "#text": "Domstol & Rättshjälp"
+            },
+            {
+               "scgID": "9333",
+               "#text": "Juridisk rådgivning"
+            },
+            {
+               "scgID": "9334",
+               "#text": "Affärsjuridik"
+            },
+            {
+               "scgID": "9335",
+               "#text": "Bolagsjurist"
+            }
+         ]
+      },
+      {
+         "cgID": "9340",
+         "name": "Marknadsföring",
+         "subcategories": [
+            {
+               "scgID": "9341",
+               "#text": "PR & Kommunikation"
+            },
+            {
+               "scgID": "9342",
+               "#text": "Marknadsassistent"
+            },
+            {
+               "scgID": "9343",
+               "#text": "Marknadschef"
+            },
+            {
+               "scgID": "9344",
+               "#text": "Art director"
+            },
+            {
+               "scgID": "9345",
+               "#text": "Direkt marknadsföring"
+            },
+            {
+               "scgID": "9346",
+               "#text": "Marknadskoordinator"
+            },
+            {
+               "scgID": "9347",
+               "#text": "Marknadsundersökning"
+            },
+            {
+               "scgID": "9348",
+               "#text": "Mediaplanerare & Inköpare"
+            }
+         ]
+      },
+      {
+         "cgID": "9290",
+         "name": "Media, Kultur & Design",
+         "subcategories": [
+            {
+               "scgID": "9291",
+               "#text": "Film, TV, Radio & Multimedia"
+            },
+            {
+               "scgID": "9292",
+               "#text": "Journalistik"
+            },
+            {
+               "scgID": "9293",
+               "#text": "Publicering"
+            },
+            {
+               "scgID": "9294",
+               "#text": "Designer"
+            },
+            {
+               "scgID": "9295",
+               "#text": "Foto"
+            },
+            {
+               "scgID": "9296",
+               "#text": "Konst, Musik & Teater"
+            }
+         ]
+      },
+      {
+         "cgID": "9530",
+         "name": "Miljö & Djurvård",
+         "subcategories": [
+            {
+               "scgID": "9532",
+               "#text": "Djurvård"
+            },
+            {
+               "scgID": "9533",
+               "#text": "Jordbruk & Fiske"
+            },
+            {
+               "scgID": "9534",
+               "#text": "Naturvård"
+            }
+         ]
+      },
+      {
+         "cgID": "9570",
+         "name": "Offentlig Förvaltning",
+         "subcategories": [
+            {
+               "scgID": "9572",
+               "#text": "Ambassad & Diplomatiska arbeten"
+            },
+            {
+               "scgID": "9573",
+               "#text": "Kommunal administration & Ledning"
+            },
+            {
+               "scgID": "9574",
+               "#text": "Statstjänsteman"
+            },
+            {
+               "scgID": "9575",
+               "#text": "Tulltjänsteman"
+            }
+         ]
+      },
+      {
+         "cgID": "9210",
+         "name": "Organisation & ledning",
+         "subcategories": [
+            {
+               "scgID": "9211",
+               "#text": "Managementkonsult & Rådgivare"
+            },
+            {
+               "scgID": "9212",
+               "#text": "Chefsbefattningar"
+            },
+            {
+               "scgID": "9213",
+               "#text": "Organisationsutveckling"
+            },
+            {
+               "scgID": "9214",
+               "#text": "Produktionsledning"
+            },
+            {
+               "scgID": "9215",
+               "#text": "VD & Koncernchef"
+            },
+            {
+               "scgID": "9216",
+               "#text": "Affärsutvecklare"
+            },
+            {
+               "scgID": "9217",
+               "#text": "Produktchef"
+            },
+            {
+               "scgID": "9218",
+               "#text": "Projektledare"
+            }
+         ]
+      },
+      {
+         "cgID": "9510",
+         "name": "Säkerhet & Skydd",
+         "subcategories": [
+            {
+               "scgID": "9512",
+               "#text": "Bevakning"
+            },
+            {
+               "scgID": "9513",
+               "#text": "Brandkår"
+            },
+            {
+               "scgID": "9514",
+               "#text": "Militär"
+            },
+            {
+               "scgID": "9515",
+               "#text": "Polis & Kriminalvård"
+            }
+         ]
+      },
+      {
+         "cgID": "9370",
+         "name": "Service & Kundtjänst",
+         "subcategories": [
+            {
+               "scgID": "9371",
+               "#text": "Resebyrå & Turism"
+            },
+            {
+               "scgID": "9372",
+               "#text": "Serviceyrken"
+            },
+            {
+               "scgID": "9373",
+               "#text": "Kundtjänst"
+            },
+            {
+               "scgID": "9374",
+               "#text": "Frisör"
+            },
+            {
+               "scgID": "9375",
+               "#text": "Skönhet & Personlig omsorg"
+            }
+         ]
+      },
+      {
+         "cgID": "9350",
+         "name": "Teknik & Ingenjör",
+         "subcategories": [
+            {
+               "scgID": "9351",
+               "#text": "Ingenjör"
+            },
+            {
+               "scgID": "9352",
+               "#text": "Arkitekt"
+            },
+            {
+               "scgID": "9353",
+               "#text": "Forskning & Utveckling"
+            },
+            {
+               "scgID": "9354",
+               "#text": "Konstruktör"
+            },
+            {
+               "scgID": "9355",
+               "#text": "Civilingenjör"
+            },
+            {
+               "scgID": "9356",
+               "#text": "Energi & Miljö"
+            },
+            {
+               "scgID": "9431",
+               "#text": "Elektronik"
+            },
+            {
+               "scgID": "9432",
+               "#text": "Elkraft"
+            },
+            {
+               "scgID": "9433",
+               "#text": "Kemi, Fysik & Biologi"
+            },
+            {
+               "scgID": "9434",
+               "#text": "Matematik, Statistik & Information"
+            },
+            {
+               "scgID": "9435",
+               "#text": "Materialteknik"
+            },
+            {
+               "scgID": "9436",
+               "#text": "Mekanik"
+            },
+            {
+               "scgID": "9437",
+               "#text": "Processingenjör"
+            },
+            {
+               "scgID": "9438",
+               "#text": "Teknisk rådgivare & Försäljningsingenjör"
+            },
+            {
+               "scgID": "9439",
+               "#text": "Teknisk skribent"
+            }
+         ]
+      },
+      {
+         "cgID": "9300",
+         "name": "Transport & Logistik",
+         "subcategories": [
+            {
+               "scgID": "9301",
+               "#text": "Transport"
+            },
+            {
+               "scgID": "9302",
+               "#text": "Lager"
+            },
+            {
+               "scgID": "9303",
+               "#text": "Inköp"
+            },
+            {
+               "scgID": "9304",
+               "#text": "Administration & Ledning"
+            },
+            {
+               "scgID": "9305",
+               "#text": "Distribution"
+            },
+            {
+               "scgID": "9306",
+               "#text": "Logistik"
+            }
+         ]
+      },
+      {
+         "cgID": "9360",
+         "name": "Utbildning",
+         "subcategories": [
+            {
+               "scgID": "9361",
+               "#text": "Förskolelärare"
+            },
+            {
+               "scgID": "9362",
+               "#text": "Lärare"
+            },
+            {
+               "scgID": "9363",
+               "#text": "Fritidspedagog"
+            },
+            {
+               "scgID": "9364",
+               "#text": "Universitet & Högskola"
+            },
+            {
+               "scgID": "9365",
+               "#text": "Specialpedagog"
+            },
+            {
+               "scgID": "9366",
+               "#text": "Administration & Ledning"
+            },
+            {
+               "scgID": "9367",
+               "#text": "Barnskötare"
+            }
+         ]
+      },
+      {
+         "cgID": "9380",
+         "name": "Övrigt",
+         "subcategories": []
+      }
+   ],
+   "employment_list": [
+      {
+         "emID": "1",
+         "#text": "Heltid"
+      },
+      {
+         "emID": "2",
+         "#text": "Deltid"
+      },
+      {
+         "emID": "3",
+         "#text": "Extrajobb"
+      },
+      {
+         "emID": "4",
+         "#text": "Säsongsjobb"
+      },
+      {
+         "emID": "5",
+         "#text": "Franchise"
+      },
+      {
+         "emID": "6",
+         "#text": "Tillsvidareanställd"
+      },
+      {
+         "emID": "7",
+         "#text": "Projekt- / Visstidsanställd"
+      },
+      {
+         "emID": "8",
+         "#text": "Trainee"
+      },
+      {
+         "emID": "9",
+         "#text": "Internship / Praktik"
+      },
+      {
+         "emID": "10",
+         "#text": "Examensarbete"
+      },
+      {
+         "emID": "11",
+         "#text": "Vikariat"
+      },
+      {
+         "emID": "12",
+         "#text": "Frilans"
+      }
+   ],
+   "job_ad_types": [
+      {
+         "atID": "1",
+         "#text": "Direkt"
+      },
+      {
+         "atID": "2",
+         "#text": "Rekrytering"
+      },
+      {
+         "atID": "3",
+         "#text": "Bemanning"
+      },
+      {
+         "atID": "4",
+         "#text": "Statlig"
+      }
+   ],
+   "product_types": [
+      "product_blocketjobb_bas",
+      "product_blocketjobb_bredd",
+      "product_blocketjobb_effekt",
+      "product_blocketjobb_premium_boost",
+      "product_blocketjobb_premium_riktad",
+      "product_blocketjobb_premium_social_media",
+      "product_blocketjobb_premium_spridning",
+      "product_blocketjobb_premium_spridning_600",
+      "product_blocketjobb_premium_webb",
+      "product_blocketjobb_social_media",
+      "product_blocketjobb_spridning",
+      "product_blocketjobb_spridning_300",
+      "product_extra_aftonbladet_jobbsnurran",
+      "product_extra_gallery",
+      "product_kombo_bas",
+      "product_kombo_bredd",
+      "product_kombo_effekt",
+      "product_kombo_premium_boost",
+      "product_kombo_premium_riktad",
+      "product_kombo_premium_screening",
+      "product_kombo_premium_selektering",
+      "product_kombo_premium_social_media",
+      "product_kombo_premium_spridning",
+      "product_kombo_premium_spridning_800",
+      "product_kombo_premium_webb",
+      "product_kombo_social_media",
+      "product_kombo_spridning",
+      "product_kombo_spridning_400",
+      "product_stepstone_bas",
+      "product_stepstone_bredd",
+      "product_stepstone_effekt",
+      "product_stepstone_premium_boost",
+      "product_stepstone_premium_riktad",
+      "product_stepstone_premium_social_media",
+      "product_stepstone_premium_spridning",
+      "product_stepstone_premium_spridning_800",
+      "product_stepstone_premium_webb",
+      "product_stepstone_social_media",
+      "product_stepstone_spridning",
+      "product_stepstone_spridning_400"
+   ]
+}
