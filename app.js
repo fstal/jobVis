@@ -5,6 +5,7 @@ var regionlist;
 var dates = [];
 var currentDateMax;
 var currentDateMin;
+var selectedCat;
 
 //Read regionList data form json file
 d3.json("./data/regionlist.json").then(function(data){
@@ -40,19 +41,32 @@ d3.tsv("./data/data.tsv").then(function(data){
   //console.log(maxvalue,"ble");
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
     //console.log(d.id.replace("a", ""));
-        return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
+        return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
+        //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
         //return "green";
 
   })
   .on('mouseover', function(d){
-    //Här vill vi kanske byta färg på regionen för att visa hover men lyckas ej atm /joel
-    //console.log(d)
+    if (d.parentElement.id == "sweden_svg"){
+      d.setAttribute("stroke", "black");
+    }
+  })
+  .on('mouseleave', function(d){
+    if (d.parentElement.id == "sweden_svg"){
+      d.setAttribute("stroke", "none");
+    }
   })
   .on('click', function(d){
     let formatId = d.id.replace("a", "")
     let region = regionlist.region_list[formatId-1].name
     document.getElementById("hoverTarget").innerHTML = region + " - Amount: " + regioncnt[d.id.replace("a", "")];
   });
+
+  d3.select("#transfer").on("mysel", ()=>{
+  selectedCat = d3.event.detail;
+  reDraw(data);
+  })
+
 
 }).catch(error => console.error(error));
 
@@ -61,11 +75,11 @@ function regionCount(data) {
   var firstDate = new Date(data.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(data.last_date.replace(/\s+/g, ""));
   //lastDate får aldrig vara mindre än det valde minDate
-  if (data.region in regioncnt && !(firstDate >= currentDateMax) && !(lastDate <= currentDateMin)  ) {
+  if (data.region in regioncnt && !(firstDate >= currentDateMax) && !(lastDate <= currentDateMin) && (selectedCat==undefined || data.category == selectedCat)  ) {
     //console.log("hej " + data.region);
     regioncnt[data.region] = regioncnt[data.region] + 1;
   }
-  else if (firstDate <= currentDateMax && lastDate >= currentDateMin) {
+  else if (firstDate <= currentDateMax && lastDate >= currentDateMin && (selectedCat==undefined || data.category == selectedCat)) {
     regioncnt[data.region] = 1;
   }
 //  colorMap(regioncnt);
@@ -92,7 +106,10 @@ function dateAdd(d) {
   if (unmatched) {dates.push(new Date(d.last_date.replace(/\s+/g, "")));}
 }
 function reDraw(data){
-  regioncnt = {};
+  for (alla in regioncnt){
+    regioncnt[alla]= 0;
+  }
+//regioncnt= {};
 data.forEach( d => {
   regionCount(d);
 });
@@ -109,7 +126,8 @@ for (var key in regioncnt){
 //console.log(maxvalue,"ble");
 d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
   //console.log(d.id.replace("a", ""));
-      return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
+    return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
+      //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
       //return "green";
 
 })
@@ -168,6 +186,6 @@ $('.ui.dropdown').dropdown({
 function filterCategories(data) {
   var selector = document.getElementById("cat");
   var value = selector[selector.selectedIndex].value;
-  console.log(value);
+  d3.select("#transfer").dispatch('mysel',{detail:value});
 
 }
