@@ -37,6 +37,12 @@ d3.tsv("./data/data.tsv").then(function(data){
       }
     }
 
+//Dynamically added html
+var divTooltip = d3.select("body").append("div")   // Define the div for the tooltip
+    .attr("class", "tooltip")        
+    .style("opacity", 0);
+    
+
   //console.log(maxvalue,"ble");
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
     //console.log(d.id.replace("a", ""));
@@ -44,17 +50,27 @@ d3.tsv("./data/data.tsv").then(function(data){
         //return "green";
 
   })
-  .on('mouseover', function(d){
-    //Här vill vi kanske byta färg på regionen för att visa hover men lyckas ej atm /joel
-    //console.log(d)
-  })
-  .on('click', function(d){
-    let formatId = d.id.replace("a", "")
-    let region = regionlist.region_list[formatId-1].name
-    document.getElementById("hoverTarget").innerHTML = region + " - Amount: " + regioncnt[d.id.replace("a", "")];
-  });
-
-}).catch(error => console.error(error));
+  .on("mouseover", function(d) {
+        let formatId = d.id.replace("a", "");
+        let region = regionlist.region_list[formatId-1].name;
+    divTooltip.transition()   
+            .duration(175)    
+            .style("opacity", .85);
+        divTooltip.html(region + "<br/> Antal Annonser: "  + regioncnt[formatId])  
+          .style("left", (d3.event.pageX) + "px")     
+          .style("top", (d3.event.pageY - 28) + "px"); 
+        d3.select(this)
+          .style("stroke", "black") 
+        })        
+    .on("mouseout", function(d) {   
+        divTooltip.transition()   
+            .duration(500)    
+            .style("opacity", 0);
+        d3.select(this)
+          .style("stroke", "none")    
+        })
+})
+.catch(error => console.error(error));
 
 function regionCount(data) {
   //console.log(data.region);
