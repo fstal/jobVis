@@ -18,3 +18,12 @@
 	margin-bottom: 10px;
 	margin-left: 3%;
 }
+
+.tooltip{
+	position: absolute;
+	z-index: 10;
+	background: lightsteelblue;
+	border: solid 1px;
+	padding: 2px;
+	cursor: default;
+}

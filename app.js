@@ -64,7 +64,7 @@ var divTooltip = d3.select("body").append("div")   // Define the div for the too
             .style("opacity", .85);
         divTooltip.html(region + "<br/> Antal Annonser: "  + regioncnt[formatId])  
           .style("left", (d3.event.pageX) + "px")     
-          .style("top", (d3.event.pageY - 28) + "px"); 
+          .style("top", (d3.event.pageY - 28) + "px");
         d3.select(this)
           .style("stroke", "black") 
         }})        
