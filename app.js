@@ -6,10 +6,13 @@ var dates = [];
 var currentDateMax;
 var currentDateMin;
 var selectedCat;
+var categoryList;
 
 //Read regionList data form json file
 d3.json("./data/regionlist.json").then(function(data){
-    regionlist = data
+    regionlist = data;
+    categoryList = data.categories;
+    createDropDown(); 
 
 });
 
@@ -182,18 +185,20 @@ function generateSlider(dates,data){
     );
 }
 
-
-
-function colorMap (regioncnt) {
-  d3.selectAll("path").data(regioncnt),attr("fill", d =>
-    console.log(regioncnt + "hej")
-  )
+//Creates dynamic dropdown with categries
+function createDropDown() {
+  var select = document.getElementById('cat');
+  for (var i = 0; i < categoryList.length; i++) {
+    var opt = document.createElement('option');
+    opt.value = categoryList[i].cgID;
+    opt.innerHTML = categoryList[i].name;
+    select.appendChild(opt);
+  }
+  // Makes the dropdown searchable
+  $('.ui.dropdown').dropdown({
+    allowAdditions: true
+  });
 }
-
-
-$('.ui.dropdown').dropdown({
-  allowAdditions: true
-});
 
 function filterCategories(data) {
   var selector = document.getElementById("cat");

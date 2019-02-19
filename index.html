@@ -16,9 +16,10 @@
 
   <div class="ui grid">
     <div class="row">
-      <h2>Time</h2>
-          <div>hellee<p id="value-range">halluuu</p></div>
-          <div><div id="slider-range"></div></div>
+        
+    </div>
+    <div class="row">
+      
       <div id="mapContainer" class="left floated five wide column">
       <svg version="1.1" id="sweden_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="240px" height="540px" viewBox="0 0 240 540" enable-background="new 0 0 240 540" xml:space="preserve">
       <g id="a1">
@@ -510,36 +511,20 @@
       c2.211-2.297-4.776,1.445-7.959,0.965c-3.185-0.481-4.774,3.859-7.959,2.41c-3.185-1.444-4.245-0.961-5.836-0.479
       c-1.593,0.479,7.162,7.477,9.948,5.908C105.428,386.842,110.734,383.463,114.447,379.604z"></path>
       </svg>
-      <div id= "transfer"></div>
+      
       </div>
+      
       <div id="searchContainer" class="center floated five wide column">
-        <select id ="cat" onchange="filterCategories()" class="ui fluid search selection dropdown select">
-          <option selected value=undefined>Alla</option>
-         
-          <option value="9350">Teknik & Ingenjörer</option>
-          <option value="9230">Data & IT</option>
-          <option value="9260">Försäljning</option>
-          <option value="9210">Organisation & Ledning</option>
-          <option value="9280">Industri & Anläggning</option>
-          <option value="9570">Offentlig Förvaltning</option>
-          <option value="9300">Transport & Logistik</option>
-          <option value="9240">Ekonomi</option>
-          <option value="9250">Administration</option>
-          <option value="9220">Bygg & Hantverk</option>
-          <option value="9370">Service & Kundtjänst</option>
-          <option value="9320">Hälsa & Sjukvård</option>
-          <option value="9360">Utbildning</option>
-          <option value="9270">HR & Personal</option>
-          <option value="9340">Marknadsföring</option>
-          <option value="9550">Bank, Finans & Försäkring</option>
-          <option value="9290">Media, Kultur & Design</option>
-          <option value="9310">Hotell & Restaurang</option>
-          <option value="9380">Övrigt</option>
-          <option value="9510">Säkerhet & Skydd</option>
-          <option value="9530">Miljö & Djurvård</option>
-          <option value="9330">Juridik</option>
-        </select>
+          <h2>Time</h2>
+          <div><p style="display: none" id="value-range"></p></div>
+          <div><div id="slider-range"></div></div>
+          <select id ="cat" onchange="filterCategories()" class="ui fluid search selection dropdown">
+            <option value="" disabled selected>Välj kategori</option>
+            <option id="alla">Alla</option>
+          </select>
+          
       </div>
+      <div class="right floated four wide column" id= "transfer"></div>
     </div>
   </div>
 
