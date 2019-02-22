@@ -8,6 +8,12 @@ var currentDateMin;
 var selectedCat;
 var categoryList;
 
+//reads external svg file
+d3.xml('./components/map.svg')
+    .then(data => {
+        d3.select('div#mapContainer').node().append(data.documentElement)  
+})
+
 //Read regionList data form json file
 d3.json("./data/regionlist.json").then(function(data){
     regionlist = data;
