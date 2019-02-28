@@ -96,11 +96,12 @@ function regionCount(data) {
   var firstDate = new Date(data.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(data.last_date.replace(/\s+/g, ""));
   //lastDate får aldrig vara mindre än det valde minDate
-  if (data.region in regioncnt && !(firstDate >= currentDateMax) && !(lastDate <= currentDateMin) && (selectedCat==undefined || data.category == selectedCat)  ) {
+  console.log("dafds",selectedCat,"bell")
+  if (data.region in regioncnt && !(firstDate >= currentDateMax) && !(lastDate <= currentDateMin) && (selectedCat== "Alla" ||selectedCat==undefined || data.category == selectedCat)  ) {
     //console.log("hej " + data.region);
     regioncnt[data.region] = regioncnt[data.region] + 1;
   }
-  else if (firstDate <= currentDateMax && lastDate >= currentDateMin && (selectedCat==undefined || data.category == selectedCat)) {
+  else if (firstDate <= currentDateMax && lastDate >= currentDateMin && (selectedCat=="Alla"|| selectedCat==undefined || data.category == selectedCat)) {
     regioncnt[data.region] = 1;
   }
 //  colorMap(regioncnt);
