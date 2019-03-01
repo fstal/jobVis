@@ -9,7 +9,7 @@ var selectedCat;
 var categoryList;
 
 //reads external svg file
-d3.xml('./components/map.svg')
+d3.xml('./maps/mapLan.svg')
     .then(data => {
         d3.select('div#mapContainer').node().append(data.documentElement)  
 })
