@@ -25,16 +25,13 @@ d3.json("./data/regionlist.json").then(function(data){
     regionlist = data;
     categoryList = data.categories;
     createDropDown(); 
-
 });
 
 var daten = new Date("2019-02-04");
 
-//console.log(daten.toDateString());
 d3.tsv("./data/data.tsv").then(function(data){
   data.forEach(d => {
     dateAdd(d);
-    //console.log(dates);
   });
   currentDateMax = d3.max(dates);
   currentDateMin = d3.min(dates);
@@ -42,20 +39,13 @@ d3.tsv("./data/data.tsv").then(function(data){
     regionCount(d);
   });
 
-  //generateSlider(dates,data);
-
-  //console.log(regioncnt);
-
-  //generateSlider(dates,data);
   var maxvalue = 0;
 
   for (var key in regioncnt){
-    //console.log("tjoao " + regioncnt[key] + " " + key  );
       if (parseInt(regioncnt[key])>maxvalue){
         maxvalue =parseInt(regioncnt[key]);
       }
     }
-
 
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
       return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
@@ -73,8 +63,8 @@ d3.tsv("./data/data.tsv").then(function(data){
 
 
 //Tooltip mouse-handling for map of sweden
-//
 // Kan använda d3.mouse[0][1] for x, resp y i d3 v5
+//
 var mouseover = function(d) {
   if (d.parentElement.id == "svg2"){
     let formatId = d.id.replace("a", "");
@@ -83,21 +73,21 @@ var mouseover = function(d) {
   divTooltip.transition()   
     .duration(175)    
     .style("opacity", .85);
-  divTooltip.html(region + "<br/> Antal Annonser: "  + regioncnt[formatId])  
-    .style("left", (d3.event.pageX) + "px")     
-    .style("top", (d3.event.pageY - 10) + "px");
+  divTooltip.html(region + "<br/> Antal Annonser: "  + regioncnt[formatId])
+    .style("z-index", "10");
+    // .style("left", (d3.event.pageX) + "px")     
+    // .style("top", (d3.event.pageY) + "px");
   d3.select(this)
     .style("stroke", "black") 
   }
 }
 
 var mouseout = function(d) {
-   //console.log(d);
-   console.log(this);
   if (d.parentElement.id == "svg2"){  
     divTooltip.transition()   
       .duration(100)    
-      .style("opacity", 0);
+      .style("opacity", 0)
+      .style("z-index", "-10");
     d3.select(this)
       .style("stroke", "none");    
  }
@@ -106,8 +96,8 @@ var mouseout = function(d) {
 var mousemove = function(d) {
   if (d.parentElement.id == "svg2"){  
     divTooltip
-      .style("left", (d3.mouse(this)[0]+5) + "px")
-      .style("top", (d3.mouse(this)[1]) + 5 + "px") 
+      .style("left", (d3.mouse(this)[0]) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px") 
  }
 }
 
@@ -148,37 +138,31 @@ function dateAdd(d) {
   }
   if (unmatched) {dates.push(new Date(d.last_date.replace(/\s+/g, "")));}
 }
-function reDraw(data){
+
+function reDraw(data) {
   for (alla in regioncnt){
     regioncnt[alla]= 0;
   }
 //regioncnt= {};
-data.forEach( d => {
-  regionCount(d);
-});
-//console.log(regioncnt);
+  data.forEach(d => {
+    regionCount(d);
+  });
 
-var maxvalue = 0;
-for (var key in regioncnt){
-  //console.log("tjoao " + regioncnt[key] + " " + key  );
-    if (parseInt(regioncnt[key])>maxvalue){
-      maxvalue =parseInt(regioncnt[key]);
+  var maxvalue = 0;
+  for (var key in regioncnt) {
+      if (parseInt(regioncnt[key])>maxvalue) {
+        maxvalue =parseInt(regioncnt[key]);
+      }
     }
-  }
 
-//console.log(maxvalue,"ble");
-d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
-  //console.log(d.id.replace("a", ""));
+  d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
     return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
-      //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
-      //return "green";
-
-})
+        //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
+        //return "green";
+  })
 }
 
-
-
-function generateSlider(dates,data){
+function generateSlider(dates,data) {
   var sliderRange = d3
       .sliderBottom()
       .min(d3.min(dates))
@@ -214,7 +198,7 @@ function generateSlider(dates,data){
     );
 }
 
-function timeConverter(UNIX_timestamp){
+function timeConverter(UNIX_timestamp) {
   var a = new Date(UNIX_timestamp);
   var time = new Date(a);
   return time;
