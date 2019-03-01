@@ -43,7 +43,7 @@ d3.tsv("./data/data.tsv").then(function(data){
   });
 
   //generateSlider(dates,data);
-  generateSlider2(data);
+
   //console.log(regioncnt);
 
   //generateSlider(dates,data);
@@ -68,6 +68,7 @@ d3.tsv("./data/data.tsv").then(function(data){
     selectedCat = d3.event.detail;
     reDraw(data);
   })
+  generateSlider2(data);
 }).catch(error => console.error(error));
 
 

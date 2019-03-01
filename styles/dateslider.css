@@ -1,6 +1,7 @@
 .slider-container {
     background-color: #c2c5cc;
     position: relative;
+    height:30px;
 }
 
 .slider {
