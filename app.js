@@ -37,6 +37,7 @@ d3.tsv("./data/data.tsv").then(function(data){
     regionCount(d);
   });
   generateSlider(dates,data);
+  generateSlider2(dates,data);
   //console.log(regioncnt);
 
   var maxvalue = 0;
@@ -95,7 +96,7 @@ function regionCount(data) {
   var firstDate = new Date(data.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(data.last_date.replace(/\s+/g, ""));
   //lastDate får aldrig vara mindre än det valde minDate
-  console.log("dafds",selectedCat,"bell")
+  //console.log("dafds",selectedCat,"bell")
   if (data.region in regioncnt && !(firstDate >= currentDateMax) && !(lastDate <= currentDateMin) && (selectedCat== "Alla" ||selectedCat==undefined || data.category == selectedCat)  ) {
     //console.log("hej " + data.region);
     regioncnt[data.region] = regioncnt[data.region] + 1;
@@ -155,6 +156,7 @@ d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
 }
 
 
+
 function generateSlider(dates,data){
   var sliderRange = d3
       .sliderBottom()
@@ -189,6 +191,29 @@ function generateSlider(dates,data){
         .map(d3.format('.2%'))
         .join('-')
     );
+}
+
+function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp);
+  var time = new Date(a);
+  return time;
+}
+
+function generateSlider2(dates, data){
+  var dateMin = Number(d3.min(dates));
+  var dateMax = Number(d3.max(dates));
+  var slider = createD3RangeSlider(dateMin, dateMax, "#slider-container");
+  var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
+  slider.range(dateMin, dateMax);
+  var curRange = slider.range();
+  d3.select("#range-label").text(timeConverter(curRange.begin).getDate() + " " + months[timeConverter(curRange.begin).getMonth()] + " " + timeConverter(curRange.begin).getFullYear() + " - " + timeConverter(curRange.end).getDate() + " " + months[timeConverter(curRange.end).getMonth()] + " " + timeConverter(curRange.end).getFullYear());
+  
+  slider.onChange(function(newRange){
+      d3.select("#range-label").text(timeConverter(newRange.begin).getDate() + " " + months[timeConverter(newRange.begin).getMonth()] + " " + timeConverter(newRange.begin).getFullYear() + " - " + timeConverter(newRange.end).getDate() + " " + months[timeConverter(newRange.end).getMonth()] + " " + timeConverter(newRange.end).getFullYear());
+      currentDateMin = timeConverter(newRange.begin);
+      currentDateMax = timeConverter(newRange.end);
+      reDraw(data);
+  });
 }
 
 //Creates dynamic dropdown with categries

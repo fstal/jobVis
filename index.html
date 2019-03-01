@@ -3,13 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>jobVis</title>
-    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="./styles/design.css">
+    <link rel="stylesheet" href="./styles/dateslider.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
     <script src="https://unpkg.com/d3-simple-slider/build/d3-simple-slider.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
     <script src="https://d3js.org/d3.v5.js"></script>
+    <!-- Range slider code -->
+    <script src="https://cdn.rawgit.com/RasmusFonseca/d3RangeSlider/master/d3RangeSlider.js"></script>
   </head>
 
   <body onload="myFunction()">
@@ -21,6 +24,11 @@
   
 
       <div class="ui grid">
+          <h2>Time</h2>
+          <div><p style="display: none" id="value-range"></p></div>
+          <div><div id="slider-range"></div></div>
+          <div id="slider-container"></div>
+          <div id="range-label"></div>
 
         <div class="row">
           
