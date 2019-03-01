@@ -225,6 +225,7 @@ function generateSlider2(data){
   var dateMax = Number(d3.max(dates));
   var slider = createD3RangeSlider(dateMin, dateMax, "#slider-container");
   slider.range(dateMin, dateMax);
+  
   var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
   d3.select("#range-label").text(timeConverter(dateMin).getDate() + " " + months[timeConverter(dateMin).getMonth()] + " " + timeConverter(dateMin).getFullYear() + " - " + timeConverter(dateMax).getDate() + " " + months[timeConverter(dateMax).getMonth()] + " " + timeConverter(dateMax).getFullYear());
   slider.onChange(function(newRange){
@@ -233,6 +234,7 @@ function generateSlider2(data){
       currentDateMax = timeConverter(newRange.end);
       reDraw(data);
   });
+  d3.select(".slider").style("left","0px")
 }
 
 //Creates dynamic dropdown with categries

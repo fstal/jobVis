@@ -21,7 +21,7 @@
 
     <div id="loader"></div>
 
-    <div style="display:none;" id="myDiv" class="animate-bottom">
+    <div style="display:none;" id="myDiv" class="animate-bottom"></div>
   
 
       <div class="ui grid">
@@ -35,11 +35,14 @@
           <div id="searchContainer" class="center floated five wide column">
 
             <h2>Time</h2>
+            <div><p style="display: none" id="value-range"></p></div>
+            <div><div id="slider-range"></div></div>
             <div id="slider-container"></div>
             <div id="range-label"></div>
-
+  
             <select id ="cat" onchange="filterCategories()" class="ui fluid search selection dropdown">
               <option value="" disabled selected>Välj kategori</option>
+              <option value="Alla">Alla</option>
             </select>
           </div>
 
