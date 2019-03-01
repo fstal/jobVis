@@ -22,7 +22,6 @@ d3.json("./data/regionlist.json").then(function(data){
 
 });
 
-//list_id ;  platform  ; first_date ; last_date  ; region ; category;sub_category; subject_full ;  area  ; zipcode ;
 var daten = new Date("2019-02-04");
 console.log(daten.toDateString());
 d3.tsv("./data/data.tsv").then(function(data){
@@ -36,8 +35,8 @@ d3.tsv("./data/data.tsv").then(function(data){
   data.forEach( d => {
     regionCount(d);
   });
-  generateSlider(dates,data);
-  generateSlider2(dates,data);
+  //generateSlider(dates,data);
+  generateSlider2(data);
   //console.log(regioncnt);
 
   var maxvalue = 0;
@@ -199,15 +198,13 @@ function timeConverter(UNIX_timestamp){
   return time;
 }
 
-function generateSlider2(dates, data){
+function generateSlider2(data){
   var dateMin = Number(d3.min(dates));
   var dateMax = Number(d3.max(dates));
   var slider = createD3RangeSlider(dateMin, dateMax, "#slider-container");
-  var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
   slider.range(dateMin, dateMax);
-  var curRange = slider.range();
-  d3.select("#range-label").text(timeConverter(curRange.begin).getDate() + " " + months[timeConverter(curRange.begin).getMonth()] + " " + timeConverter(curRange.begin).getFullYear() + " - " + timeConverter(curRange.end).getDate() + " " + months[timeConverter(curRange.end).getMonth()] + " " + timeConverter(curRange.end).getFullYear());
-  
+  var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
+  d3.select("#range-label").text(timeConverter(dateMin).getDate() + " " + months[timeConverter(dateMin).getMonth()] + " " + timeConverter(dateMin).getFullYear() + " - " + timeConverter(dateMax).getDate() + " " + months[timeConverter(dateMax).getMonth()] + " " + timeConverter(dateMax).getFullYear());
   slider.onChange(function(newRange){
       d3.select("#range-label").text(timeConverter(newRange.begin).getDate() + " " + months[timeConverter(newRange.begin).getMonth()] + " " + timeConverter(newRange.begin).getFullYear() + " - " + timeConverter(newRange.end).getDate() + " " + months[timeConverter(newRange.end).getMonth()] + " " + timeConverter(newRange.end).getFullYear());
       currentDateMin = timeConverter(newRange.begin);
