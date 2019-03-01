@@ -46,7 +46,7 @@ d3.tsv("./data/data.tsv").then(function(data){
   generateSlider2(data);
   //console.log(regioncnt);
 
-  generateSlider(dates,data);
+  //generateSlider(dates,data);
   var maxvalue = 0;
 
   for (var key in regioncnt){
