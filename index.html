@@ -15,17 +15,13 @@
     <script src="https://cdn.rawgit.com/RasmusFonseca/d3RangeSlider/master/d3RangeSlider.js"></script>
   </head>
 
-  <body>
-    
+  <body onload="myFunction()">
     <h1 id="header" class="ui header backgroundcolor"><img alt="logo" src="https://jobb.blocket.se/img/jobb-horizontal-vector.svg" width="168" height="27"></img></h1>
 
-    <div class="ui grid">
+    <div id="loader"></div>
 
-      <div class="row">
-        
-        <div id="mapContainer" class="left floated five wide column"></div>
-        
-        <div id="searchContainer" class="center floated five wide column">
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+  
 
           <h2>Time</h2>
           <div><p style="display: none" id="value-range"></p></div>
@@ -33,17 +29,25 @@
           <div id="slider-container"></div>
           <div id="range-label"></div>
 
-          <select id ="cat" onchange="filterCategories()" class="ui fluid search selection dropdown">
-            <option value="" disabled selected>Välj kategori</option>
-            <option value="Alla">Alla</option>
-          </select>
-        </div>
+        <div class="row">
+          <div class="ui grid">
+            <div id="mapContainer" class="left floated five wide column"></div>
+            <div id="searchContainer" class="center floated five wide column">
+              <h2>Time</h2>
+              <div><p style="display: none" id="value-range"></p></div>
+              <div><div id="slider-range"></div></div>
 
+              <select id ="cat" onchange="filterCategories()" class="ui fluid search selection dropdown">
+                <option value="" disabled selected>Välj kategori</option>
+              </select>
+            </div>
+          <div class="right floated four wide column" id= "transfer"></div>
 
-        <div class="right floated four wide column" id= "transfer"></div>
+          </div>
+          
       </div>
     </div>
-
     <script src="app.js"></script>
+
   </body>
 </html>

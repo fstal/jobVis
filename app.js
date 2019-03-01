@@ -9,7 +9,7 @@ var selectedCat;
 var categoryList;
 
 //reads external svg file
-d3.xml('./components/map.svg')
+d3.xml('./maps/mapLan.svg')
     .then(data => {
         d3.select('div#mapContainer').node().append(data.documentElement)  
 })
@@ -54,12 +54,11 @@ var divTooltip = d3.select("body").append("div")   // Define the div for the too
     .style("opacity", 0);
     
 
-  //console.log(maxvalue,"ble");
+
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
-    //console.log(d.id.replace("a", ""));
+
         return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
-        //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
-        //return "green";
+ 
 
   })
   .on("mouseover", function(d) {
@@ -236,5 +235,13 @@ function filterCategories(data) {
   var selector = document.getElementById("cat");
   var value = selector[selector.selectedIndex].value;
   d3.select("#transfer").dispatch('mysel',{detail:value});
-
 }
+
+function myFunction() {
+  myVar = setTimeout(showPage, 1000);
+};
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+};
