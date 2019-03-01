@@ -22,11 +22,18 @@
 .tooltip{
 	position: absolute;
 	z-index: 10;
-	background: lightsteelblue;
+	background-color:rgba(0,0,0,0.85);
+	color:#fff;
+/*	background: lightsteelblue; */	
 	border: solid 1px;
-	padding: 2px;
+/*	padding: 2px;*/
+	padding: 5px;
 	cursor: default;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
 }
+
 
 #loader {
 	position: absolute;

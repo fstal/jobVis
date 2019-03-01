@@ -14,6 +14,12 @@ d3.xml('./maps/mapLan.svg')
         d3.select('div#mapContainer').node().append(data.documentElement)  
 })
 
+//Dynamically added html
+var divTooltip = d3.select("body").append("div")   // Define the div for the tooltip
+    .attr("class", "tooltip")        
+    .style("opacity", 0);
+    
+
 //Read regionList data form json file
 d3.json("./data/regionlist.json").then(function(data){
     regionlist = data;
@@ -24,11 +30,11 @@ d3.json("./data/regionlist.json").then(function(data){
 
 //list_id ;  platform  ; first_date ; last_date  ; region ; category;sub_category; subject_full ;  area  ; zipcode ;
 var daten = new Date("2019-02-04");
-console.log(daten.toDateString());
-d3.tsv("./data/data.tsv").then(function(data){
-  data.forEach( d => {
-    dateAdd(d);
 
+//console.log(daten.toDateString());
+d3.tsv("./data/data.tsv").then(function(data){
+  data.forEach(d => {
+    dateAdd(d);
     //console.log(dates);
   });
   currentDateMax = d3.max(dates);
@@ -36,10 +42,10 @@ d3.tsv("./data/data.tsv").then(function(data){
   data.forEach( d => {
     regionCount(d);
   });
-  generateSlider(dates,data);
-  //console.log(regioncnt);
 
+  generateSlider(dates,data);
   var maxvalue = 0;
+
   for (var key in regioncnt){
     //console.log("tjoao " + regioncnt[key] + " " + key  );
       if (parseInt(regioncnt[key])>maxvalue){
@@ -47,55 +53,67 @@ d3.tsv("./data/data.tsv").then(function(data){
       }
     }
 
-//Dynamically added html
-var divTooltip = d3.select("body").append("div")   // Define the div for the tooltip
-    .attr("class", "tooltip")        
-    .style("opacity", 0);
-    
-
 
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
-
-        return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
- 
-
-  })
-  .on("mouseover", function(d) {
-    if (d.parentElement.id == "sweden_svg"){
-        let formatId = d.id.replace("a", "");
-        let region = regionlist.region_list[formatId-1].name;
-    divTooltip.transition()   
-            .duration(175)    
-            .style("opacity", .85);
-        divTooltip.html(region + "<br/> Antal Annonser: "  + regioncnt[formatId])  
-          .style("left", (d3.event.pageX) + "px")     
-          .style("top", (d3.event.pageY - 28) + "px");
-        d3.select(this)
-          .style("stroke", "black") 
-        }})        
-    .on("mouseout", function(d) {
-      if (d.parentElement.id == "sweden_svg"){  
-        divTooltip.transition()   
-            .duration(500)    
-            .style("opacity", 0);
-        d3.select(this)
-          .style("stroke", "none")    
-     }})
+      return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
+    })
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout)
+      .on("mousemove", mousemove);
 
   d3.select("#transfer").on("mysel", ()=>{
-  selectedCat = d3.event.detail;
-  reDraw(data);
+    selectedCat = d3.event.detail;
+    reDraw(data);
   })
-
-
 }).catch(error => console.error(error));
+
+
+//Tooltip mouse-handling for map of sweden
+//
+// Kan använda d3.mouse[0][1] for x, resp y i d3 v5
+var mouseover = function(d) {
+  if (d.parentElement.id == "svg2"){
+    let formatId = d.id.replace("a", "");
+    let region = regionlist.region_list[formatId-1].name;
+    //console.log(region);
+  divTooltip.transition()   
+    .duration(175)    
+    .style("opacity", .85);
+  divTooltip.html(region + "<br/> Antal Annonser: "  + regioncnt[formatId])  
+    .style("left", (d3.event.pageX) + "px")     
+    .style("top", (d3.event.pageY - 10) + "px");
+  d3.select(this)
+    .style("stroke", "black") 
+  }
+}
+
+var mouseout = function(d) {
+   //console.log(d);
+   console.log(this);
+  if (d.parentElement.id == "svg2"){  
+    divTooltip.transition()   
+      .duration(100)    
+      .style("opacity", 0);
+    d3.select(this)
+      .style("stroke", "none");    
+ }
+}
+
+var mousemove = function(d) {
+  if (d.parentElement.id == "svg2"){  
+    divTooltip
+      .style("left", (d3.mouse(this)[0]+5) + "px")
+      .style("top", (d3.mouse(this)[1]) + 5 + "px") 
+ }
+}
+
 
 function regionCount(data) {
   //console.log(data.region);
   var firstDate = new Date(data.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(data.last_date.replace(/\s+/g, ""));
   //lastDate får aldrig vara mindre än det valde minDate
-  console.log("dafds",selectedCat,"bell")
+  //console.log("dafds",selectedCat,"bell")
   if (data.region in regioncnt && !(firstDate >= currentDateMax) && !(lastDate <= currentDateMin) && (selectedCat== "Alla" ||selectedCat==undefined || data.category == selectedCat)  ) {
     //console.log("hej " + data.region);
     regioncnt[data.region] = regioncnt[data.region] + 1;
