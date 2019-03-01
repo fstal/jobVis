@@ -209,6 +209,7 @@ function generateSlider2(dates, data){
   d3.select("#range-label").text(timeConverter(curRange.begin).getDate() + " " + months[timeConverter(curRange.begin).getMonth()] + " " + timeConverter(curRange.begin).getFullYear() + " - " + timeConverter(curRange.end).getDate() + " " + months[timeConverter(curRange.end).getMonth()] + " " + timeConverter(curRange.end).getFullYear());
   
   slider.onChange(function(newRange){
+      console.log("hej");
       d3.select("#range-label").text(timeConverter(newRange.begin).getDate() + " " + months[timeConverter(newRange.begin).getMonth()] + " " + timeConverter(newRange.begin).getFullYear() + " - " + timeConverter(newRange.end).getDate() + " " + months[timeConverter(newRange.end).getMonth()] + " " + timeConverter(newRange.end).getFullYear());
       currentDateMin = timeConverter(newRange.begin);
       currentDateMax = timeConverter(newRange.end);
