@@ -1,4 +1,4 @@
 # jobVis
 
-* Alex - fixar svg filer (kommuner kvar)
+* Alex - show and hide karta, zoom på kommuner
 * Filip - tooltipen och länlistan
