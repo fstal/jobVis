@@ -7,6 +7,7 @@ var currentDateMax;
 var currentDateMin;
 var selectedCat;
 var categoryList;
+var countyList;
 
 //reads external svg file
 d3.xml('./maps/mapLan.svg')
@@ -18,13 +19,14 @@ d3.xml('./maps/mapLan.svg')
 var divTooltip = d3.select("body").append("div")   // Define the div for the tooltip
     .attr("class", "tooltip")        
     .style("opacity", 0);
-    
 
 //Read regionList data form json file
 d3.json("./data/regionlist.json").then(function(data){
     regionlist = data;
+    countyList = data.region_list;
     categoryList = data.categories;
     createDropDown(); 
+    populateCountyList(data.region_list);
 });
 
 var daten = new Date("2019-02-04");
@@ -61,6 +63,26 @@ d3.tsv("./data/data.tsv").then(function(data){
   generateSlider2(data);
 }).catch(error => console.error(error));
 
+function populateCountyList(counties) {
+  // sort?
+  // var countyData = data.sort(function(a,b) {
+  //   var col = d3.keys(a)[0];
+  //   return a[col] < b[col] ? -1 : 1;
+  // });
+  var countyTable = d3.select("#countyContainer")
+    .html("")
+      .selectAll(".row")
+      .data(counties)
+      .enter().append("div")
+        .attr("class", "county-text")
+        .attr("id", function(d) {return d.name})
+        .text(function(d) { return d.name})
+        .on("click", function (d){
+        //populateSelList(d.name);
+        })
+        .on("mouseover", highlight)
+        .on("mouseout", unhighlight);
+}
 
 //Tooltip mouse-handling for map of sweden
 // Kan använda d3.mouse[0][1] for x, resp y i d3 v5
@@ -78,7 +100,8 @@ var mouseover = function(d) {
     // .style("left", (d3.event.pageX) + "px")     
     // .style("top", (d3.event.pageY) + "px");
   d3.select(this)
-    .style("stroke", "black") 
+    .style("stroke", "black");
+    console.log(this);
   }
 }
 
@@ -100,6 +123,31 @@ var mousemove = function(d) {
       .style("top", (d3.mouse(this)[1]) + "px") 
  }
 }
+
+//Mouseovers for countylist
+var highlight = function(d) {
+  let mousedCounty = document.getElementById(d.name);
+  mousedCounty.style.textDecoration = "underline";
+
+  d3.select(highlightCountyHelper(d))
+    .style("stroke", "black");
+  //console.log("#" +countyGroupName);
+}
+
+var unhighlight = function(d) {
+    let mousedCounty = document.getElementById(d.name);
+    mousedCounty.style.textDecoration = "";
+    d3.select(highlightCountyHelper(d))
+      .style("stroke", "none");
+}
+
+function highlightCountyHelper(d) {
+  var countyIdx = countyList.findIndex(i => i.name === d.name);
+  let countyGroupIdx = countyIdx + 1;
+  let countyGroupName = "#a" + countyGroupIdx;
+  return countyGroupName
+}
+
 
 
 function regionCount(data) {

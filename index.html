@@ -17,18 +17,21 @@
   </head>
 
   <body onload="myFunction()">
+
     <h1 id="header" class="ui header backgroundcolor"><img alt="logo" src="https://jobb.blocket.se/img/jobb-horizontal-vector.svg" width="168" height="27"></img></h1>
 
     <div id="loader"></div>
 
-    <div style="display:none;" id="myDiv" class="animate-bottom"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
   
       <div class="ui grid">
 
         <div class="row">
           
-          <div id="mapContainer" class="left floated five wide column"></div>
-          
+          <div id="mapContainer" class="left floated four wide column"></div>
+
+          <div id="countyContainer" class="two wide column"></div>
+
           <div id="searchContainer" class="center floated five wide column">
 
             <h2>Time</h2>
@@ -44,12 +47,12 @@
           </div>
 
 
-          <div class="right floated four wide column" id= "transfer"></div>
+          <div class="right floated five wide column" id= "transfer"></div>
         
         </div>
       
       </div>
-    
+
     </div>
     
     <script src="app.js"></script>

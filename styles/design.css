@@ -78,3 +78,7 @@
 	display: none;
 	text-align: center;
 }
+
+.county-text {
+	cursor: default;
+}
