@@ -323,5 +323,8 @@ function myFunction() {
 
 function showPage() {
   document.getElementById("loader").style.display = "none";
-  document.getElementById("myDiv").style.display = "block";
+  document.getElementById("myDiv").style.display =  "initial";
+  d3.select("#transfer").dispatch('other',{detail:"loaded"});
+  document.getElementById("dumt").style.width = "350px";
+  document.getElementById("sc").style.height = "30px";
 };
