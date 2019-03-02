@@ -3,6 +3,7 @@ var circles = [];
 var regioncnt = {};
 var regionlist;
 var dates = [];
+var mapColors = ["#f7bff", "#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c", "#08306b"];
 var currentDateMax;
 var currentDateMin;
 var selectedCat;
@@ -14,82 +15,106 @@ d3.xml('./maps/mapLan.svg')
         d3.select('div#mapContainer').node().append(data.documentElement)  
 })
 
-//Read regionList data form json file
-d3.json("./data/regionlist.json").then(function(data){
-    regionlist = data;
-    categoryList = data.categories;
-    createDropDown(); 
-
-});
-
-//list_id ;  platform  ; first_date ; last_date  ; region ; category;sub_category; subject_full ;  area  ; zipcode ;
-var daten = new Date("2019-02-04");
-console.log(daten.toDateString());
-d3.tsv("./data/data.tsv").then(function(data){
-  data.forEach( d => {
-    dateAdd(d);
-
-    //console.log(dates);
-  });
-  currentDateMax = d3.max(dates);
-  currentDateMin = d3.min(dates);
-  data.forEach( d => {
-    regionCount(d);
-  });
-  generateSlider(dates,data);
-  generateSlider2(dates,data);
-  //console.log(regioncnt);
-
-  var maxvalue = 0;
-  for (var key in regioncnt){
-    //console.log("tjoao " + regioncnt[key] + " " + key  );
-      if (parseInt(regioncnt[key])>maxvalue){
-        maxvalue =parseInt(regioncnt[key]);
-      }
-    }
-
 //Dynamically added html
 var divTooltip = d3.select("body").append("div")   // Define the div for the tooltip
     .attr("class", "tooltip")        
     .style("opacity", 0);
     
 
+//Read regionList data form json file
+d3.json("./data/regionlist.json").then(function(data){
+    regionlist = data;
+    categoryList = data.categories;
+    createDropDown(); 
+});
 
-  d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
+var daten = new Date("2019-02-04");
 
-        return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
- 
+d3.tsv("./data/data.tsv").then(function(data){
+  data.forEach(d => {
+    dateAdd(d);
+  });
+  currentDateMax = d3.max(dates);
+  currentDateMin = d3.min(dates);
+  data.forEach( d => {
+    regionCount(d);
+  });
 
-  })
-  .on("mouseover", function(d) {
-    if (d.parentElement.id == "sweden_svg"){
-        let formatId = d.id.replace("a", "");
-        let region = regionlist.region_list[formatId-1].name;
-    divTooltip.transition()   
-            .duration(175)    
-            .style("opacity", .85);
-        divTooltip.html(region + "<br/> Antal Annonser: "  + regioncnt[formatId])  
-          .style("left", (d3.event.pageX) + "px")     
-          .style("top", (d3.event.pageY - 28) + "px");
-        d3.select(this)
-          .style("stroke", "black") 
-        }})        
-    .on("mouseout", function(d) {
-      if (d.parentElement.id == "sweden_svg"){  
-        divTooltip.transition()   
-            .duration(500)    
-            .style("opacity", 0);
-        d3.select(this)
-          .style("stroke", "none")    
-     }})
+  var maxvalue = 0;
+
+  for (var key in regioncnt){
+      if (parseInt(regioncnt[key])>maxvalue){
+        maxvalue =parseInt(regioncnt[key]);
+      }
+    }
+
+  d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){      
+    var regionalAds = regioncnt[d.id.replace("a", "")];
+    console.log(d.id + " " + regionalAds + " " + maxvalue);
+    if (maxvalue == 0){
+      var colorIndex = 8;
+    }
+    else{
+      var colorIndex = Math.round(((regionalAds/maxvalue)*8)+1);
+    }
+    if (colorIndex == 9){
+      colorIndex = colorIndex - 1;
+    }
+    console.log(colorIndex);
+    return mapColors[colorIndex];
+      //return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
+    })
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout)
+      .on("mousemove", mousemove);
 
   d3.select("#transfer").on("mysel", ()=>{
-  selectedCat = d3.event.detail;
-  reDraw(data);
+    selectedCat = d3.event.detail;
+    reDraw(data);
   })
-
-
+  generateSlider2(data);
 }).catch(error => console.error(error));
+
+
+//Tooltip mouse-handling for map of sweden
+// Kan använda d3.mouse[0][1] for x, resp y i d3 v5
+//
+var mouseover = function(d) {
+  if (d.parentElement.id == "svg2"){
+    let formatId = d.id.replace("a", "");
+    let region = regionlist.region_list[formatId-1].name;
+    //console.log(region);
+  divTooltip.transition()   
+    .duration(175)    
+    .style("opacity", .85);
+  divTooltip.html(region + "<br/> Antal Annonser: "  + regioncnt[formatId])
+    .style("z-index", "10");
+    // .style("left", (d3.event.pageX) + "px")     
+    // .style("top", (d3.event.pageY) + "px");
+  d3.select(this)
+    .style("stroke", "black") 
+  }
+}
+
+var mouseout = function(d) {
+  if (d.parentElement.id == "svg2"){  
+    divTooltip.transition()   
+      .duration(100)    
+      .style("opacity", 0)
+      .style("z-index", "-10");
+    d3.select(this)
+      .style("stroke", "none");    
+ }
+}
+
+var mousemove = function(d) {
+  if (d.parentElement.id == "svg2"){  
+    divTooltip
+      .style("left", (d3.mouse(this)[0]) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px") 
+ }
+}
+
 
 function regionCount(data) {
   //console.log(data.region);
@@ -127,37 +152,44 @@ function dateAdd(d) {
   }
   if (unmatched) {dates.push(new Date(d.last_date.replace(/\s+/g, "")));}
 }
-function reDraw(data){
+
+function reDraw(data) {
   for (alla in regioncnt){
     regioncnt[alla]= 0;
   }
 //regioncnt= {};
-data.forEach( d => {
-  regionCount(d);
-});
-//console.log(regioncnt);
+  data.forEach(d => {
+    regionCount(d);
+  });
 
-var maxvalue = 0;
-for (var key in regioncnt){
-  //console.log("tjoao " + regioncnt[key] + " " + key  );
-    if (parseInt(regioncnt[key])>maxvalue){
-      maxvalue =parseInt(regioncnt[key]);
+  var maxvalue = 0;
+  for (var key in regioncnt) {
+      if (parseInt(regioncnt[key])>maxvalue) {
+        maxvalue =parseInt(regioncnt[key]);
+      }
     }
-  }
 
-//console.log(maxvalue,"ble");
-d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
-  //console.log(d.id.replace("a", ""));
-    return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
-      //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
-      //return "green";
-
-})
+  d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
+    var regionalAds = regioncnt[d.id.replace("a", "")];
+    console.log(d.id + " " + regionalAds + " " + maxvalue);
+    if (maxvalue == 0){
+      var colorIndex = 8;
+    }
+    else{
+      var colorIndex = Math.round(((regionalAds/maxvalue)*8)+1);
+    }
+    if (colorIndex == 9){
+      colorIndex = colorIndex - 1;
+    }
+    console.log(colorIndex);
+    return mapColors[colorIndex];
+    //return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
+        //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
+        //return "green";
+  })
 }
 
-
-
-function generateSlider(dates,data){
+function generateSlider(dates,data) {
   var sliderRange = d3
       .sliderBottom()
       .min(d3.min(dates))
@@ -193,28 +225,27 @@ function generateSlider(dates,data){
     );
 }
 
-function timeConverter(UNIX_timestamp){
+function timeConverter(UNIX_timestamp) {
   var a = new Date(UNIX_timestamp);
   var time = new Date(a);
   return time;
 }
 
-function generateSlider2(dates, data){
+function generateSlider2(data){
   var dateMin = Number(d3.min(dates));
   var dateMax = Number(d3.max(dates));
   var slider = createD3RangeSlider(dateMin, dateMax, "#slider-container");
-  var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
   slider.range(dateMin, dateMax);
-  var curRange = slider.range();
-  d3.select("#range-label").text(timeConverter(curRange.begin).getDate() + " " + months[timeConverter(curRange.begin).getMonth()] + " " + timeConverter(curRange.begin).getFullYear() + " - " + timeConverter(curRange.end).getDate() + " " + months[timeConverter(curRange.end).getMonth()] + " " + timeConverter(curRange.end).getFullYear());
   
+  var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
+  d3.select("#range-label").text(timeConverter(dateMin).getDate() + " " + months[timeConverter(dateMin).getMonth()] + " " + timeConverter(dateMin).getFullYear() + " - " + timeConverter(dateMax).getDate() + " " + months[timeConverter(dateMax).getMonth()] + " " + timeConverter(dateMax).getFullYear());
   slider.onChange(function(newRange){
-      console.log("hej");
       d3.select("#range-label").text(timeConverter(newRange.begin).getDate() + " " + months[timeConverter(newRange.begin).getMonth()] + " " + timeConverter(newRange.begin).getFullYear() + " - " + timeConverter(newRange.end).getDate() + " " + months[timeConverter(newRange.end).getMonth()] + " " + timeConverter(newRange.end).getFullYear());
-      currentDateMin = timeConverter(newRange.begin);
-      currentDateMax = timeConverter(newRange.end);
+      currentDateMin = timeConverter(timeConverter(timeConverter(newRange.begin).setHours(00,00,00)).setMilliseconds(000));
+      currentDateMax = timeConverter(timeConverter(timeConverter(newRange.end).setHours(24,59,59)).setMilliseconds(999));
       reDraw(data);
   });
+  d3.select(".slider").style("left","0px")
 }
 
 //Creates dynamic dropdown with categries
