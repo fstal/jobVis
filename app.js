@@ -43,12 +43,22 @@ d3.tsv("./data/data.tsv").then(function(data){
   });
 
   var maxvalue = 0;
-
-  for (var key in regioncnt){
-      if (parseInt(regioncnt[key])>maxvalue){
+  var minvalue = 10000;
+  var average = 0;
+  var counter = 0;
+  for (var key in regioncnt) {
+    average += parseInt(regioncnt[key]);
+    counter ++;
+      if (parseInt(regioncnt[key])>maxvalue) {
         maxvalue =parseInt(regioncnt[key]);
       }
+      if (parseInt(regioncnt[key])<minvalue) {
+        minvalue =parseInt(regioncnt[key]);
+      }
     }
+    average = (average/counter);
+
+  var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
 
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){      
     var regionalAds = regioncnt[d.id.replace("a", "")];
@@ -63,7 +73,7 @@ d3.tsv("./data/data.tsv").then(function(data){
       colorIndex = colorIndex - 1;
     }
     console.log(colorIndex);
-    return mapColors[colorIndex];
+    return color_scale(regionalAds)
       //return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
     })
       .on("mouseover", mouseover)
@@ -170,11 +180,11 @@ function regionCount(data) {
   var lastDate = new Date(data.last_date.replace(/\s+/g, ""));
   //lastDate får aldrig vara mindre än det valde minDate
   //console.log("dafds",selectedCat,"bell")
-  if (data.region in regioncnt && !(firstDate >= currentDateMax) && !(lastDate <= currentDateMin) && (selectedCat== "Alla" ||selectedCat==undefined || data.category == selectedCat)  ) {
+  if (data.region in regioncnt && !(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat== "Alla" ||selectedCat==undefined || data.category == selectedCat)  ) {
     //console.log("hej " + data.region);
     regioncnt[data.region] = regioncnt[data.region] + 1;
   }
-  else if (firstDate <= currentDateMax && lastDate >= currentDateMin && (selectedCat=="Alla"|| selectedCat==undefined || data.category == selectedCat)) {
+  else if (!(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat=="Alla"|| selectedCat==undefined || data.category == selectedCat)) {
     regioncnt[data.region] = 1;
   }
 //  colorMap(regioncnt);
@@ -211,26 +221,26 @@ function reDraw(data) {
   });
 
   var maxvalue = 0;
+  var minvalue = 10000;
+  var average = 0;
+  var counter = 0;
   for (var key in regioncnt) {
+    average += parseInt(regioncnt[key]);
+    counter ++;
       if (parseInt(regioncnt[key])>maxvalue) {
         maxvalue =parseInt(regioncnt[key]);
       }
+      if (parseInt(regioncnt[key])<minvalue) {
+        minvalue =parseInt(regioncnt[key]);
+      }
     }
-
+    average = (average/counter);
+    //console.log(maxvalue,minvalue,average);
+    var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
     var regionalAds = regioncnt[d.id.replace("a", "")];
-    console.log(d.id + " " + regionalAds + " " + maxvalue);
-    if (maxvalue == 0){
-      var colorIndex = 8;
-    }
-    else{
-      var colorIndex = Math.round(((regionalAds/maxvalue)*8)+1);
-    }
-    if (colorIndex == 9){
-      colorIndex = colorIndex - 1;
-    }
-    console.log(colorIndex);
-    return mapColors[colorIndex];
+    //console.log(d.id + " " + regionalAds + " " + maxvalue);
+    return color_scale(regionalAds)
     //return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
         //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
         //return "green";
@@ -293,7 +303,9 @@ function generateSlider2(data){
       currentDateMax = timeConverter(timeConverter(timeConverter(newRange.end).setHours(24,59,59)).setMilliseconds(999));
       reDraw(data);
   });
-  d3.select(".slider").style("left","0px")
+  d3.select(".slider-container").attr("id","sc");
+  d3.select(".slider").attr("id","dumt");
+  d3.select(".slider").style("left","0px").style("width", "350px");
 }
 
 //Creates dynamic dropdown with categries
