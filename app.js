@@ -302,6 +302,7 @@ function generateSlider2(data){
       currentDateMin = timeConverter(timeConverter(timeConverter(newRange.begin).setHours(00,00,00)).setMilliseconds(000));
       currentDateMax = timeConverter(timeConverter(timeConverter(newRange.end).setHours(24,59,59)).setMilliseconds(999));
       reDraw(data);
+      diffDraw(data);
   });
   d3.select(".slider-container").attr("id","sc");
   d3.select(".slider").attr("id","dumt");
@@ -339,4 +340,134 @@ function showPage() {
   d3.select("#transfer").dispatch('other',{detail:"loaded"});
   document.getElementById("dumt").style.width = "350px";
   document.getElementById("sc").style.height = "30px";
+};
+function diffDraw(data){
+  compareregionlist = {};
+ const oneday = 24*60*60*1000;
+  var diffDays = Math.ceil(Math.abs((currentDateMax.valueOf() - currentDateMin.valueOf())/(oneday)));
+  console.log(diffDays);
+  var formatTime = d3.timeFormat("%d %b, %Y");
+  daycounter = currentDateMin.valueOf();
+  console.log(formatTime(new Date(daycounter)));
+for (i=0; i<=diffDays; i++){
+  compareregionlist[""+formatTime(new Date(daycounter+(i*oneday)))] = {'day':(new Date(daycounter+(i*oneday))),'count': 0}
+}
+
+comparedayslist = d3.keys(compareregionlist).map( d =>  dayCount(compareregionlist[d],data) );
+
+console.log(comparedayslist);
+
+// 2. Use the margin convention practice 
+var margin = {top: 50, right: 50, bottom: 50, left: 50}
+  , width = 600 - margin.left - margin.right // Use the window's width 
+  , height = 400 - margin.top - margin.bottom; // Use the window's height
+
+var n = comparedayslist.length;
+// 5. X scale will use the index of our data
+var xScale = d3.scaleTime()
+    .domain([d3.min(comparedayslist, function(d) { return d.day; }),d3.max(comparedayslist, function(d) { return d.day; })]) // input
+    .range([0, width]); // output
+    xScale.tickFormat(9,d3.timeFormat("%d %b, %Y"));
+
+// 6. Y scale will use the randomly generate number 
+var yScale = d3.scaleLinear()
+    .domain(d3.extent(comparedayslist, function(d) { return d.count; })) // input 
+    .range([height, 0]); // output 
+
+// 7. d3's line generator
+var line = d3.line()
+    .x(function(d, i) { return xScale(d.day); }) // set the x values for the line generator
+    .y(function(d) { return yScale(d.count); }) // set the y values for the line generator 
+    .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+
+
+
+// 1. Add the SVG to the page and employ #2
+d3.select("#linegraph").select("svg").remove();
+var svg = d3.select("#linegraph").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// 3. Call the x axis in a group tag
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(xScale)); // Create an axis component with d3.axisBottom
+
+// 4. Call the y axis in a group tag
+svg.append("g")
+    .attr("class", "y axis")
+    .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
+
+// 9. Append the path, bind the data, and call the line generator 
+svg.append("path")
+    .datum(comparedayslist) // 10. Binds data to the line 
+    .attr("class", "line") // Assign a class for styling 
+    .attr("d", line); // 11. Calls the line generator 
+
+// 12. Appends a circle for each datapoint 
+svg.selectAll(".dot")
+    .data(comparedayslist)
+  .enter().append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+    .attr("cx", function(d, i) { return xScale(d.day) })
+    .attr("cy", function(d) { return yScale(d.count) })
+    .attr("r", 5)
+      .on("mouseover", function(a, b, c) { 
+  			console.log(a) 
+		})
+      .on("mouseout", function() {  })
+//       .on("mousemove", mousemove);
+
+//   var focus = svg.append("g")
+//       .attr("class", "focus")
+//       .style("display", "none");
+
+//   focus.append("circle")
+//       .attr("r", 4.5);
+
+//   focus.append("text")
+//       .attr("x", 9)
+//       .attr("dy", ".35em");
+
+//   svg.append("rect")
+//       .attr("class", "overlay")
+//       .attr("width", width)
+//       .attr("height", height)
+//       .on("mouseover", function() { focus.style("display", null); })
+//       .on("mouseout", function() { focus.style("display", "none"); })
+//       .on("mousemove", mousemove);
+  
+//   function mousemove() {
+//     var x0 = x.invert(d3.mouse(this)[0]),
+//         i = bisectDate(data, x0, 1),
+//         d0 = data[i - 1],
+//         d1 = data[i],
+//         d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+//     focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
+//     focus.select("text").text(d);
+//   }
+
+}
+
+function dayCount(dayitem,data) {
+  //console.log(data.region);
+  var formatTime = d3.timeFormat("%d %b, %Y");
+  todaysDateasDate = dayitem.day;
+  data.forEach(d=> {
+  var firstDate = new Date(d.first_date.replace(/\s+/g, ""));
+  var lastDate = new Date(d.last_date.replace(/\s+/g, ""));
+
+  //lastDate får aldrig vara mindre än det valde minDate
+  //console.log("dafds",selectedCat,"bell")
+  //console.log(firstDate,todaysDateasDate,lastDate);
+  if (d.region == "1" && (firstDate <= todaysDateasDate ) && (lastDate >= todaysDateasDate) && (selectedCat== "Alla" ||selectedCat==undefined || d.category == selectedCat) )  {
+    //console.log("hej " + data.region);
+    dayitem.count += 1;
+  }
+ });
+ return dayitem;
 };
