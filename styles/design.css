@@ -112,3 +112,13 @@ stroke: steelblue;
 .checkboxDiv{
 	margin-bottom: 10px;
 }
+
+#mapContainer {
+	padding-left: 0%;
+}
+#legend1 {
+	padding-right: 0%;
+}
+#legend1 svg {
+	margin-left: 30%;
+}

@@ -65,6 +65,7 @@ d3.tsv("./data/data.tsv").then(function(data){
     average = (average/counter);
 
   var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
+  drawLegend(minvalue, average, maxvalue);
 
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){      
     var regionalAds = regioncnt[d.id.replace("a", "")];
@@ -156,7 +157,7 @@ var mouseover = function(d) {
     // .style("top", (d3.event.pageY) + "px");
   d3.select(this)
     .style("stroke", "black");
-    console.log(this);
+    //console.log(this);
   }
 }
 
@@ -269,7 +270,7 @@ function reDraw(data) {
     average = (average/counter);
     //console.log(maxvalue,minvalue,average);
     var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
-  d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
+    d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
     var regionalAds = regioncnt[d.id.replace("a", "")];
     //console.log(d.id + " " + regionalAds + " " + maxvalue);
     return color_scale(regionalAds)
@@ -321,42 +322,6 @@ function diffPaint(data){
   
 }
 
-function generateSlider(dates,data) {
-  var sliderRange = d3
-      .sliderBottom()
-      .min(d3.min(dates))
-      .max(d3.max(dates))
-      .width(300)
-      //.tickFormat(d3.format('.2%'))
-      .ticks(5)
-      .default([d3.min(dates), d3.max(dates)])
-      .fill('#2196f3')
-      .on('onchange', val => {
-        currentDateMin = val[0];
-        currentDateMax = val[1];
-        reDraw(data);
-        console.log(val);
-        d3.select('p#value-range').text(val.map(d3.format('.2%')).join('-'));
-      });
-
-    var gRange = d3
-      .select('div#slider-range')
-      .append('svg')
-      .attr('width', 500)
-      .attr('height', 100)
-      .append('g')
-      .attr('transform', 'translate(30,30)');
-
-    gRange.call(sliderRange);
-
-    d3.select('p#value-range').text(
-      sliderRange
-        .value()
-        .map(d3.format('.2%'))
-        .join('-')
-    );
-}
-
 function timeConverter(UNIX_timestamp) {
   var a = new Date(UNIX_timestamp);
   var time = new Date(a);
@@ -364,22 +329,23 @@ function timeConverter(UNIX_timestamp) {
 }
 
 function generateSlider2(data){
-  var dateMin = Number(d3.min(dates));
-  var dateMax = Number(d3.max(dates));
+  //console.log("bithcc " + timeConverter(timeConverter(d3.min(dates).setHours(00,00,00)).setMilliseconds(000)));
+  var dateMin = Number(timeConverter(timeConverter(d3.min(dates).setHours(00,00,00)).setMilliseconds(000)));
+  var dateMax = Number(timeConverter(timeConverter(d3.max(dates).setHours(23,59,59)).setMilliseconds(999)));
   var slider = createD3RangeSlider(dateMin, dateMax, "#slider-container");
   slider.range(dateMin, dateMax);
+  console.log("tjuee" + timeConverter(dateMax));
   
   var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
   d3.select("#range-label").text(timeConverter(dateMin).getDate() + " " + months[timeConverter(dateMin).getMonth()] + " " + timeConverter(dateMin).getFullYear() + " - " + timeConverter(dateMax).getDate() + " " + months[timeConverter(dateMax).getMonth()] + " " + timeConverter(dateMax).getFullYear());
   slider.onChange(function(newRange){
       d3.select("#range-label").text(timeConverter(newRange.begin).getDate() + " " + months[timeConverter(newRange.begin).getMonth()] + " " + timeConverter(newRange.begin).getFullYear() + " - " + timeConverter(newRange.end).getDate() + " " + months[timeConverter(newRange.end).getMonth()] + " " + timeConverter(newRange.end).getFullYear());
       currentDateMin = timeConverter(timeConverter(timeConverter(newRange.begin).setHours(00,00,00)).setMilliseconds(000));
-      currentDateMax = timeConverter(timeConverter(timeConverter(newRange.end).setHours(24,59,59)).setMilliseconds(999));
+      currentDateMax = timeConverter(timeConverter(timeConverter(newRange.end).setHours(23,59,59)).setMilliseconds(999));
+      console.log(currentDateMax);
       reDraw(data);
 
   });
-  var width = document.getElementById("slider-container").offsetWidth;
-  console.log("katten " + width);
   d3.select(".slider-container").attr("id","sc");
   d3.select(".slider").attr("id","dumt");
   d3.select(".slider").style("left","0px").style("width", "100%");
@@ -521,3 +487,47 @@ function dayCount(dayitem,data,selRegion) {
  return dayitem;
 };
 
+function drawLegend (minvalue, average, maxvalue){
+  var w = 25, h = 660;
+  //var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
+
+  var key = d3.select("#legend1")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+  var legend = key.append("defs")
+    .append("svg:linearGradient")
+    .attr("id", "gradient")
+    .attr("x1", "100%")
+    .attr("y1", "100%")
+    .attr("x2", "100%")
+    .attr("y2", "0%")
+    .attr("spreadMethod", "pad");
+
+  legend.append("stop")
+    .attr("offset", "0%")
+    .attr("stop-color", '#c6dbef')
+    .attr("stop-opacity", 1);
+
+  legend.append("stop")
+    .attr("offset", "50%")
+    .attr("stop-color", '#6baed6')
+    .attr("stop-opacity", 1);
+
+  legend.append("stop")
+    .attr("offset", "100%")
+    .attr("stop-color", '#08306b')
+    .attr("stop-opacity", 1);
+
+  key.append("rect")
+    .attr("width", w)
+    .attr("height", h - 30)
+    .style("fill", "url(#gradient)")
+    .attr("transform", "translate(0,10)");
+
+  var y = d3.scaleLinear()
+    .range(['#c6dbef','#6baed6', '#08306b'])
+    .domain([minvalue,average, maxvalue]);
+
+}
