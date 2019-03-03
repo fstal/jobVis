@@ -256,7 +256,6 @@ function dateAdd(d) {
 }
 
 function reDraw(data) {
-  console.log(data);
   if (diffMode){diffPaint(data);}else{
   for (alla in regioncnt){
     regioncnt[alla]= 0;
@@ -370,11 +369,13 @@ function createDropDown() {
   var select = document.getElementById('cat');
   var outerMenu = document.createElement('div');
   outerMenu.classList.add('menu');
+
   var alla = document.createElement('div');
-  alla.value = "alla";
-  alla.innerHTML = "<span class='text' value='alla'>Alla</span>";
-  alla.addEventListener("click", (e)=>{filterCategories(e, "alla",0)}); 
-  alla.classList.add("item");
+  alla.value = undefined;
+  alla.innerHTML = "<span class='text' value=''>Alla</span>";
+  alla.addEventListener("click", (e)=>{filterCategories(e, undefined,2)});
+  alla.classList.add('item');
+  outerMenu.appendChild(alla);
   for (var i = 0; i < categoryList.length; i++) {
 
     let mainCategoryID = categoryList[i].cgID
@@ -436,6 +437,10 @@ function filterCategories(e, data, type) {
         }
       }
     }
+  }
+  else if (type == 2) {
+    d3.select("#category-label").text("Alla");
+    d3.select("#selectedValue").text("Alla");
   }
 }
 
