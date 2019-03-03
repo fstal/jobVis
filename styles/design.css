@@ -116,9 +116,18 @@ stroke: steelblue;
 #mapContainer {
 	padding-left: 0%;
 }
-#legend1 {
+#legend1, #legend2 {
 	padding-right: 0%;
 }
-#legend1 svg {
+#legend1 svg, #legend2 svg {
 	margin-left: 30%;
+}
+
+#legend1 p, #legend2 p {
+	font-size: 10px;
+	color: grey;
+	float:right;
+	width: 10%;
+	margin-bottom: 0px;
+	padding-top:1%;
 }

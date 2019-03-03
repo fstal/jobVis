@@ -99,12 +99,14 @@ d3.tsv("./data/data.tsv").then(function(data){
   checkbox.addEventListener('change', (event) => {
     if (event.target.checked) {
       document.getElementById("legend1").style.display = "none";
+      document.getElementById("legend2").style.display = "block";
       diffMode = true;
       reDraw(data);
       document.getElementById("dumt").style.background = "#ffffbf"
     } else {
-      diffMode = false;
+      document.getElementById("legend2").style.display = "none";
       document.getElementById("legend1").style.display = "block";
+      diffMode = false;
       reDraw(data);
       document.getElementById("dumt").style.background = "#BCE"
       d3.select("#linegraph").select("svg").remove();
@@ -320,6 +322,7 @@ function diffPaint(data){
     averagenegative = (average/counter);
     //console.log(maxvalue,minvalue,average);
     var color_scale = d3.scaleLinear().domain([minvalue,averagenegative,0,average, maxvalue]).range(['#9e0142','#f46d43','#ffff7b','#66bd63', '#006837']);
+    drawLegend2(minvalue, averagenegative, 0, average, maxvalue);
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
     var regionalAds = diffPainter[d.id.replace("a", "")].last.count - diffPainter[d.id.replace("a", "")].first.count;
     //console.log(d.id + " " + regionalAds + " " + maxvalue);
@@ -532,8 +535,63 @@ function drawLegend1 (minvalue, average, maxvalue){
     .style("fill", "url(#gradient)")
     .attr("transform", "translate(0,10)");
 
-  var y = d3.scaleLinear()
-    .range(['#c6dbef','#6baed6', '#08306b'])
-    .domain([minvalue,average, maxvalue]);
+
+}
+
+function drawLegend2 (minvalue, averagenegative, middle, average, maxvalue) {
+  var ele = document.getElementById("legend2");
+  ele.innerHTML = "";
+  var para = document.createElement("p");
+  var text = document.createTextNode("Relativ förändring (%).")
+  para.appendChild(text);
+  ele.appendChild(para);
+  console.log("hej");
+  var w = 25, h = 660;
+  //var color_scale = d3.scaleLinear().domain([minvalue,averagenegative,0,average, maxvalue]).range(['#9e0142','#f46d43','#ffff7b','#66bd63', '#006837']);
+
+  var key = d3.select("#legend2")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+  var legend = key.append("defs")
+  .append("svg:linearGradient")
+  .attr("id", "gradient2")
+  .attr("x1", "100%")
+  .attr("y1", "100%")
+  .attr("x2", "100%")
+  .attr("y2", "0%")
+  .attr("spreadMethod", "pad");
+
+  legend.append("stop")
+    .attr("offset", "0%")
+    .attr("stop-color", '#9e0142')
+    .attr("stop-opacity", 1);
+
+  legend.append("stop")
+    .attr("offset", "25%")
+    .attr("stop-color", '#f46d43')
+    .attr("stop-opacity", 1);
+
+  legend.append("stop")
+    .attr("offset", "50%")
+    .attr("stop-color", '#ffff7b')
+    .attr("stop-opacity", 1);
+  
+    legend.append("stop")
+    .attr("offset", "75%")
+    .attr("stop-color", '#66bd63')
+    .attr("stop-opacity", 1);
+
+    legend.append("stop")
+    .attr("offset", "100%")
+    .attr("stop-color", '#006837')
+    .attr("stop-opacity", 1);
+
+    key.append("rect")
+      .attr("width", w)
+      .attr("height", h - 30)
+      .style("fill", "url(#gradient2)")
+      .attr("transform", "translate(0,10)");
 
 }
