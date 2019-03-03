@@ -376,7 +376,7 @@ function createDropDown() {
     var opt = document.createElement('div');
     opt.value = categoryList[i].cgID;
     opt.innerHTML = "<span class='text' value='" + mainCategoryID +  "'>" + categoryList[i].name + "</span>";
-    opt.addEventListener("click", (e)=>{filterCategories(e, mainCategoryID)}); 
+    opt.addEventListener("click", (e)=>{filterCategories(e, mainCategoryID,0)}); 
     opt.classList.add('item');
 
     var subMenu = document.createElement('div');
@@ -390,7 +390,7 @@ function createDropDown() {
         var subCat = document.createElement('div');
         subCat.value = categoryList[i].subcategories[j].scgID;
         subCat.innerHTML = "<span class='text' value='" + categoryList[i].subcategories[j].scgID + "'>" + categoryList[i].subcategories[j]['#text'] + "</span>";
-        subCat.addEventListener('click', (e)=>{filterCategories(e, subCatID)});
+        subCat.addEventListener('click', (e)=>{filterCategories(e, subCatID,1)});
 
         subCat.classList.add('item');
         subMenu.appendChild(subCat);
@@ -406,10 +406,30 @@ function createDropDown() {
   });
 }
 
-function filterCategories(e, data) {
+function filterCategories(e, data, type) {
+  console.log(data);
   e.stopPropagation(); 
-  
   d3.select("#transfer").dispatch('mysel',{detail:data});
+  var categoryLabel = document.getElementById("category-label");
+  categoryLabel.innerHTML = "";
+  if (type == 0){
+    console.log("mors");
+    for (i=0; i < categoryList.length; i++){
+      if (data == categoryList[i].cgID){
+        console.log(categoryList[i].name);
+        d3.select("#category-label").text(categoryList[i].name);
+      }
+    }
+  }
+  else if (type == 1) {
+    for (i=0; i < categoryList.length; i++){
+      for (j=0; j < categoryList[i].subcategories.length; j++){
+        if (data == categoryList[i].subcategories[j].scgID){
+          d3.select("#category-label").text(categoryList[i].subcategories[j]['#text']);
+        }
+      }
+    }
+  }
 }
 
 function myFunction() {
