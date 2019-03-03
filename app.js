@@ -552,15 +552,15 @@ function dayCount(dayitem,data,selRegion) {
   var firstDate = new Date(d.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(d.last_date.replace(/\s+/g, ""));
   let subCats = "";
-    if (data.sub_category){
-  subCats = data.sub_category.split(",").map(function(item) {
+    if (d.sub_category){
+  subCats = d.sub_category.split(",").map(function(item) {
     return item.trim();
   
   })}; //|| subCats.indexOf(selectedCat) != -1)
   //lastDate får aldrig vara mindre än det valde minDate
   //console.log("dafds",selectedCat,"bell")
   //console.log(firstDate,todaysDateasDate,lastDate);
-  if (d.region == selRegion && (firstDate <= todaysDateasDate ) && (lastDate >= todaysDateasDate) && (selectedCat== "Alla" ||selectedCat==undefined || d.category == selectedCat || subCats.indexOf(selectedCat) != -1) )  {
+  if (d.region == selRegion && (firstDate <= todaysDateasDate ) && (lastDate >= todaysDateasDate) && (selectedCat== "Alla" ||selectedCat==undefined || d.category == selectedCat || subCats.includes(selectedCat)) )  {
     //console.log("hej " + data.region);
     dayitem.count += 1;
   }
