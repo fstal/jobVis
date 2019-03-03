@@ -158,7 +158,8 @@ var mouseover = function(d) {
     // .style("left", (d3.event.pageX) + "px")     
     // .style("top", (d3.event.pageY) + "px");
   d3.select(this)
-    .style("stroke", "black");
+    .style("stroke", "black")
+    .style("stroke-width", "1px");
     //console.log(this);
   d3.select("#" + region)
     .style("text-decoration", "underline");
@@ -174,7 +175,8 @@ var mouseout = function(d) {
       .style("opacity", 0)
       .style("z-index", "-10");
     d3.select(this)
-      .style("stroke", "none"); 
+      .style("stroke", "black")
+      .style("stroke-width", "0.3px"); 
     d3.select("#" + region)
       .style("text-decoration", "");   
  }
@@ -194,7 +196,8 @@ var highlight = function(d) {
   mousedCounty.style.textDecoration = "underline";
 
   d3.select(highlightCountyHelper(d))
-    .style("stroke", "black");
+    .style("stroke", "black")
+    .style("stroke-width", "1px");
   //console.log("#" +countyGroupName);
 }
 
@@ -202,7 +205,8 @@ var unhighlight = function(d) {
     let mousedCounty = document.getElementById(d.name);
     mousedCounty.style.textDecoration = "";
     d3.select(highlightCountyHelper(d))
-      .style("stroke", "none");
+      .style("stroke", "black")
+      .style("stroke-width", "0.3px")
 }
 
 function highlightCountyHelper(d) {

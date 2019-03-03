@@ -138,3 +138,7 @@ stroke: steelblue;
 #cat {
 	width: 100%;
 }
+g {
+	stroke: black;
+	stroke-width:0.3px;
+}
