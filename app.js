@@ -256,6 +256,7 @@ function dateAdd(d) {
 }
 
 function reDraw(data) {
+  console.log(data);
   if (diffMode){diffPaint(data);}else{
   for (alla in regioncnt){
     regioncnt[alla]= 0;
@@ -369,6 +370,11 @@ function createDropDown() {
   var select = document.getElementById('cat');
   var outerMenu = document.createElement('div');
   outerMenu.classList.add('menu');
+  var alla = document.createElement('div');
+  alla.value = "alla";
+  alla.innerHTML = "<span class='text' value='alla'>Alla</span>";
+  alla.addEventListener("click", (e)=>{filterCategories(e, "alla",0)}); 
+  alla.classList.add("item");
   for (var i = 0; i < categoryList.length; i++) {
 
     let mainCategoryID = categoryList[i].cgID
@@ -407,17 +413,17 @@ function createDropDown() {
 }
 
 function filterCategories(e, data, type) {
-  console.log(data);
   e.stopPropagation(); 
   d3.select("#transfer").dispatch('mysel',{detail:data});
   var categoryLabel = document.getElementById("category-label");
   categoryLabel.innerHTML = "";
+  var selectedValue = document.getElementById("selectedValue");
+  selectedValue.innerHTML = "";
   if (type == 0){
-    console.log("mors");
     for (i=0; i < categoryList.length; i++){
       if (data == categoryList[i].cgID){
-        console.log(categoryList[i].name);
         d3.select("#category-label").text(categoryList[i].name);
+        d3.select("#selectedValue").text(categoryList[i].name);
       }
     }
   }
@@ -426,6 +432,7 @@ function filterCategories(e, data, type) {
       for (j=0; j < categoryList[i].subcategories.length; j++){
         if (data == categoryList[i].subcategories[j].scgID){
           d3.select("#category-label").text(categoryList[i].subcategories[j]['#text']);
+          d3.select("#selectedValue").text(categoryList[i].subcategories[j]['#text']);
         }
       }
     }
