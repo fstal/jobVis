@@ -42,10 +42,12 @@
             <div id="slider-container"></div>
             <div id="range-label"></div>
   
-            <select id ="cat" onchange="filterCategories()" class="ui fluid search selection dropdown">
-              <option value="" disabled selected>Välj kategori</option>
-              <option value="Alla">Alla</option>
-            </select>
+            <div id ="cat" class="ui dropdown button">
+
+              <span id="selectedValue" class="text">Choose Category</span>
+              <i class="dropdown icon"></i>
+            
+            </div>
             <div id="linegraph"></div>
           </div>
 
