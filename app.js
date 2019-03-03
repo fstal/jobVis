@@ -222,7 +222,7 @@ function regionCount(data) {
   //console.log("dafds",selectedCat,"bell")
   let subCats = data.sub_category.split(",").map(function(item) {
     return item.trim();
-  });
+  }); 
 
   if (data.region in regioncnt && !(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat== "Alla" ||selectedCat==undefined || data.category == selectedCat || subCats.indexOf(selectedCat) != -1)  ) {
     //console.log("hej " + data.region);
@@ -325,7 +325,7 @@ function diffPaint(data){
     average = (average/counter);
     averagenegative = (average/counter);
     //console.log(maxvalue,minvalue,average);
-    var color_scale = d3.scaleLinear().domain([minvalue,averagenegative,0,average, maxvalue]).range(['#9e0142','#f46d43','#ffff7b','#66bd63', '#006837']);
+    var color_scale = d3.scaleLinear().domain([minvalue-1,averagenegative-1,0,average+1, maxvalue+1]).range(['#9e0142','#f46d43','#ffff7b','#66bd63', '#006837']);
     drawLegend2(minvalue, averagenegative, 0, average, maxvalue);
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
     var regionalAds = diffPainter[d.id.replace("a", "")].last.count - diffPainter[d.id.replace("a", "")].first.count;
@@ -515,11 +515,16 @@ function dayCount(dayitem,data,selRegion) {
   data.forEach(d=> {
   var firstDate = new Date(d.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(d.last_date.replace(/\s+/g, ""));
-
+  let subCats = "";
+    if (data.sub_category){
+  subCats = data.sub_category.split(",").map(function(item) {
+    return item.trim();
+  
+  })}; //|| subCats.indexOf(selectedCat) != -1)
   //lastDate får aldrig vara mindre än det valde minDate
   //console.log("dafds",selectedCat,"bell")
   //console.log(firstDate,todaysDateasDate,lastDate);
-  if (d.region == selRegion && (firstDate <= todaysDateasDate ) && (lastDate >= todaysDateasDate) && (selectedCat== "Alla" ||selectedCat==undefined || d.category == selectedCat) )  {
+  if (d.region == selRegion && (firstDate <= todaysDateasDate ) && (lastDate >= todaysDateasDate) && (selectedCat== "Alla" ||selectedCat==undefined || d.category == selectedCat || subCats.indexOf(selectedCat) != -1) )  {
     //console.log("hej " + data.region);
     dayitem.count += 1;
   }
