@@ -68,7 +68,7 @@ d3.tsv("./data/data.tsv").then(function(data){
 
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){      
     var regionalAds = regioncnt[d.id.replace("a", "")];
-    console.log(d.id + " " + regionalAds + " " + maxvalue);
+    //console.log(d.id + " " + regionalAds + " " + maxvalue);
     if (maxvalue == 0){
       var colorIndex = 8;
     }
@@ -78,7 +78,7 @@ d3.tsv("./data/data.tsv").then(function(data){
     if (colorIndex == 9){
       colorIndex = colorIndex - 1;
     }
-    console.log(colorIndex);
+    //console.log(colorIndex);
     return color_scale(regionalAds)
       //return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
     })
@@ -378,9 +378,11 @@ function generateSlider2(data){
       reDraw(data);
 
   });
+  var width = document.getElementById("slider-container").offsetWidth;
+  console.log("katten " + width);
   d3.select(".slider-container").attr("id","sc");
   d3.select(".slider").attr("id","dumt");
-  d3.select(".slider").style("left","0px").style("width", "350px");
+  d3.select(".slider").style("left","0px").style("width", "100%");
 }
 
 //Creates dynamic dropdown with categries
@@ -412,8 +414,9 @@ function showPage() {
   document.getElementById("loader").style.display = "none";
   document.getElementById("myDiv").style.display =  "initial";
   d3.select("#transfer").dispatch('other',{detail:"loaded"});
-  document.getElementById("dumt").style.width = "400px";
+  document.getElementById("dumt").style.width = "100%";
   document.getElementById("sc").style.height = "30px";
+  document.getElementById("sc").style.width = "100%";
 };
 function diffDraw(data){
   if (selectedLan != undefined && diffMode) {

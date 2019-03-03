@@ -2,6 +2,7 @@
     background-color: #c2c5cc;
     position: relative;
     height:30px;
+    width: 100%;
 }
 
 .slider {
@@ -60,6 +61,7 @@
     position: relative;
     height:30px;
     background-color: #eeeef5;
+    width: 100%;
 }
 #range-label {
     font-size: 12px;
