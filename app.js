@@ -220,11 +220,15 @@ function regionCount(data) {
   var lastDate = new Date(data.last_date.replace(/\s+/g, ""));
   //lastDate får aldrig vara mindre än det valde minDate
   //console.log("dafds",selectedCat,"bell")
-  if (data.region in regioncnt && !(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat== "Alla" ||selectedCat==undefined || data.category == selectedCat)  ) {
+  let subCats = data.sub_category.split(",").map(function(item) {
+    return item.trim();
+  });
+
+  if (data.region in regioncnt && !(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat== "Alla" ||selectedCat==undefined || data.category == selectedCat || subCats.indexOf(selectedCat) != -1)  ) {
     //console.log("hej " + data.region);
     regioncnt[data.region] = regioncnt[data.region] + 1;
   }
-  else if (!(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat=="Alla"|| selectedCat==undefined || data.category == selectedCat)) {
+  else if (!(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat=="Alla"|| selectedCat==undefined || data.category == selectedCat || subCats.indexOf(selectedCat) != -1)) {
     regioncnt[data.region] = 1;
   }
 //  colorMap(regioncnt);
@@ -363,22 +367,49 @@ function generateSlider2(data){
 //Creates dynamic dropdown with categries
 function createDropDown() {
   var select = document.getElementById('cat');
+  var outerMenu = document.createElement('div');
+  outerMenu.classList.add('menu');
   for (var i = 0; i < categoryList.length; i++) {
-    var opt = document.createElement('option');
+
+    let mainCategoryID = categoryList[i].cgID
+    //Create main category div
+    var opt = document.createElement('div');
     opt.value = categoryList[i].cgID;
-    opt.innerHTML = categoryList[i].name;
-    select.appendChild(opt);
+    opt.innerHTML = "<span class='text' value='" + mainCategoryID +  "'>" + categoryList[i].name + "</span>";
+    opt.addEventListener("click", (e)=>{filterCategories(e, mainCategoryID)}); 
+    opt.classList.add('item');
+
+    var subMenu = document.createElement('div');
+    subMenu.classList.add('menu');
+    opt.appendChild(subMenu);
+    
+    if(categoryList[i].subcategories.length){
+      for(var j = 0; j < categoryList[i].subcategories.length; j++){
+        //Create subcategories under a main category
+        let subCatID = categoryList[i].subcategories[j].scgID;
+        var subCat = document.createElement('div');
+        subCat.value = categoryList[i].subcategories[j].scgID;
+        subCat.innerHTML = "<span class='text' value='" + categoryList[i].subcategories[j].scgID + "'>" + categoryList[i].subcategories[j]['#text'] + "</span>";
+        subCat.addEventListener('click', (e)=>{filterCategories(e, subCatID)});
+
+        subCat.classList.add('item');
+        subMenu.appendChild(subCat);
+      }
+    }
+    outerMenu.appendChild(opt);
+    select.appendChild(outerMenu);
   }
-  // Makes the dropdown searchable
-  $('.ui.dropdown').dropdown({
-    allowAdditions: true
+  //Jquery bit for dropdown to work
+  $('.ui.dropdown')
+  .dropdown({
+    allowCategorySelection: true
   });
 }
 
-function filterCategories(data) {
-  var selector = document.getElementById("cat");
-  var value = selector[selector.selectedIndex].value;
-  d3.select("#transfer").dispatch('mysel',{detail:value});
+function filterCategories(e, data) {
+  e.stopPropagation(); 
+  
+  d3.select("#transfer").dispatch('mysel',{detail:data});
 }
 
 function myFunction() {
