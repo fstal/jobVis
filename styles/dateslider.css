@@ -6,7 +6,7 @@
 
 .slider {
     position: absolute;
-    border: 1px solid #AAB;
+    border: 1px solid rgb(2, 2, 2);
     background: #BCE;
     height: 100%;
     width: 58px;
@@ -20,9 +20,9 @@
     position: absolute;
     height: 9px;
     width: 9px;
-    border: 1px solid #AAB;
-    background: #9AC;
-
+    border: 1px solid rgb(0, 0, 0);
+    background: rgb(134, 134, 134);
+    
     /* Support for bootstrap */
     box-sizing: border-box;
     -moz-box-sizing: border-box;

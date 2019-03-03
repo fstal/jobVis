@@ -89,7 +89,7 @@
 
 .line {
 	fill: none;
-	stroke: #ffab00;
+	stroke: #a1a13b;
 	stroke-width: 3;
 }
 
@@ -100,11 +100,15 @@ pointer-events: all;
 
 /* Style the dots by assigning a fill and stroke */
 .dot {
-	fill: #ffab00;
+	fill: #c9c900;
 	stroke: #fff;
 }
 
 .focus circle {
 fill: none;
 stroke: steelblue;
+}
+
+.checkboxDiv{
+	margin-bottom: 10px;
 }
