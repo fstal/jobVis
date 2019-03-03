@@ -1,7 +1,6 @@
 # jobVis
 
 * Alex - show and hide karta, zoom på kommuner
-* Filip - highlightandet -> karta kopplat till länlista
-* Filip - länlista kopplat till linegraph i comparemode
-* Joel - Filtrering på kategorier och subkategorier.
+* Filip - Nu då?
+* Joel - Filtrering på kategorier och subkategorier. - Done typ -> Kollar på hur vi skulle kunna visa flera kategorier samtidigt
 * Calle - Mecka legender, kanske se över färgvalen osv.
