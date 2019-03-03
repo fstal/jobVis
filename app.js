@@ -65,7 +65,7 @@ d3.tsv("./data/data.tsv").then(function(data){
     average = (average/counter);
 
   var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
-  drawLegend(minvalue, average, maxvalue);
+  drawLegend1(minvalue, average, maxvalue);
 
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){      
     var regionalAds = regioncnt[d.id.replace("a", "")];
@@ -98,11 +98,13 @@ d3.tsv("./data/data.tsv").then(function(data){
   generateSlider2(data);
   checkbox.addEventListener('change', (event) => {
     if (event.target.checked) {
+      document.getElementById("legend1").style.display = "none";
       diffMode = true;
       reDraw(data);
       document.getElementById("dumt").style.background = "#ffffbf"
     } else {
       diffMode = false;
+      document.getElementById("legend1").style.display = "block";
       reDraw(data);
       document.getElementById("dumt").style.background = "#BCE"
       d3.select("#linegraph").select("svg").remove();
@@ -491,7 +493,7 @@ function dayCount(dayitem,data,selRegion) {
  return dayitem;
 };
 
-function drawLegend (minvalue, average, maxvalue){
+function drawLegend1 (minvalue, average, maxvalue){
   var w = 25, h = 660;
   //var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
 
