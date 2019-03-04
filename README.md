@@ -10,6 +10,7 @@
 ## Behöver göras innan redivisning
 * Loader för comparemode
 * Mouseover för linegraph plot points?
+* CSS:a compare mode checkbox
 
 ## Behöver göras för framtiden
 * Städa kod och DRY:a lite
