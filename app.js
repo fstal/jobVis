@@ -20,6 +20,7 @@ d3.xml('./maps/mapLan.svg')
         d3.select('div#mapContainer').node().append(data.documentElement)  
 })
 
+
 //Dynamically added html
 var divTooltip = d3.select("body").append("div")   // Define the div for the tooltip
     .attr("class", "tooltip")        
@@ -34,20 +35,22 @@ d3.tsv("./data/data.tsv").then(function(data){
   data.forEach(d => {
     dateAdd(d);
   });
+
+  //Read regionList data form json file
+  d3.json("./data/regionlist.json").then(function(data2){
+    regionlist = data2;
+    countyList = data2.region_list;
+    categoryList = data2.categories;
+    console.log(data2.region_list);
+    createDropDown(); 
+    populateCountyList(data2.region_list, data);
+  });
+
   currentDateMax = d3.max(dates);
   currentDateMin = d3.min(dates);
   data.forEach( d => {
     regionCount(d);
   });
-
-  //Read regionList data form json file
-d3.json("./data/regionlist.json").then(function(data2){
-  regionlist = data2;
-  countyList = data2.region_list;
-  categoryList = data2.categories;
-  createDropDown(); 
-  populateCountyList(data2.region_list, data);
-});
 
   var maxvalue = 0;
   var minvalue = 10000;
@@ -127,6 +130,11 @@ function populateCountyList(counties, data) {
     return 0;
   })*/
   //console.log(counties)
+  for (i = 0; i < counties.length; i++) {
+    if (counties[i].rID > 40){
+      counties.splice(i, 2); 
+    }
+  } 
   var countyTable = d3.select("#countyContainer")
     .html("")
       .selectAll(".row")
@@ -148,15 +156,16 @@ function populateCountyList(counties, data) {
            for (i=0; i < counties.length; i++){
              if(counties[i].name == d.name) {
                selectedLan  = parseInt(counties[i].rID);
-               setSelectCounty("a"+counties[i].rID);
-               diffDraw(data);
+               setSelectCounty("a" + counties[i].rID);
              }
            }
+           diffDraw(data);
         });
 }
 
 function setSelectCounty(id) {
     let formatId = id.replace("a", "");
+    console.log(formatId);
     let region = regionlist.region_list[formatId-1].name;
     selectedCounty = region
 }
