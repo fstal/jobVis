@@ -162,9 +162,9 @@ var mouseover = function(d) {
       var tipText = region + "<br/> Antal Annonser: "  + regioncnt[formatId]
     }
   divTooltip.html(tipText)
-    .style("z-index", "10");
-    // .style("left", (d3.event.pageX) + "px")     
-    // .style("top", (d3.event.pageY) + "px");
+    .style("z-index", "10")
+    .style("left", (d3.mouse(this)[0]) + "px")
+    .style("top", (d3.mouse(this)[1]) + 20 + "px") ;
   d3.select(this)
     .style("stroke", "black")
     .style("stroke-width", "1px");
@@ -194,7 +194,7 @@ var mousemove = function(d) {
   if (d.parentElement.id == "svg2"){  
     divTooltip
       .style("left", (d3.mouse(this)[0]) + "px")
-      .style("top", (d3.mouse(this)[1]) + "px") 
+      .style("top", (d3.mouse(this)[1]) + 20 + "px") 
  }
 }
 
