@@ -2,7 +2,7 @@
 
 * Alex - show and hide karta, zoom på kommuner
 * Filip - Title på linegraph
-* Joel -  CSS:a compare mode checkbox
+* Joel -  CSS:a compare mode checkbox - Ta bort "disabled" från dropdown-elementet när man valt något (så den inte längre är greyed out)
 * Calle - Mecka legender, kanske se över färgvalen osv.
 * Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
 
@@ -13,7 +13,6 @@
 * Indikator på att det finns submenyer on mouseover för huvudkategorierna
 * Loader eller förtydligad animation på att en re-render sker när man trycker på en kategori. Ofta är det knapp skillnad och då märker man inte om ny data har renderat eller ej
 * Välja län genom att trycka i länlistan
-* Ta bort "disabled" från dropdown-elementet när man valt något (så den inte längre är greyed out)
 
 ## Behöver göras för framtiden
 # Städa kod och DRY:a lite
