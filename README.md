@@ -7,5 +7,10 @@
 * Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
 
 
-## Behöver göras
+## Behöver göras innan redivisning
 * Loader för comparemode
+
+## Behöver göras för framtiden
+* Städa kod och DRY:a lite
+- Separera konvertering från kartelement "id", ex. "#a1" eller "#a15" till "Norrbotten" osv och andra hållet skall separeras till separata hjälpfunktioner
+- Mer enhetlighet i variabel- och funktionsnamn, ex. inte ha "county" "lan" och "region" för samma sak.
