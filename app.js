@@ -494,14 +494,14 @@ function createDropDown() {
 function filterCategories(e, data, type) {
   e.stopPropagation(); 
   d3.select("#transfer").dispatch('mysel',{detail:data});
-  var categoryLabel = document.getElementById("category-label");
-  categoryLabel.innerHTML = "";
+  //var categoryLabel = document.getElementById("category-label");
+  //categoryLabel.innerHTML = "";
   var selectedValue = document.getElementById("selectedValue");
   selectedValue.innerHTML = "";
   if (type == 0){
     for (i=0; i < categoryList.length; i++){
       if (data == categoryList[i].cgID){
-        d3.select("#category-label").text(categoryList[i].name);
+        //d3.select("#category-label").text(categoryList[i].name);
         d3.select("#selectedValue").text(categoryList[i].name);
       }
     }
@@ -510,14 +510,14 @@ function filterCategories(e, data, type) {
     for (i=0; i < categoryList.length; i++){
       for (j=0; j < categoryList[i].subcategories.length; j++){
         if (data == categoryList[i].subcategories[j].scgID){
-          d3.select("#category-label").text(categoryList[i].subcategories[j]['#text']);
+          //d3.select("#category-label").text(categoryList[i].subcategories[j]['#text']);
           d3.select("#selectedValue").text(categoryList[i].subcategories[j]['#text']);
         }
       }
     }
   }
   else if (type == 2) {
-    d3.select("#category-label").text("Alla");
+    //d3.select("#category-label").text("Alla");
     d3.select("#selectedValue").text("Alla");
   }
 }
