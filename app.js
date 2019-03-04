@@ -143,7 +143,7 @@ function populateCountyList(counties, data) {
       .enter().append("div")
         .attr("class", "county-text")
         .attr("id", function(d) {return d.name})
-        .style("height", "26px")
+        .style("height", "29px")
         .style("margin-top", "0px")
         .text(function(d) { return d.name})
         //.on("click", function (d){
@@ -574,6 +574,7 @@ function diffDraw(data){
   var svg = d3.select("#linegraph").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
+      .style("margin-left", "-35px" )
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
