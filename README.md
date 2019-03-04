@@ -9,6 +9,7 @@
 
 ## Behöver göras innan redivisning
 * Loader för comparemode
+* Mouseover för linegraph plot points?
 
 ## Behöver göras för framtiden
 * Städa kod och DRY:a lite
