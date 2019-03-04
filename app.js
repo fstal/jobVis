@@ -601,8 +601,39 @@ function diffDraw(data){
       .attr("cy", function(d) { return yScale(d.count) })
       .attr("r", 5)
         .on("mouseover", function(a, b, c) { 
-    			//console.log(a) 
-  		});
+    			//console.log(a)
+          //let activeRegion = highlightCountyHelper(d);
+          //let formatId = d.rID;
+          //let region = regionlist.region_list[formatId-1].name;
+          
+          //let boxCoordinates = d3.selectAll(activeRegion).node().getBBox();
+          let boxCoordinates = d3.select(this).node().getBBox()
+          console.log(d3.event.clientX)
+          
+          divTooltip.transition()   
+            .duration(175)    
+            .style("opacity", .85);
+          divTooltip
+            .style("left", d3.event.clientX + 15 + "px")
+            .style("top", d3.event.clientY  + "px");
+            //.style("top", ((boxCoordinates.y) + "px"));
+          if (diffMode){
+            var tipText = a.count
+            //var tipText = region + "<br/> Förändring: " + (diffPainter[formatId].last.count - diffPainter[formatId].first.count)
+          }
+          else {
+            var tipText = region + "<br/> Antal Annonser: "  + regioncnt[formatId]
+          }
+          divTooltip.html(tipText)
+            .style("z-index", "10");
+
+  		})
+      .on("mouseout", function(){
+          divTooltip.transition()   
+            .duration(100)    
+            .style("opacity", 0)
+            .style("z-index", "-10");
+            });
     svg.append("text")
       .attr("class", "chart-title")
       .attr("x", width/2)
