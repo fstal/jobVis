@@ -134,6 +134,8 @@ function populateCountyList(counties, data) {
       .enter().append("div")
         .attr("class", "county-text")
         .attr("id", function(d) {return d.name})
+        .style("height", "26px")
+        .style("margin-top", "0px")
         .text(function(d) { return d.name})
         //.on("click", function (d){
         //populateSelList(d.name);
