@@ -25,15 +25,6 @@ var divTooltip = d3.select("body").append("div")   // Define the div for the too
     .attr("class", "tooltip")        
     .style("opacity", 0);
 
-//Read regionList data form json file
-d3.json("./data/regionlist.json").then(function(data){
-    regionlist = data;
-    countyList = data.region_list;
-    categoryList = data.categories;
-    createDropDown(); 
-    populateCountyList(data.region_list);
-});
-
 var daten = new Date("2019-02-04");
 
 const checkbox = document.getElementById('modeChange')
@@ -48,6 +39,15 @@ d3.tsv("./data/data.tsv").then(function(data){
   data.forEach( d => {
     regionCount(d);
   });
+
+  //Read regionList data form json file
+d3.json("./data/regionlist.json").then(function(data2){
+  regionlist = data2;
+  countyList = data2.region_list;
+  categoryList = data2.categories;
+  createDropDown(); 
+  populateCountyList(data2.region_list, data);
+});
 
   var maxvalue = 0;
   var minvalue = 10000;
@@ -117,15 +117,16 @@ d3.tsv("./data/data.tsv").then(function(data){
 }).catch(error => console.error(error));
 
 
-function populateCountyList(counties) {
-  console.log(counties)
+function populateCountyList(counties, data) {
+  //console.log(counties)
+  //console.log("dööö " + data);
   /*
   counties.sort(function(a, b){
     if(a.name < b.name) { return -1; }
     if(a.name > b.name) { return 1; }
     return 0;
   })*/
-  console.log(counties)
+  //console.log(counties)
   var countyTable = d3.select("#countyContainer")
     .html("")
       .selectAll(".row")
@@ -142,7 +143,13 @@ function populateCountyList(counties) {
         .on("click",(d) =>{
            // selectedLan = parseInt(d.rID);
            // diffDraw(data);
-           console.log("Vi löser detta när vi kör data från backenden ist för .tsv-filen");
+           for (i=0; i < counties.length; i++){
+             if(counties[i].name == d.name) {
+               selectedLan  = parseInt(counties[i].rID);
+               setSelectCounty("a"+counties[i].rID);
+               diffDraw(data);
+             }
+           }
         });
 }
 
@@ -530,7 +537,7 @@ function diffDraw(data){
 
   comparedayslist = d3.keys(compareregionlist).map( d =>  dayCount(compareregionlist[d],data) );
 
-  console.log(comparedayslist);
+  //console.log(comparedayslist);
 
   var margin = {top: 50, right: 50, bottom: 50, left: 50}
     , width = 600 - margin.left - margin.right 
@@ -665,7 +672,6 @@ function drawLegend2 (minvalue, averagenegative, middle, average, maxvalue) {
   var text = document.createTextNode("Relativ förändring (%).")
   para.appendChild(text);
   ele.appendChild(para);
-  console.log("hej");
   var w = 25, h = 660;
   //var color_scale = d3.scaleLinear().domain([minvalue,averagenegative,0,average, maxvalue]).range(['#9e0142','#f46d43','#ffff7b','#66bd63', '#006837']);
 
