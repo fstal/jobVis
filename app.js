@@ -120,6 +120,7 @@ d3.tsv("./data/data.tsv").then(function(data){
 }).catch(error => console.error(error));
 
 
+
 function populateCountyList(counties, data) {
   //console.log(counties)
   //console.log("dööö " + data);
