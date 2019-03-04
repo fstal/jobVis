@@ -12,6 +12,7 @@ var countyList;
 var selectedLan;
 var diffPainter;
 var diffMode = false;
+var selectedCounty;
 
 //reads external svg file
 d3.xml('./maps/mapLan.svg')
@@ -88,6 +89,7 @@ d3.tsv("./data/data.tsv").then(function(data){
       .on("mousemove", mousemove)
       .on("click",(d) => {
         selectedLan  = parseInt(d.id.replace("a", ""));
+        setSelectCounty(d.id);
         diffDraw(data);
       });
 
@@ -134,6 +136,12 @@ function populateCountyList(counties) {
            // diffDraw(data);
            console.log("Vi löser detta när vi kör data från backenden ist för .tsv-filen");
         });
+}
+
+function setSelectCounty(id) {
+    let formatId = id.replace("a", "");
+    let region = regionlist.region_list[formatId-1].name;
+    selectedCounty = region
 }
 
 //Tooltip mouse-handling for map of sweden
@@ -463,83 +471,76 @@ function showPage() {
 function diffDraw(data){
   if (selectedLan != undefined && diffMode) {
   compareregionlist = {};
- const oneday = 24*60*60*1000;
+  const oneday = 24*60*60*1000;
   var diffDays = Math.ceil(Math.abs((currentDateMax.valueOf() - currentDateMin.valueOf())/(oneday)));
   //console.log(diffDays);
   var formatTime = d3.timeFormat("%d %b, %Y");
   daycounter = currentDateMin.valueOf();
   //console.log(formatTime(new Date(daycounter)));
-for (i=0; i<=diffDays; i++){
-  compareregionlist[""+formatTime(new Date(daycounter+(i*oneday)))] = {'day':(new Date(daycounter+(i*oneday))),'count': 0}
-}
+  for (i=0; i<=diffDays; i++){
+    compareregionlist[""+formatTime(new Date(daycounter+(i*oneday)))] = {'day':(new Date(daycounter+(i*oneday))),'count': 0}
+  }
 
-comparedayslist = d3.keys(compareregionlist).map( d =>  dayCount(compareregionlist[d],data) );
+  comparedayslist = d3.keys(compareregionlist).map( d =>  dayCount(compareregionlist[d],data) );
 
-console.log(comparedayslist);
+  console.log(comparedayslist);
 
+  var margin = {top: 50, right: 50, bottom: 50, left: 50}
+    , width = 600 - margin.left - margin.right 
+    , height = 400 - margin.top - margin.bottom; 
 
+  var n = comparedayslist.length;
 
-var margin = {top: 50, right: 50, bottom: 50, left: 50}
-  , width = 600 - margin.left - margin.right 
-  , height = 400 - margin.top - margin.bottom; 
+  var xScale = d3.scaleTime()
+      .domain(d3.extent(comparedayslist, function(d) { return d.day; }))
+      .range([0, width]); 
 
-var n = comparedayslist.length;
+  var yScale = d3.scaleLinear()
+      .domain([0,d3.max(comparedayslist, function(d) { return d.count; })])
+      .range([height, 0]);  
 
-var xScale = d3.scaleTime()
-    .domain(d3.extent(comparedayslist, function(d) { return d.day; }))
-    .range([0, width]); 
-    
+  var line = d3.line()
+      .x(function(d, i) { return xScale(d.day); }) 
+      .y(function(d) { return yScale(d.count); }) 
+      .curve(d3.curveMonotoneX) 
 
+  d3.select("#linegraph").select("svg").remove();
+  var svg = d3.select("#linegraph").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var yScale = d3.scaleLinear()
-    .domain([0,d3.max(comparedayslist, function(d) { return d.count; })])
-    .range([height, 0]);  
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(xScale).ticks(4)); 
 
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(d3.axisLeft(yScale)); 
 
-var line = d3.line()
-    .x(function(d, i) { return xScale(d.day); }) 
-    .y(function(d) { return yScale(d.count); }) 
-    .curve(d3.curveMonotoneX) 
+  svg.append("path")
+      .datum(comparedayslist) 
+      .attr("class", "line") 
+      .attr("d", line); //  Calls the line generator 
 
-
-
-
-
-d3.select("#linegraph").select("svg").remove();
-var svg = d3.select("#linegraph").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(xScale).ticks(4)); 
-
-
-svg.append("g")
-    .attr("class", "y axis")
-    .call(d3.axisLeft(yScale)); 
-
-
-svg.append("path")
-    .datum(comparedayslist) 
-    .attr("class", "line") 
-    .attr("d", line); //  Calls the line generator 
-
-
-svg.selectAll(".dot")
-    .data(comparedayslist)
-  .enter().append("circle") // Uses the enter().append() method
-    .attr("class", "dot") 
-    .attr("cx", function(d, i) { return xScale(d.day) })
-    .attr("cy", function(d) { return yScale(d.count) })
-    .attr("r", 5)
-      .on("mouseover", function(a, b, c) { 
-  			//console.log(a) 
-		});
+  svg.selectAll(".dot")
+      .data(comparedayslist)
+    .enter().append("circle") // Uses the enter().append() method
+      .attr("class", "dot") 
+      .attr("cx", function(d, i) { return xScale(d.day) })
+      .attr("cy", function(d) { return yScale(d.count) })
+      .attr("r", 5)
+        .on("mouseover", function(a, b, c) { 
+    			//console.log(a) 
+  		});
+    svg.append("text")
+      .attr("class", "chart-title")
+      .attr("x", width/2)
+      .attr("y", 0 - (margin.top / 2))
+      .attr("text-anchor", "middle")
+      .text(selectedCounty);
   }
 }
 
