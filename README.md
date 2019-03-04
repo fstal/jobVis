@@ -2,14 +2,13 @@
 
 * Alex - show and hide karta, zoom på kommuner
 * Filip - Title på linegraph
-* Joel - 
+* Joel -  CSS:a compare mode checkbox
 * Calle - Mecka legender, kanske se över färgvalen osv.
 * Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
 
 ## Behöver göras innan redivisning
 * Loader för comparemode
 * Mouseover för linegraph plot points?
-* CSS:a compare mode checkbox
 * Enhetlighet i språk, svenska eller engelska (i det visuella för användaren)
 * Indikator på att det finns submenyer on mouseover för huvudkategorierna
 * Loader eller förtydligad animation på att en re-render sker när man trycker på en kategori. Ofta är det knapp skillnad och då märker man inte om ny data har renderat eller ej
