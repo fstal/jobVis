@@ -5,6 +5,8 @@ var regionlist;
 var dates = [];
 var mapColors = ["#f7bff", "#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c", "#08306b"];
 var currentDateMax;
+var dateMin;
+var dateMin;
 var currentDateMin;
 var selectedCat;
 var categoryList;
@@ -184,7 +186,7 @@ var mouseover = function(d) {
     .duration(175)    
     .style("opacity", .85);
     if (diffMode){
-    var tipText = region + "<br/> Förändring: " + (diffPainter[formatId].last.count - diffPainter[formatId].first.count)
+    var tipText = region + "<br/> Förändring: " + (diffPainter[formatId])
     }else {
       var tipText = region + "<br/> Antal Annonser: "  + regioncnt[formatId]
     }
@@ -266,7 +268,7 @@ function overRegionTooltip(d){
     .style("left", ((boxCoordinates.x+70) + "px"))
     .style("top", ((boxCoordinates.y+50) + "px"));
   if (diffMode){
-    var tipText = region + "<br/> Förändring: " + (diffPainter[formatId].last.count - diffPainter[formatId].first.count)
+    var tipText = region + "<br/> Förändring: " + (diffPainter[formatId])
   }
   else {
     var tipText = region + "<br/> Antal Annonser: "  + regioncnt[formatId]
@@ -334,7 +336,7 @@ function dateAdd(d) {
 }
 
 function reDraw(data) {
-  if (diffMode){diffPaint(data);}else{
+  if (diffMode){diffReq(data);}else{
   for (alla in regioncnt){
     regioncnt[alla]= 0;
   }
@@ -370,23 +372,34 @@ function reDraw(data) {
   })
 }
 }
-
-function diffPaint(data){
+function diffReq(data){
+  getdiffRegions({"start":currentDateMin,"end":currentDateMin,"Cat":selectedCat});
   diffDraw(data);
+}
+
+function diffPaint(data1,data2){
+
   diffPainter = {};
   for(alla in regioncnt){
-
-    diffPainter[alla] = {'first':{'day':currentDateMin,'count':0},'last':{'day':currentDateMax,'count':0}}
-    diffPainter[alla].first = dayCount(diffPainter[alla].first,data,alla);
-    diffPainter[alla].last = dayCount(diffPainter[alla].last,data,alla);
+    diffPainter[alla] = 0
   }
+
+  for (object in data2){
+    diffPainter[data2[object].key] += data2[object].doc_count;
+  }
+
+  for (object in data1){
+    diffPainter[data1[object].key] += -data1[object].doc_count;
+  }
+  //console.log(data1,data2,diffPainter,"vadå");
+  
   var maxvalue = -100000000;
   var minvalue = 100000000;
   var average = 0;
   var averagenegative = 0;
   var counter = 0;
   for (var key in diffPainter) {
-    var diff = (diffPainter[key].last.count - diffPainter[key].first.count);
+    var diff = (diffPainter[key]);
     if (diff>0){
     average += diff;
     }else if (diff < 0){
@@ -406,7 +419,7 @@ function diffPaint(data){
     var color_scale = d3.scaleLinear().domain([minvalue-1,averagenegative-1,0,average+1, maxvalue+1]).range(['#9e0142','#f46d43','#ffff7b','#66bd63', '#006837']);
     drawLegend2(minvalue, averagenegative, 0, average, maxvalue);
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
-    var regionalAds = diffPainter[d.id.replace("a", "")].last.count - diffPainter[d.id.replace("a", "")].first.count;
+    var regionalAds = diffPainter[d.id.replace("a", "")];
     //console.log(d.id + " " + regionalAds + " " + maxvalue);
     return color_scale(regionalAds)
   });
@@ -421,8 +434,8 @@ function timeConverter(UNIX_timestamp) {
 
 function generateSlider2(data){
   //console.log("bithcc " + timeConverter(timeConverter(d3.min(dates).setHours(00,00,00)).setMilliseconds(000)));
-  var dateMin = Number(timeConverter(timeConverter(d3.min(dates).setHours(00,00,00)).setMilliseconds(000)));
-  var dateMax = Number(timeConverter(timeConverter(d3.max(dates).setHours(23,59,59)).setMilliseconds(999)));
+   dateMin = Number(timeConverter(timeConverter(d3.min(dates).setHours(00,00,00)).setMilliseconds(000)));
+   dateMax = Number(timeConverter(timeConverter(d3.max(dates).setHours(23,59,59)).setMilliseconds(999)));
   var slider = createD3RangeSlider(dateMin, dateMax, "#slider-container");
   slider.range(dateMin, dateMax);
   console.log("tjuee" + timeConverter(dateMax));
@@ -543,9 +556,64 @@ function diffDraw(data){
   var formatTime = d3.timeFormat("%d %b, %Y");
   daycounter = currentDateMin.valueOf();
   //console.log(formatTime(new Date(daycounter)));
-  for (i=0; i<=diffDays; i++){
-    compareregionlist[""+formatTime(new Date(daycounter+(i*oneday)))] = {'day':(new Date(daycounter+(i*oneday))),'count': 0}
-  }
+for (i=0; i<=diffDays; i++){
+  compareregionlist[""+formatTime(new Date(daycounter+(i*oneday)))] = {'day':(new Date(daycounter+(i*oneday))),'count': 0}
+}
+
+comparedayslist = d3.keys(compareregionlist).map( d =>  dayCount(compareregionlist[d],data) );
+
+console.log(comparedayslist);
+
+var margin = {top: 50, right: 50, bottom: 50, left: 50}
+  , width = 600 - margin.left - margin.right 
+  , height = 400 - margin.top - margin.bottom; 
+
+var n = comparedayslist.length;
+
+var xScale = d3.scaleTime()
+    .domain(d3.extent(comparedayslist, function(d) { return d.day; }))
+    .range([0, width]); 
+    
+
+
+var yScale = d3.scaleLinear()
+    .domain([0,d3.max(comparedayslist, function(d) { return d.count; })])
+    .range([height, 0]);  
+
+
+var line = d3.line()
+    .x(function(d, i) { return xScale(d.day); }) 
+    .y(function(d) { return yScale(d.count); }) 
+    .curve(d3.curveMonotoneX) 
+
+
+
+
+
+d3.select("#linegraph").select("svg").remove();
+var svg = d3.select("#linegraph").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(xScale).ticks(4)); 
+
+
+svg.append("g")
+    .attr("class", "y axis")
+    .call(d3.axisLeft(yScale)); 
+
+
+svg.append("path")
+    .datum(comparedayslist) 
+    .attr("class", "line") 
+    .attr("d", line); //  Calls the line generator 
+
 
   comparedayslist = d3.keys(compareregionlist).map( d =>  dayCount(compareregionlist[d],data) );
 
@@ -660,6 +728,7 @@ function dayCount(dayitem,data,selRegion) {
   //lastDate får aldrig vara mindre än det valde minDate
   //console.log("dafds",selectedCat,"bell")
   //console.log(firstDate,todaysDateasDate,lastDate);
+  if (subCats.includes(selectedCat)){console.log(("hallå"))}
   if (d.region == selRegion && (firstDate <= todaysDateasDate ) && (lastDate >= todaysDateasDate) && (selectedCat== "Alla" ||selectedCat==undefined || d.category == selectedCat || subCats.includes(selectedCat)) )  {
     //console.log("hej " + data.region);
     dayitem.count += 1;
@@ -765,4 +834,101 @@ function drawLegend2 (minvalue, averagenegative, middle, average, maxvalue) {
       .style("fill", "url(#gradient2)")
       .attr("transform", "translate(0,10)");
 
+}
+
+function getdiffRegions(inputParams,firstrun){
+  let startDate="";
+  let endDate="";
+  let Cat ="";
+  let params = {
+    query: {
+      query_string : {
+          default_field : "sub_category",
+          query : "9300,9302"
+      }
+  }
+  };
+  if(inputParams){
+      startDate=inputParams["start"].getFullYear()+ '-'+ ('0' + (inputParams["start"].getMonth()+1)).slice(-2)+'-'+('0' + inputParams["start"].getDate()).slice(-2);
+      endDate=inputParams["end"].getFullYear()+ '-'+ ('0' + (inputParams["end"].getMonth()+1)).slice(-2)+'-'+('0' + inputParams["end"].getDate()).slice(-2);
+      if(inputParams["Cat"]){Cat = inputParams["Cat"]};
+      console.log(Cat);
+      params = {
+
+          query:{
+            bool: {
+              must: [{
+                    range : {
+                        first_date : {
+                                lte : endDate
+                                    }
+                            }
+                          
+                },{
+                  range : {
+                      last_date : {
+                              gte : startDate
+                                  }
+                          }
+                        
+              },{
+                    query_string : {
+                        query : "*"+Cat+"*",
+                        fields: ["category","sub_category"]
+                    }
+                }]
+              }
+            },
+          size:0,
+          aggs : {
+          regions : {
+              terms : { "field" : "region","size": 512 }
+
+          }
+      }
+      };
+
+  }
+  console.log(params);
+  let http = new XMLHttpRequest();
+  http.withCredentials = false;
+
+  let url = 'http://carlfolio.com:9200/jobs/_search';
+
+  http.open('POST', url, true);
+
+  http.setRequestHeader('Content-type', 'application/json');
+
+  http.onreadystatechange = function() {//Call a function when the state changes.
+
+      console.log(http.status);
+
+      if(http.readyState === 4 && http.status === 401) {
+
+          alert("wtf");
+
+      }
+      else if(http.readyState === 4 && http.status === 200){
+
+          let data = JSON.parse(http.response);
+          //console.log(data);
+          //console.log(data["aggregations"]["regions"]["buckets"],"tick");
+          data["aggregations"]["regions"]["buckets"].splice(-1,1);
+          if (firstrun){
+            diffPaint(firstrun,(data["aggregations"]["regions"]["buckets"]));
+          }else{
+            //console.log("wat");
+            inputParams["end"] = currentDateMax;
+            inputParams["start"] = currentDateMax;
+            //console.log(inputParams);
+            getdiffRegions(inputParams,(data["aggregations"]["regions"]["buckets"]))
+          }
+
+
+
+      }
+
+  };
+
+  http.send(JSON.stringify(params));
 }
