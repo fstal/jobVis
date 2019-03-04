@@ -117,6 +117,7 @@ d3.json("./data/regionlist.json").then(function(data2){
 }).catch(error => console.error(error));
 
 
+
 function populateCountyList(counties, data) {
   //console.log(counties)
   //console.log("dööö " + data);

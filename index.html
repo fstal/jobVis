@@ -23,9 +23,6 @@
     <div id="loader"></div>
 
     <div style="display:none;" id="myDiv" class="animate-bottom">
-      <div class="checkboxDiv">
-      <input type="checkbox" id="modeChange" value="A" autocomplete="off" ><label>Compare mode (klicka på ett län för att få upp linegraph</label>
-    </div>
       <div class="ui grid">
 
         <div class="row">
@@ -36,8 +33,12 @@
           <div id="countyContainer" class="two wide column"></div>
 
           <div id="searchContainer" class="center floated five wide column">
+            <label class="checkboxDiv">
+              <input type="checkbox" id="modeChange" value="A" autocomplete="off" >Förändring över tid
+              <span class="checkmark"></span>
+            </label>
 
-            <h2>Time</h2>
+            <h2>Tidsspann</h2>
             <div><p style="display: none" id="value-range"></p></div>
             <div><div id="slider-range"></div></div>
             <div id="slider-container"></div>
