@@ -118,14 +118,6 @@ d3.tsv("./data/data.tsv").then(function(data){
 
 
 function populateCountyList(counties) {
-  console.log(counties)
-  /*
-  counties.sort(function(a, b){
-    if(a.name < b.name) { return -1; }
-    if(a.name > b.name) { return 1; }
-    return 0;
-  })*/
-  console.log(counties)
   var countyTable = d3.select("#countyContainer")
     .html("")
       .selectAll(".row")
