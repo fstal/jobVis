@@ -118,6 +118,14 @@ d3.tsv("./data/data.tsv").then(function(data){
 
 
 function populateCountyList(counties) {
+  console.log(counties)
+  /*
+  counties.sort(function(a, b){
+    if(a.name < b.name) { return -1; }
+    if(a.name > b.name) { return 1; }
+    return 0;
+  })*/
+  console.log(counties)
   var countyTable = d3.select("#countyContainer")
     .html("")
       .selectAll(".row")
@@ -170,7 +178,8 @@ var mouseover = function(d) {
     .style("stroke-width", "1px");
     //console.log(this);
   d3.select("#" + region)
-    .style("text-decoration", "underline");
+    .style("opacity", "1")
+    .style("font-weight", "bold");
   }
 }
 
@@ -186,7 +195,8 @@ var mouseout = function(d) {
       .style("stroke", "black")
       .style("stroke-width", "0.3px"); 
     d3.select("#" + region)
-      .style("text-decoration", "");   
+      .style("opacity", "0.5")
+      .style("font-weight", "normal");   
  }
 }
 
@@ -201,7 +211,10 @@ var mousemove = function(d) {
 //Mouseovers for countylist
 var highlight = function(d) {
   let mousedCounty = document.getElementById(d.name);
-  mousedCounty.style.textDecoration = "underline";
+  mousedCounty.style.fontWeight = "bold";
+  mousedCounty.style.opacity = "1";
+
+  overRegionTooltip(d);
 
   d3.select(highlightCountyHelper(d))
     .style("stroke", "black")
@@ -211,10 +224,44 @@ var highlight = function(d) {
 
 var unhighlight = function(d) {
     let mousedCounty = document.getElementById(d.name);
-    mousedCounty.style.textDecoration = "";
+    mousedCounty.style.fontWeight = "normal";
+    mousedCounty.style.opacity = "0.5";
+    removeOverRegionTooltip(d);
+
     d3.select(highlightCountyHelper(d))
       .style("stroke", "black")
       .style("stroke-width", "0.3px")
+}
+
+function overRegionTooltip(d){
+  let activeRegion = highlightCountyHelper(d);
+  let formatId = d.rID;
+  let region = regionlist.region_list[formatId-1].name;
+  
+  let boxCoordinates = d3.selectAll(activeRegion).node().getBBox();
+
+  divTooltip.transition()   
+    .duration(175)    
+    .style("opacity", .85);
+  divTooltip
+    .style("left", ((boxCoordinates.x+70) + "px"))
+    .style("top", ((boxCoordinates.y+50) + "px"));
+  if (diffMode){
+    var tipText = region + "<br/> Förändring: " + (diffPainter[formatId].last.count - diffPainter[formatId].first.count)
+  }
+  else {
+    var tipText = region + "<br/> Antal Annonser: "  + regioncnt[formatId]
+  }
+  divTooltip.html(tipText)
+    .style("z-index", "10");
+
+}
+
+function removeOverRegionTooltip(d){
+  divTooltip.transition()   
+      .duration(100)    
+      .style("opacity", 0)
+      .style("z-index", "-10");
 }
 
 function highlightCountyHelper(d) {
