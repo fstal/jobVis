@@ -10,7 +10,6 @@
   width: 168px;
   height: 27px;
   margin-left: 2%;
-  margin-top: 1.5%; 
 }
 
 .tooltip{
@@ -230,4 +229,17 @@ h2{
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+#modalbtn {
+	margin-left: 80%; 
+	height: 27px; 
+	width: 27px; 
+	margin-top: 1.5%; 
+	color: white;
+	transition: 0.6s;
+	opacity: 0.8;
+}
+#modalbtn:hover {
+	opacity: 1;
 }

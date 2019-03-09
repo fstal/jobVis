@@ -766,3 +766,8 @@ function drawLegend2 (minvalue, averagenegative, middle, average, maxvalue) {
       .attr("transform", "translate(0,10)");
 
 }
+
+function openModal(){
+  $('.ui.modal')
+  .modal('show');
+}
