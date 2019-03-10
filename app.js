@@ -145,6 +145,7 @@ function populateCountyList(counties, data) {
         .attr("id", function(d) {return d.name})
         .style("height", "29px")
         .style("margin-top", "0px")
+        .style("opacity", "0.8")
         .text(function(d) { return d.name})
         //.on("click", function (d){
         //populateSelList(d.name);
@@ -194,7 +195,7 @@ var mouseover = function(d) {
     .style("top", (d3.mouse(this)[1]) + 20 + "px") ;
   d3.select(this)
     .style("stroke", "black")
-    .style("stroke-width", "1px");
+    .style("stroke-width", "1.2px");
     //console.log(this);
   d3.select("#" + region)
     .style("opacity", "1")
@@ -214,7 +215,7 @@ var mouseout = function(d) {
       .style("stroke", "black")
       .style("stroke-width", "0.3px"); 
     d3.select("#" + region)
-      .style("opacity", "0.5")
+      .style("opacity", "0.8")
       .style("font-weight", "normal");   
  }
 }
@@ -237,14 +238,14 @@ var highlight = function(d) {
 
   d3.select(highlightCountyHelper(d))
     .style("stroke", "black")
-    .style("stroke-width", "1px");
+    .style("stroke-width", "1.2px");
   //console.log("#" +countyGroupName);
 }
 
 var unhighlight = function(d) {
     let mousedCounty = document.getElementById(d.name);
     mousedCounty.style.fontWeight = "normal";
-    mousedCounty.style.opacity = "0.5";
+    mousedCounty.style.opacity = "0.8";
     removeOverRegionTooltip(d);
 
     d3.select(highlightCountyHelper(d))
