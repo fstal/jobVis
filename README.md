@@ -11,7 +11,6 @@
 * Loader för comparemode
 * Mouseover för linegraph plot points (förbättrad)
 * Stödlinjer för mouseover på plot points i linepraph
-* Indikator på att det finns submenyer on mouseover för huvudkategorierna
 * Loader eller förtydligad animation på att en re-render sker när man trycker på en kategori. Ofta är det knapp skillnad och då märker man inte om ny data har renderat eller ej
 
 ## Borde kanske göras

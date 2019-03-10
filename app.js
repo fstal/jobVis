@@ -460,9 +460,11 @@ function createDropDown() {
     //Create main category div
     var opt = document.createElement('div');
     opt.value = categoryList[i].cgID;
-    opt.innerHTML = "<span class='text' value='" + mainCategoryID +  "'>" + categoryList[i].name + "</span>";
+    opt.innerHTML = "<span class='text' value='" + mainCategoryID +  "'>" + categoryList[i].name + "</span><i class='caret right icon right floated'></i>";
     opt.addEventListener("click", (e)=>{filterCategories(e, mainCategoryID,0)}); 
     opt.classList.add('item');
+
+    
 
     var subMenu = document.createElement('div');
     subMenu.classList.add('menu');
