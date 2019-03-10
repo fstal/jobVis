@@ -1,18 +1,21 @@
 var dataArray = [];
 var circles = [];
 var regioncnt = {};
-var regionlist;
 var dates = [];
 var mapColors = ["#f7bff", "#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c", "#08306b"];
-var currentDateMax;
-var currentDateMin;
-var selectedCat;
-var categoryList;
-var countyList;
-var selectedLan;
-var diffPainter;
 var diffMode = false;
-var selectedCounty;
+var currentDateMax,
+    currentDateMin,
+    selectedCat,
+    categoryList,
+    countyList,
+    selectedLan,
+    diffPainter,
+    regionlist,
+    selectedCounty;
+
+const checkbox = document.getElementById('modeChange')
+
 
 //reads external svg file
 d3.xml('./maps/mapLan.svg')
@@ -20,16 +23,10 @@ d3.xml('./maps/mapLan.svg')
         d3.select('div#mapContainer').node().append(data.documentElement)  
 })
 
-
 //Dynamically added html
 var divTooltip = d3.select("body").append("div")   // Define the div for the tooltip
     .attr("class", "tooltip")        
     .style("opacity", 0);
-
-var daten = new Date("2019-02-04");
-
-const checkbox = document.getElementById('modeChange')
-
 
 d3.tsv("./data/data.tsv").then(function(data){
   data.forEach(d => {
@@ -98,7 +95,7 @@ d3.tsv("./data/data.tsv").then(function(data){
 
   d3.select("#transfer").on("mysel", ()=>{
     selectedCat = d3.event.detail;
-    reDraw(data);
+    reDraw(data, finishedLoading);
   })
   generateSlider2(data);
   checkbox.addEventListener('change', (event) => {
@@ -106,13 +103,13 @@ d3.tsv("./data/data.tsv").then(function(data){
       document.getElementById("legend1").style.display = "none";
       document.getElementById("legend2").style.display = "block";
       diffMode = true;
-      reDraw(data);
+      reDraw(data, finishedLoading);
       document.getElementById("dumt").style.background = "#ffffbf"
     } else {
       document.getElementById("legend2").style.display = "none";
       document.getElementById("legend1").style.display = "block";
       diffMode = false;
-      reDraw(data);
+      reDraw(data, finishedLoading);
       document.getElementById("dumt").style.background = "#BCE"
       d3.select("#linegraph").select("svg").remove();
     }
@@ -120,17 +117,7 @@ d3.tsv("./data/data.tsv").then(function(data){
 }).catch(error => console.error(error));
 
 
-
 function populateCountyList(counties, data) {
-  //console.log(counties)
-  //console.log("dööö " + data);
-  /*
-  counties.sort(function(a, b){
-    if(a.name < b.name) { return -1; }
-    if(a.name > b.name) { return 1; }
-    return 0;
-  })*/
-  //console.log(counties)
   for (i = 0; i < counties.length; i++) {
     if (counties[i].rID > 40){
       counties.splice(i, 2); 
@@ -147,14 +134,9 @@ function populateCountyList(counties, data) {
         .style("margin-top", "0px")
         .style("opacity", "0.8")
         .text(function(d) { return d.name})
-        //.on("click", function (d){
-        //populateSelList(d.name);
-        //})
         .on("mouseover", highlight)
         .on("mouseout", unhighlight)
         .on("click",(d) =>{
-           // selectedLan = parseInt(d.rID);
-           // diffDraw(data);
            for (i=0; i < counties.length; i++){
              if(counties[i].name == d.name) {
                selectedLan  = parseInt(counties[i].rID);
@@ -165,12 +147,6 @@ function populateCountyList(counties, data) {
         });
 }
 
-function setSelectCounty(id) {
-    let formatId = id.replace("a", "");
-    console.log(formatId);
-    let region = regionlist.region_list[formatId-1].name;
-    selectedCounty = region
-}
 
 //Tooltip mouse-handling for map of sweden
 // Kan använda d3.mouse[0][1] for x, resp y i d3 v5
@@ -253,7 +229,7 @@ var unhighlight = function(d) {
       .style("stroke-width", "0.3px")
 }
 
-function overRegionTooltip(d){
+function overRegionTooltip(d) {
   let activeRegion = highlightCountyHelper(d);
   let formatId = d.rID;
   let region = regionlist.region_list[formatId-1].name;
@@ -274,22 +250,15 @@ function overRegionTooltip(d){
   }
   divTooltip.html(tipText)
     .style("z-index", "10");
-
 }
 
-function removeOverRegionTooltip(d){
+function removeOverRegionTooltip(d) {
   divTooltip.transition()   
       .duration(100)    
       .style("opacity", 0)
       .style("z-index", "-10");
 }
 
-function highlightCountyHelper(d) {
-  var countyIdx = countyList.findIndex(i => i.name === d.name);
-  let countyGroupIdx = countyIdx + 1;
-  let countyGroupName = "#a" + countyGroupIdx;
-  return countyGroupName
-}
 
 
 
@@ -334,46 +303,51 @@ function dateAdd(d) {
   if (unmatched) {dates.push(new Date(d.last_date.replace(/\s+/g, "")));}
 }
 
-function reDraw(data) {
-  if (diffMode){diffPaint(data);}else{
-  for (alla in regioncnt){
-    regioncnt[alla]= 0;
-  }
-//regioncnt= {};
-  data.forEach(d => {
-    regionCount(d);
-  });
-
-  var maxvalue = 0;
-  var minvalue = 10000;
-  var average = 0;
-  var counter = 0;
-  for (var key in regioncnt) {
-    average += parseInt(regioncnt[key]);
-    counter ++;
-      if (parseInt(regioncnt[key])>maxvalue) {
-        maxvalue =parseInt(regioncnt[key]);
-      }
-      if (parseInt(regioncnt[key])<minvalue) {
-        minvalue =parseInt(regioncnt[key]);
-      }
+function reDraw(data, callback) {
+  startedLoading(); // show loader, hide myDiv
+  if (diffMode) {diffPaint(data, callback); } 
+  else {
+    for (alla in regioncnt) {
+      regioncnt[alla]= 0;
     }
-    average = (average/counter);
-    //console.log(maxvalue,minvalue,average);
-    var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
-    d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
-    var regionalAds = regioncnt[d.id.replace("a", "")];
-    //console.log(d.id + " " + regionalAds + " " + maxvalue);
-    return color_scale(regionalAds)
-    //return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
-        //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
-        //return "green";
-  })
-}
+    //regioncnt= {};
+    data.forEach(d => {
+      regionCount(d);
+    });
+
+    var maxvalue = 0;
+    var minvalue = 10000;
+    var average = 0;
+    var counter = 0;
+    for (var key in regioncnt) {
+      average += parseInt(regioncnt[key]);
+      counter ++;
+        if (parseInt(regioncnt[key])>maxvalue) {
+          maxvalue =parseInt(regioncnt[key]);
+        }
+        if (parseInt(regioncnt[key])<minvalue) {
+          minvalue =parseInt(regioncnt[key]);
+        }
+      }
+      average = (average/counter);
+      //console.log(maxvalue,minvalue,average);
+      var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
+      d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
+        var regionalAds = regioncnt[d.id.replace("a", "")];
+        //console.log(d.id + " " + regionalAds + " " + maxvalue);
+        return color_scale(regionalAds)
+        //return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
+            //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
+            //return "green";
+      })
+    if (typeof callback !== 'undefined' && typeof callback === 'function') {
+      callback();
+    }
+  }
 }
 
-function diffPaint(data){
-  diffDraw(data);
+function diffPaint(data, callback){
+  diffDraw(data, callback);
   diffPainter = {};
   for(alla in regioncnt){
 
@@ -435,9 +409,9 @@ function generateSlider2(data){
       currentDateMin = timeConverter(timeConverter(timeConverter(newRange.begin).setHours(00,00,00)).setMilliseconds(000));
       currentDateMax = timeConverter(timeConverter(timeConverter(newRange.end).setHours(23,59,59)).setMilliseconds(999));
       console.log(currentDateMax);
-      reDraw(data);
-
+      reDraw(data, finishedLoading)
   });
+
   d3.select(".slider-container").attr("id","sc");
   d3.select(".slider").attr("id","dumt");
   d3.select(".slider").style("left","0px").style("width", "100%");
@@ -537,113 +511,118 @@ function showPage() {
   document.getElementById("sc").style.height = "30px";
   document.getElementById("sc").style.width = "100%";
 };
-function diffDraw(data){
+
+function diffDraw(data, callback){
   if (selectedLan != undefined && diffMode) {
-  compareregionlist = {};
-  const oneday = 24*60*60*1000;
-  var diffDays = Math.ceil(Math.abs((currentDateMax.valueOf() - currentDateMin.valueOf())/(oneday)));
-  //console.log(diffDays);
-  var formatTime = d3.timeFormat("%d %b, %Y");
-  daycounter = currentDateMin.valueOf();
-  //console.log(formatTime(new Date(daycounter)));
-  for (i=0; i<=diffDays; i++){
-    compareregionlist[""+formatTime(new Date(daycounter+(i*oneday)))] = {'day':(new Date(daycounter+(i*oneday))),'count': 0}
+    compareregionlist = {};
+    const oneday = 24*60*60*1000;
+    var diffDays = Math.ceil(Math.abs((currentDateMax.valueOf() - currentDateMin.valueOf())/(oneday)));
+    //console.log(diffDays);
+    var formatTime = d3.timeFormat("%d %b, %Y");
+    daycounter = currentDateMin.valueOf();
+    //console.log(formatTime(new Date(daycounter)));
+    for (i=0; i<=diffDays; i++){
+      compareregionlist[""+formatTime(new Date(daycounter+(i*oneday)))] = {'day':(new Date(daycounter+(i*oneday))),'count': 0}
+    }
+
+    comparedayslist = d3.keys(compareregionlist).map( d =>  dayCount(compareregionlist[d],data) );
+
+    //console.log(comparedayslist);
+
+    var margin = {top: 50, right: 50, bottom: 50, left: 50}
+      , width = 600 - margin.left - margin.right 
+      , height = 400 - margin.top - margin.bottom; 
+
+    var n = comparedayslist.length;
+
+    var xScale = d3.scaleTime()
+        .domain(d3.extent(comparedayslist, function(d) { return d.day; }))
+        .range([0, width]); 
+
+    var yScale = d3.scaleLinear()
+        .domain([0,d3.max(comparedayslist, function(d) { return d.count; })])
+        .range([height, 0]);  
+
+    var line = d3.line()
+        .x(function(d, i) { return xScale(d.day); }) 
+        .y(function(d) { return yScale(d.count); }) 
+        .curve(d3.curveMonotoneX) 
+
+    d3.select("#linegraph").select("svg").remove();
+    var svg = d3.select("#linegraph").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .style("margin-left", "-35px" )
+        .style("margin-top", "50px" )
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xScale).ticks(4)); 
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(d3.axisLeft(yScale)); 
+
+    svg.append("path")
+        .datum(comparedayslist) 
+        .attr("class", "line") 
+        .attr("d", line); //  Calls the line generator 
+
+    svg.selectAll(".dot")
+        .data(comparedayslist)
+      .enter().append("circle") // Uses the enter().append() method
+        .attr("class", "dot") 
+        .attr("cx", function(d, i) { return xScale(d.day) })
+        .attr("cy", function(d) { return yScale(d.count) })
+        .attr("r", 5)
+          .on("mouseover", function(a, b, c) { 
+      			//console.log(a)
+            //let activeRegion = highlightCountyHelper(d);
+            //let formatId = d.rID;
+            //let region = regionlist.region_list[formatId-1].name;
+            
+            //let boxCoordinates = d3.selectAll(activeRegion).node().getBBox();
+            let boxCoordinates = d3.select(this).node().getBBox()
+            console.log(d3.event.clientX)
+            
+            divTooltip.transition()   
+              .duration(175)    
+              .style("opacity", .85);
+            divTooltip
+              .style("left", d3.event.clientX + 15 + "px")
+              .style("top", d3.event.clientY  + "px");
+              //.style("top", ((boxCoordinates.y) + "px"));
+            if (diffMode){
+              var tipText = a.count
+              //var tipText = region + "<br/> Förändring: " + (diffPainter[formatId].last.count - diffPainter[formatId].first.count)
+            }
+            else {
+              var tipText = region + "<br/> Antal Annonser: "  + regioncnt[formatId]
+            }
+            divTooltip.html(tipText)
+              .style("z-index", "10");
+
+    		})
+        .on("mouseout", function(){
+            divTooltip.transition()   
+              .duration(100)    
+              .style("opacity", 0)
+              .style("z-index", "-10");
+              });
+      svg.append("text")
+        .attr("class", "chart-title")
+        .attr("x", width/2)
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")
+        .text(selectedCounty);
   }
-
-  comparedayslist = d3.keys(compareregionlist).map( d =>  dayCount(compareregionlist[d],data) );
-
-  //console.log(comparedayslist);
-
-  var margin = {top: 50, right: 50, bottom: 50, left: 50}
-    , width = 600 - margin.left - margin.right 
-    , height = 400 - margin.top - margin.bottom; 
-
-  var n = comparedayslist.length;
-
-  var xScale = d3.scaleTime()
-      .domain(d3.extent(comparedayslist, function(d) { return d.day; }))
-      .range([0, width]); 
-
-  var yScale = d3.scaleLinear()
-      .domain([0,d3.max(comparedayslist, function(d) { return d.count; })])
-      .range([height, 0]);  
-
-  var line = d3.line()
-      .x(function(d, i) { return xScale(d.day); }) 
-      .y(function(d) { return yScale(d.count); }) 
-      .curve(d3.curveMonotoneX) 
-
-  d3.select("#linegraph").select("svg").remove();
-  var svg = d3.select("#linegraph").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .style("margin-left", "-35px" )
-      .style("margin-top", "50px" )
-    .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(xScale).ticks(4)); 
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(d3.axisLeft(yScale)); 
-
-  svg.append("path")
-      .datum(comparedayslist) 
-      .attr("class", "line") 
-      .attr("d", line); //  Calls the line generator 
-
-  svg.selectAll(".dot")
-      .data(comparedayslist)
-    .enter().append("circle") // Uses the enter().append() method
-      .attr("class", "dot") 
-      .attr("cx", function(d, i) { return xScale(d.day) })
-      .attr("cy", function(d) { return yScale(d.count) })
-      .attr("r", 5)
-        .on("mouseover", function(a, b, c) { 
-    			//console.log(a)
-          //let activeRegion = highlightCountyHelper(d);
-          //let formatId = d.rID;
-          //let region = regionlist.region_list[formatId-1].name;
-          
-          //let boxCoordinates = d3.selectAll(activeRegion).node().getBBox();
-          let boxCoordinates = d3.select(this).node().getBBox()
-          console.log(d3.event.clientX)
-          
-          divTooltip.transition()   
-            .duration(175)    
-            .style("opacity", .85);
-          divTooltip
-            .style("left", d3.event.clientX + 15 + "px")
-            .style("top", d3.event.clientY  + "px");
-            //.style("top", ((boxCoordinates.y) + "px"));
-          if (diffMode){
-            var tipText = a.count
-            //var tipText = region + "<br/> Förändring: " + (diffPainter[formatId].last.count - diffPainter[formatId].first.count)
-          }
-          else {
-            var tipText = region + "<br/> Antal Annonser: "  + regioncnt[formatId]
-          }
-          divTooltip.html(tipText)
-            .style("z-index", "10");
-
-  		})
-      .on("mouseout", function(){
-          divTooltip.transition()   
-            .duration(100)    
-            .style("opacity", 0)
-            .style("z-index", "-10");
-            });
-    svg.append("text")
-      .attr("class", "chart-title")
-      .attr("x", width/2)
-      .attr("y", 0 - (margin.top / 2))
-      .attr("text-anchor", "middle")
-      .text(selectedCounty);
+  if (typeof callback !== 'undefined' && typeof callback === 'function') {
+    callback();
   }
+  else {console.log("längst ner i diffdraw, callback går ej igenom")}
 }
 
 function dayCount(dayitem,data,selRegion) {
@@ -767,10 +746,34 @@ function drawLegend2 (minvalue, averagenegative, middle, average, maxvalue) {
       .attr("height", h - 30)
       .style("fill", "url(#gradient2)")
       .attr("transform", "translate(0,10)");
-
 }
 
 function openModal(){
   $('.ui.modal')
   .modal('show');
+}
+
+function finishedLoading(){
+  console.log("Finished loading...")
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display =  "initial";
+}
+
+function startedLoading(){
+  console.log("Started loading...")
+  document.getElementById("myDiv").style.display =  "none";
+  document.getElementById("loader").style.display = "block";
+}
+
+function setSelectCounty(id) {
+    let formatId = id.replace("a", "");
+    let region = regionlist.region_list[formatId-1].name;
+    selectedCounty = region;
+}
+
+function highlightCountyHelper(d) {
+  var countyIdx = countyList.findIndex(i => i.name === d.name);
+  let countyGroupIdx = countyIdx + 1;
+  let countyGroupName = "#a" + countyGroupIdx;
+  return countyGroupName
 }
