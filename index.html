@@ -39,18 +39,34 @@
               <span class="checkmark"></span>
             </label>
 
-            <h2>Tidsspann</h2>
-            <div><p style="display: none" id="value-range"></p></div>
-            <div><div id="slider-range"></div></div>
-            <div id="slider-container"></div>
-            <div id="range-label"></div>
-  
-            <div id ="cat" class="ui dropdown button">
-              <div id="selectedValue" class="default text">Välj Kategori</div>
-              <!--<span id="selectedValue" class="text">Välj Kategori</span>-->
-              <i class="dropdown icon" style="float:right;"></i>
-            
+            <div style="margin-top: 2%" class="ui grid">
+              <h2 class="sixteen wide column">Tidsspann</h2>
+              <div class="nine wide column" style="padding: 0px;">
+                <div id="slider-container"></div>
+              </div>
+              <div id="btndiv" style="padding: 0px; margin-left:0.25em; height: 42px;" class="six wide column">
+
+              </div>
+              <!--<div id="resettimeBtn" style="margin-left: 0.25em;" class="ui button six wide column" onclick="resetTime()">
+                Återställ tidsspann
+              </div>-->
+              <div id="range-label"></div>
             </div>
+
+
+            <div class="ui grid">
+              <div id ="cat" class="ui dropdown button nine wide column">
+                <div id="selectedValue" class="default text">Välj Kategori</div>
+                <!--<span id="selectedValue" class="text">Välj Kategori</span>-->
+                <i class="dropdown icon" style="float:right;"></i>
+              
+              </div>
+              <div id="resetcatBtn" style="margin-top: 20px; font-size: 13px" class="ui button six wide column">
+                  Återställ kategori
+              </div>
+
+            </div>
+
             <div id="category-label"></div>
             <div id="linegraph"></div>
           </div>

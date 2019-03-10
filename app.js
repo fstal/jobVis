@@ -1,4 +1,4 @@
-var dataArray = [];
+var dataArray;
 var circles = [];
 var regioncnt = {};
 var regionlist;
@@ -101,13 +101,13 @@ d3.tsv("./data/data.tsv").then(function(data){
     reDraw(data);
   })
   generateSlider2(data);
+
   checkbox.addEventListener('change', (event) => {
     if (event.target.checked) {
       document.getElementById("legend1").style.display = "none";
       document.getElementById("legend2").style.display = "block";
       diffMode = true;
       reDraw(data);
-      document.getElementById("dumt").style.background = "#ffffbf"
     } else {
       document.getElementById("legend2").style.display = "none";
       document.getElementById("legend1").style.display = "block";
@@ -419,13 +419,32 @@ function timeConverter(UNIX_timestamp) {
   return time;
 }
 
+function resetTime(e, data) {
+  document.getElementById("slider-container").innerHTML = "";
+  document.getElementById("btndiv").innerHTML = "";
+  console.log(data);
+  currentDateMax = d3.max(dates);
+  currentDateMin = d3.min(dates);
+  generateSlider2(data);
+  reDraw(data);
+}
+
 function generateSlider2(data){
+  var resetbtn = document.createElement('div');
+  resetbtn.setAttribute("id", "resettimeBtn");
+  resetbtn.className = "ui button";
+  resetbtn.style.width = "100%";
+  resetbtn.style.height = "100%";
+  resetbtn.style.fontSize = "13px";
+  resetbtn.style.lineHeight = "22px";
+  resetbtn.innerHTML = "Återställ tidsspann";
+  resetbtn.addEventListener("click", (e)=>{resetTime(e, data)}); 
+  document.getElementById("btndiv").append(resetbtn);
   //console.log("bithcc " + timeConverter(timeConverter(d3.min(dates).setHours(00,00,00)).setMilliseconds(000)));
   var dateMin = Number(timeConverter(timeConverter(d3.min(dates).setHours(00,00,00)).setMilliseconds(000)));
   var dateMax = Number(timeConverter(timeConverter(d3.max(dates).setHours(23,59,59)).setMilliseconds(999)));
   var slider = createD3RangeSlider(dateMin, dateMax, "#slider-container");
   slider.range(dateMin, dateMax);
-  console.log("tjuee" + timeConverter(dateMax));
   
   var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
   d3.select("#range-label").text(timeConverter(dateMin).getDate() + " " + months[timeConverter(dateMin).getMonth()] + " " + timeConverter(dateMin).getFullYear() + " - " + timeConverter(dateMax).getDate() + " " + months[timeConverter(dateMax).getMonth()] + " " + timeConverter(dateMax).getFullYear());
@@ -433,13 +452,12 @@ function generateSlider2(data){
       d3.select("#range-label").text(timeConverter(newRange.begin).getDate() + " " + months[timeConverter(newRange.begin).getMonth()] + " " + timeConverter(newRange.begin).getFullYear() + " - " + timeConverter(newRange.end).getDate() + " " + months[timeConverter(newRange.end).getMonth()] + " " + timeConverter(newRange.end).getFullYear());
       currentDateMin = timeConverter(timeConverter(timeConverter(newRange.begin).setHours(00,00,00)).setMilliseconds(000));
       currentDateMax = timeConverter(timeConverter(timeConverter(newRange.end).setHours(23,59,59)).setMilliseconds(999));
-      console.log(currentDateMax);
       reDraw(data);
 
   });
-  d3.select(".slider-container").attr("id","sc");
-  d3.select(".slider").attr("id","dumt");
-  d3.select(".slider").style("left","0px").style("width", "100%");
+
+  d3.select(".slider-container").style("height", "100%").style("width", "100%");
+  d3.select(".slider").style("left","0px").style("position", "relative").style("height", "100%"). style("width", "100%");
 }
 
 //Creates dynamic dropdown with categries
@@ -448,12 +466,17 @@ function createDropDown() {
   var outerMenu = document.createElement('div');
   outerMenu.classList.add('menu');
 
+  /*
   var alla = document.createElement('div');
   alla.value = undefined;
   alla.innerHTML = "<span class='text' value=''>Alla</span>";
   alla.addEventListener("click", (e)=>{filterCategories(e, undefined,2)});
   alla.classList.add('item');
-  outerMenu.appendChild(alla);
+  outerMenu.appendChild(alla);*/
+
+  var resetcatBtn = document.getElementById("resetcatBtn");
+  resetcatBtn.addEventListener("click", (e)=>{filterCategories(e, undefined,2)});
+
   for (var i = 0; i < categoryList.length; i++) {
 
     let mainCategoryID = categoryList[i].cgID
@@ -494,6 +517,7 @@ function createDropDown() {
 }
 
 function filterCategories(e, data, type) {
+  console.log(e);
   e.stopPropagation(); 
   d3.select("#transfer").dispatch('mysel',{detail:data});
   //var categoryLabel = document.getElementById("category-label");
@@ -520,7 +544,7 @@ function filterCategories(e, data, type) {
   }
   else if (type == 2) {
     //d3.select("#category-label").text("Alla");
-    d3.select("#selectedValue").text("Alla");
+    d3.select("#selectedValue").text("Välj kateogori");
   }
 }
 
@@ -532,9 +556,10 @@ function showPage() {
   document.getElementById("loader").style.display = "none";
   document.getElementById("myDiv").style.display =  "initial";
   d3.select("#transfer").dispatch('other',{detail:"loaded"});
-  document.getElementById("dumt").style.width = "100%";
-  document.getElementById("sc").style.height = "30px";
-  document.getElementById("sc").style.width = "100%";
+  //document.getElementById("dumt").style.width = "100%";
+  //document.getElementById("sc").style.height = "30px";
+  //document.getElementById("sc").style.width = "100%";
+
 };
 function diffDraw(data){
   if (selectedLan != undefined && diffMode) {

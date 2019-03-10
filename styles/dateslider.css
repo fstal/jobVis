@@ -1,8 +1,14 @@
+#slider-container {
+    background-color: #c2c5cc;
+    position: relative;
+    height:42px;
+    width: 100%;
+}
+
 .slider-container {
     background-color: #c2c5cc;
     position: relative;
     height:30px;
-    width: 100%;
 }
 
 .slider {
@@ -10,7 +16,6 @@
     border: 1px solid rgb(2, 2, 2);
     background: #BCE;
     height: 100%;
-    width: 100%;
     top: 0px;
     cursor: move;
     left: 0px;
@@ -59,7 +64,7 @@
 
 #slider-container {
     position: relative;
-    height:30px;
+    height:42px;
     background-color: #eeeef5;
     width: 100%;
 }
