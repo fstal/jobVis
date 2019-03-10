@@ -1,7 +1,7 @@
 # jobVis
 
 * Alex - show and hide karta, zoom på kommuner
-* Filip - resetknappar (?)
+* Filip - Loading indicator för compare
 * Joel - Ta bort "disabled" från dropdown-elementet när man valt något (så den inte längre är greyed out)
 * Calle - Mecka legender, kanske se över färgvalen osv.
 * Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
