@@ -1,14 +1,14 @@
 # jobVis
 
 * Alex - show and hide karta, zoom på kommuner
-* Filip - Kontrast länlista & resetknappar (?)
+* Filip - resetknappar (?)
 * Joel - Ta bort "disabled" från dropdown-elementet när man valt något (så den inte längre är greyed out)
 * Calle - Mecka legender, kanske se över färgvalen osv.
 * Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
 * Carl - 
 
 ## Behöver (typ) göras
-* Loader för comparemode
+* Loader för comparemode (!)
 * Mouseover för linegraph plot points (förbättrad)
 * Stödlinjer för mouseover på plot points i linepraph
 * Indikator på att det finns submenyer on mouseover för huvudkategorierna
