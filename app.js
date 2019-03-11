@@ -38,7 +38,6 @@ d3.tsv("./data/data.tsv").then(function(data){
     regionlist = data2;
     countyList = data2.region_list;
     categoryList = data2.categories;
-    console.log(data2.region_list);
     createDropDown(); 
     populateCountyList(data2.region_list, data);
   });
@@ -90,7 +89,7 @@ d3.tsv("./data/data.tsv").then(function(data){
       .on("click",(d) => {
         selectedLan  = parseInt(d.id.replace("a", ""));
         setSelectCounty(d.id);
-        diffDraw(data);
+        diffDraw(data, finishedLoading);
       });
 
   d3.select("#transfer").on("mysel", ()=>{
@@ -143,7 +142,7 @@ function populateCountyList(counties, data) {
                setSelectCounty("a" + counties[i].rID);
              }
            }
-           diffDraw(data);
+           diffDraw(data, finishedLoading);
         });
 }
 
@@ -155,8 +154,6 @@ var mouseover = function(d) {
   if (d.parentElement.id == "svg2"){
     let formatId = d.id.replace("a", "");
     let region = regionlist.region_list[formatId-1].name;
-    //  console.log(region);
-    //  console.log(d.id);
   divTooltip.transition()   
     .duration(175)    
     .style("opacity", .85);
@@ -172,7 +169,6 @@ var mouseover = function(d) {
   d3.select(this)
     .style("stroke", "black")
     .style("stroke-width", "1.2px");
-    //console.log(this);
   d3.select("#" + region)
     .style("opacity", "1")
     .style("font-weight", "bold");
@@ -215,7 +211,6 @@ var highlight = function(d) {
   d3.select(highlightCountyHelper(d))
     .style("stroke", "black")
     .style("stroke-width", "1.2px");
-  //console.log("#" +countyGroupName);
 }
 
 var unhighlight = function(d) {
@@ -260,10 +255,7 @@ function removeOverRegionTooltip(d) {
 }
 
 
-
-
 function regionCount(data) {
-  //console.log(data.region);
   var firstDate = new Date(data.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(data.last_date.replace(/\s+/g, ""));
   //lastDate får aldrig vara mindre än det valde minDate
@@ -273,7 +265,6 @@ function regionCount(data) {
   }); 
 
   if (data.region in regioncnt && !(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat== "Alla" ||selectedCat==undefined || data.category == selectedCat || subCats.indexOf(selectedCat) != -1)  ) {
-    //console.log("hej " + data.region);
     regioncnt[data.region] = regioncnt[data.region] + 1;
   }
   else if (!(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat=="Alla"|| selectedCat==undefined || data.category == selectedCat || subCats.indexOf(selectedCat) != -1)) {
@@ -305,16 +296,14 @@ function dateAdd(d) {
 
 function reDraw(data, callback) {
   startedLoading(); // show loader, hide myDiv
-  if (diffMode) {diffPaint(data, callback); } 
+  if (diffMode) {diffPaint(data, callback);} 
   else {
     for (alla in regioncnt) {
-      regioncnt[alla]= 0;
+      regioncnt[alla]= 0;       //nollar count per region
     }
-    //regioncnt= {};
-    data.forEach(d => {
+    data.forEach(d => {    
       regionCount(d);
     });
-
     var maxvalue = 0;
     var minvalue = 10000;
     var average = 0;
@@ -334,27 +323,27 @@ function reDraw(data, callback) {
       var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
       d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
         var regionalAds = regioncnt[d.id.replace("a", "")];
-        //console.log(d.id + " " + regionalAds + " " + maxvalue);
         return color_scale(regionalAds)
         //return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
             //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
             //return "green";
       })
     if (typeof callback !== 'undefined' && typeof callback === 'function') {
+      console.log("redraw callback");
       callback();
     }
   }
 }
 
-function diffPaint(data, callback){
+function diffPaint(data, callback){  //det är denna som blir monstertung.... 
   diffDraw(data, callback);
   diffPainter = {};
   for(alla in regioncnt){
-
-    diffPainter[alla] = {'first':{'day':currentDateMin,'count':0},'last':{'day':currentDateMax,'count':0}}
+    diffPainter[alla] = {'first':{'day':currentDateMin,'count':0},'last':{'day':currentDateMax,'count':0}} //vad är count här??
     diffPainter[alla].first = dayCount(diffPainter[alla].first,data,alla);
     diffPainter[alla].last = dayCount(diffPainter[alla].last,data,alla);
   }
+  // diffpainter är ett dict med 25 län, där varje län har två object , first och last (vilka innehåller ett date() vardera)
   var maxvalue = -100000000;
   var minvalue = 100000000;
   var average = 0;
@@ -377,15 +366,17 @@ function diffPaint(data, callback){
     }
     average = (average/counter);
     averagenegative = (average/counter);
-    //console.log(maxvalue,minvalue,average);
     var color_scale = d3.scaleLinear().domain([minvalue-1,averagenegative-1,0,average+1, maxvalue+1]).range(['#9e0142','#f46d43','#ffff7b','#66bd63', '#006837']);
     drawLegend2(minvalue, averagenegative, 0, average, maxvalue);
   d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
     var regionalAds = diffPainter[d.id.replace("a", "")].last.count - diffPainter[d.id.replace("a", "")].first.count;
-    //console.log(d.id + " " + regionalAds + " " + maxvalue);
     return color_scale(regionalAds)
   });
-  
+  if (typeof callback !== 'undefined' && typeof callback === 'function') {
+    console.log("NU");
+    callback();
+  }
+  else {console.log("längst ner i diffpaint, callback går ej igenom")}
 }
 
 function timeConverter(UNIX_timestamp) {
@@ -400,7 +391,7 @@ function generateSlider2(data){
   var dateMax = Number(timeConverter(timeConverter(d3.max(dates).setHours(23,59,59)).setMilliseconds(999)));
   var slider = createD3RangeSlider(dateMin, dateMax, "#slider-container");
   slider.range(dateMin, dateMax);
-  console.log("tjuee" + timeConverter(dateMax));
+  //console.log("tjuee" + timeConverter(dateMax));
   
   var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
   d3.select("#range-label").text(timeConverter(dateMin).getDate() + " " + months[timeConverter(dateMin).getMonth()] + " " + timeConverter(dateMin).getFullYear() + " - " + timeConverter(dateMax).getDate() + " " + months[timeConverter(dateMax).getMonth()] + " " + timeConverter(dateMax).getFullYear());
@@ -408,7 +399,7 @@ function generateSlider2(data){
       d3.select("#range-label").text(timeConverter(newRange.begin).getDate() + " " + months[timeConverter(newRange.begin).getMonth()] + " " + timeConverter(newRange.begin).getFullYear() + " - " + timeConverter(newRange.end).getDate() + " " + months[timeConverter(newRange.end).getMonth()] + " " + timeConverter(newRange.end).getFullYear());
       currentDateMin = timeConverter(timeConverter(timeConverter(newRange.begin).setHours(00,00,00)).setMilliseconds(000));
       currentDateMax = timeConverter(timeConverter(timeConverter(newRange.end).setHours(23,59,59)).setMilliseconds(999));
-      console.log(currentDateMax);
+      //console.log(currentDateMax);
       reDraw(data, finishedLoading)
   });
 
@@ -512,22 +503,18 @@ function showPage() {
   document.getElementById("sc").style.width = "100%";
 };
 
-function diffDraw(data, callback){
+function diffDraw(data){
   if (selectedLan != undefined && diffMode) {
     compareregionlist = {};
     const oneday = 24*60*60*1000;
     var diffDays = Math.ceil(Math.abs((currentDateMax.valueOf() - currentDateMin.valueOf())/(oneday)));
-    //console.log(diffDays);
     var formatTime = d3.timeFormat("%d %b, %Y");
     daycounter = currentDateMin.valueOf();
-    //console.log(formatTime(new Date(daycounter)));
     for (i=0; i<=diffDays; i++){
       compareregionlist[""+formatTime(new Date(daycounter+(i*oneday)))] = {'day':(new Date(daycounter+(i*oneday))),'count': 0}
     }
 
     comparedayslist = d3.keys(compareregionlist).map( d =>  dayCount(compareregionlist[d],data) );
-
-    //console.log(comparedayslist);
 
     var margin = {top: 50, right: 50, bottom: 50, left: 50}
       , width = 600 - margin.left - margin.right 
@@ -586,7 +573,7 @@ function diffDraw(data, callback){
             
             //let boxCoordinates = d3.selectAll(activeRegion).node().getBBox();
             let boxCoordinates = d3.select(this).node().getBBox()
-            console.log(d3.event.clientX)
+            //console.log(d3.event.clientX)
             
             divTooltip.transition()   
               .duration(175)    
@@ -619,17 +606,21 @@ function diffDraw(data, callback){
         .attr("text-anchor", "middle")
         .text(selectedCounty);
   }
-  if (typeof callback !== 'undefined' && typeof callback === 'function') {
-    callback();
-  }
-  else {console.log("längst ner i diffdraw, callback går ej igenom")}
+  // if (typeof callback !== 'undefined' && typeof callback === 'function') {
+  //   console.log("NU");
+  //   callback();
+  // }
+  // else {console.log("längst ner i diffdraw, callback går ej igenom")}
 }
 
 function dayCount(dayitem,data,selRegion) {
+  console.log(data);
   if (!(selRegion)) selRegion = selectedLan;
-  //console.log(data.region);
+  console.log(data);
   var formatTime = d3.timeFormat("%d %b, %Y");
   todaysDateasDate = dayitem.day;
+  
+  //Den skapar ju minst 32.500 objekt och körs 25 gånger per pixelinrement av slidern...
   data.forEach(d=> {
   var firstDate = new Date(d.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(d.last_date.replace(/\s+/g, ""));
@@ -688,8 +679,6 @@ function drawLegend1 (minvalue, average, maxvalue){
     .attr("height", h - 30)
     .style("fill", "url(#gradient)")
     .attr("transform", "translate(0,10)");
-
-
 }
 
 function drawLegend2 (minvalue, averagenegative, middle, average, maxvalue) {
@@ -754,13 +743,13 @@ function openModal(){
 }
 
 function finishedLoading(){
-  console.log("Finished loading...")
+  console.log("Finished loading..." + Date.now());
   document.getElementById("loader").style.display = "none";
   document.getElementById("myDiv").style.display =  "initial";
 }
 
 function startedLoading(){
-  console.log("Started loading...")
+  console.log("Started loading..." + Date.now());
   document.getElementById("myDiv").style.display =  "none";
   document.getElementById("loader").style.display = "block";
 }
