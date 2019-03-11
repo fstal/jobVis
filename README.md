@@ -24,7 +24,7 @@
 * Separera konvertering från kartelement "id", ex. "#a1" eller "#a15" till "Norrbotten" osv och andra hållet skall separeras till separata hjälpfunktioner
 
 ## Feedback från Final Presentation
-* ~~Knapp för snappreset av tidsspann
-* ~~Knapp / funktionalitet för snappreset av categorifilters
+* ~~Knapp för snappreset av tidsspann~~
+* ~~Knapp / funktionalitet för snappreset av categorifilters~~
 * Mer tydligen och intiutiv color-mapping
-* ~~Ökad kontrast på länlistan
+* ~~Ökad kontrast på länlistan~~
