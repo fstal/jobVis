@@ -38,7 +38,7 @@ d3.tsv("./data/data.tsv").then(function(data){
     dateAdd(d);
   });
 
-  //Read regionList data form json file
+  //Read regionList data from json file (contains categories as well)
   d3.json("./data/regionlist.json").then(function(data2){
     regionlist = data2;
     countyList = data2.region_list;
@@ -112,13 +112,11 @@ d3.tsv("./data/data.tsv").then(function(data){
       document.getElementById("legend1").style.display = "block";
       diffMode = false;
       reDraw(data);
-      document.getElementById("dumt").style.background = "#BCE"
       d3.select("#linegraph").select("svg").remove();
+      // document.getElementById("dumt").style.background = "#BCE";
     }
   })
 }).catch(error => console.error(error));
-
-
 
 function populateCountyList(counties, data) {
   for (i = 0; i < counties.length; i++) {
@@ -151,7 +149,6 @@ function populateCountyList(counties, data) {
 }
 
 
-
 function regionCount(data) {
   var firstDate = new Date(data.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(data.last_date.replace(/\s+/g, ""));
@@ -167,7 +164,6 @@ function regionCount(data) {
   else if (!(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat=="Alla"|| selectedCat==undefined || data.category == selectedCat || subCats.indexOf(selectedCat) != -1)) {
     regioncnt[data.region] = 1;
   }
-//  colorMap(regioncnt);
 }
 
 function dateAdd(d) {
@@ -196,7 +192,6 @@ function reDraw(data) {
   for (alla in regioncnt){
     regioncnt[alla]= 0;
   }
-//regioncnt= {};
   data.forEach(d => {
     regionCount(d);
   });
@@ -319,7 +314,6 @@ function createDropDown() {
   resetcatBtn.addEventListener("click", (e)=>{filterCategories(e, undefined,2)});
 
   for (var i = 0; i < categoryList.length; i++) {
-
     let mainCategoryID = categoryList[i].cgID
     //Create main category div
     var opt = document.createElement('div');
@@ -327,8 +321,6 @@ function createDropDown() {
     opt.innerHTML = "<span class='text' value='" + mainCategoryID +  "'>" + categoryList[i].name + "</span><i class='caret right icon right floated'></i>";
     opt.addEventListener("click", (e)=>{filterCategories(e, mainCategoryID,0)}); 
     opt.classList.add('item');
-
-    
 
     var subMenu = document.createElement('div');
     subMenu.classList.add('menu');
@@ -432,8 +424,8 @@ function diffDraw(data) {
       .domain([0,d3.max(comparedayslist, function(d) { return d.count; })])
       .range([height, 0]);  
 
-var parseTime = d3.timeParse("%D")
-    bisectDate = d3.bisector(function(d) { return d.day; }).left;
+  var parseTime = d3.timeParse("%D")
+      bisectDate = d3.bisector(function(d) { return d.day; }).left;
 
   var line = d3.line()
       .x(function(d, i) { return xScale(d.day); }) 
@@ -457,7 +449,15 @@ var parseTime = d3.timeParse("%D")
 
   g.append("g")
       .attr("class", "y axis")
-      .call(d3.axisLeft(yScale)); 
+      .call(d3.axisLeft(yScale))
+      .append("text")
+        .attr("class", "axis-title")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .attr("fill", "#5D6971")
+        .text("Antal annonser");
 
   g.append("path")
       .datum(comparedayslist) 
@@ -482,7 +482,6 @@ var parseTime = d3.timeParse("%D")
       .attr("x", 15)
       .attr("dy", ".31em");
 
-      ////
   svg.append("rect")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
       .attr("class", "overlay")
@@ -583,8 +582,6 @@ function drawLegend1 (minvalue, average, maxvalue){
     .attr("height", h - 30)
     .style("fill", "url(#gradient)")
     .attr("transform", "translate(0,10)");
-
-
 }
 
 function drawLegend2 (minvalue, averagenegative, middle, average, maxvalue) {
