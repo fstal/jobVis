@@ -1,17 +1,19 @@
 # jobVis
 
 * Alex - show and hide karta, zoom på kommuner
-* Filip - Loading indicator för compare
+* Filip - Kollar på att förbätrra lineplotten
 * Joel - Ta bort "disabled" från dropdown-elementet när man valt något (så den inte längre är greyed out)
 * Calle - Knappar för snabbreset av tidsspann och kategrifiltren
 * Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
 * Carl - 
 
 ## Behöver (typ) göras
-* Loader för comparemode (!)
+* ~~Loader för comparemode (!)~~ (Ballar ur med vår slider, måste typ sätta fake timeout eller byta slider för loader)
 * Mouseover för linegraph plot points (förbättrad)
 * Stödlinjer för mouseover på plot points i linepraph
-* Loader eller förtydligad animation på att en re-render sker när man trycker på en kategori. Ofta är det knapp skillnad och då märker man inte om ny data har renderat eller ej
+* ~~Loader eller förtydligad animation på att en re-render sker när man trycker på en kategori. Ofta är det knapp skillnad och då märker man inte om ny data har renderat eller ej~~
+* ~~Disabled look på dropdown ska bort~~
+* Bug: Man kan inte se hela dropdownen
 
 ## Borde kanske göras
 ### Städa kod och DRY:a lite
@@ -22,7 +24,7 @@
 * Separera konvertering från kartelement "id", ex. "#a1" eller "#a15" till "Norrbotten" osv och andra hållet skall separeras till separata hjälpfunktioner
 
 ## Feedback från Final Presentation
-* Knapp för snappreset av tidsspann
-* Knapp / funktionalitet för snappreset av categorifilters
+* ~~Knapp för snappreset av tidsspann
+* ~~Knapp / funktionalitet för snappreset av categorifilters
 * Mer tydligen och intiutiv color-mapping
-* Ökad kontrast på länlistan
+* ~~Ökad kontrast på länlistan
