@@ -560,9 +560,9 @@ function showPage() {
   //document.getElementById("dumt").style.width = "100%";
   //document.getElementById("sc").style.height = "30px";
   //document.getElementById("sc").style.width = "100%";
+}
 
-};
-function diffDraw(data){
+function diffDraw(data) {
   if (selectedLan != undefined && diffMode) {
   compareregionlist = {};
   const oneday = 24*60*60*1000;
@@ -593,6 +593,9 @@ function diffDraw(data){
       .domain([0,d3.max(comparedayslist, function(d) { return d.count; })])
       .range([height, 0]);  
 
+var parseTime = d3.timeParse("%D")
+    bisectDate = d3.bisector(function(d) { return d.day; }).left;
+
   var line = d3.line()
       .x(function(d, i) { return xScale(d.day); }) 
       .y(function(d) { return yScale(d.count); }) 
@@ -603,66 +606,107 @@ function diffDraw(data){
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .style("margin-left", "-35px" )
-      .style("margin-top", "50px" )
-    .append("g")
+      .style("margin-top", "50px" );
+
+  var g = svg.append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  svg.append("g")
+  g.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(xScale).ticks(4)); 
 
-  svg.append("g")
+  g.append("g")
       .attr("class", "y axis")
       .call(d3.axisLeft(yScale)); 
 
-  svg.append("path")
+  g.append("path")
       .datum(comparedayslist) 
       .attr("class", "line") 
       .attr("d", line); //  Calls the line generator 
 
-  svg.selectAll(".dot")
+  var focus = g.append("g")
+    .attr("class", "focus")
+    .style("display", "none");
+
+  focus.append("line")
+      .attr("class", "x-hover-line hover-line")
+      .attr("y1", 0)
+      .attr("y2", height);
+
+  focus.append("line")
+      .attr("class", "y-hover-line hover-line")
+      .attr("x1", width)
+      .attr("x2", width);
+
+  focus.append("text")
+      .attr("x", 15)
+      .attr("dy", ".31em");
+
+      ////
+  svg.append("rect")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .attr("class", "overlay")
+      .attr("width", width)
+      .attr("height", height)
+      .on("mouseover", function() { focus.style("display", null); })
+      .on("mouseout", function() { focus.style("display", "none"); })
+      .on("mousemove", mousemovePlot);
+
+  function mousemovePlot() {
+    var x0 = xScale.invert(d3.mouse(this)[0]),
+        i = bisectDate(comparedayslist, x0, 1),
+        d0 = comparedayslist[i - 1],
+        d1 = comparedayslist[i],
+        d = x0 - d0.day > d1.day - x0 ? d1 : d0;
+    focus.attr("transform", "translate(" + xScale(d.day) + "," + yScale(d.count) + ")");
+    focus.select("text").text(function() { return d.count; });
+    focus.select(".x-hover-line").attr("y2", height - yScale(d.count));
+    focus.select(".y-hover-line").attr("x2", width + width);
+  }
+
+  g.selectAll(".dot")
       .data(comparedayslist)
     .enter().append("circle") // Uses the enter().append() method
       .attr("class", "dot") 
       .attr("cx", function(d, i) { return xScale(d.day) })
       .attr("cy", function(d) { return yScale(d.count) })
-      .attr("r", 5)
-        .on("mouseover", function(a, b, c) { 
-    			//console.log(a)
-          //let activeRegion = highlightCountyHelper(d);
-          //let formatId = d.rID;
-          //let region = regionlist.region_list[formatId-1].name;
+      .attr("r", 5);
+    //     .on("mouseover", function(a, b, c) { 
+    // 			//console.log(a)
+    //       //let activeRegion = highlightCountyHelper(d);
+    //       //let formatId = d.rID;
+    //       //let region = regionlist.region_list[formatId-1].name;
           
-          //let boxCoordinates = d3.selectAll(activeRegion).node().getBBox();
-          let boxCoordinates = d3.select(this).node().getBBox()
-          console.log(d3.event.clientX)
+    //       //let boxCoordinates = d3.selectAll(activeRegion).node().getBBox();
+    //       let boxCoordinates = d3.select(this).node().getBBox()
+    //       console.log(d3.event.clientX)
           
-          divTooltip.transition()   
-            .duration(175)    
-            .style("opacity", .85);
-          divTooltip
-            .style("left", d3.event.clientX + 15 + "px")
-            .style("top", d3.event.clientY  + "px");
-            //.style("top", ((boxCoordinates.y) + "px"));
-          if (diffMode){
-            var tipText = a.count
-            //var tipText = region + "<br/> Förändring: " + (diffPainter[formatId].last.count - diffPainter[formatId].first.count)
-          }
-          else {
-            var tipText = region + "<br/> Antal Annonser: "  + regioncnt[formatId]
-          }
-          divTooltip.html(tipText)
-            .style("z-index", "10");
+    //       divTooltip.transition()   
+    //         .duration(175)    
+    //         .style("opacity", .85);
+    //       divTooltip
+    //         .style("left", d3.event.clientX + 15 + "px")
+    //         .style("top", d3.event.clientY  + "px");
+    //         //.style("top", ((boxCoordinates.y) + "px"));
+    //       if (diffMode){
+    //         var tipText = a.count
+    //         //var tipText = region + "<br/> Förändring: " + (diffPainter[formatId].last.count - diffPainter[formatId].first.count)
+    //       }
+    //       else {
+    //         var tipText = region + "<br/> Antal Annonser: "  + regioncnt[formatId]
+    //       }
+    //       divTooltip.html(tipText)
+    //         .style("z-index", "10");
 
-  		})
-      .on("mouseout", function(){
-          divTooltip.transition()   
-            .duration(100)    
-            .style("opacity", 0)
-            .style("z-index", "-10");
-            });
-    svg.append("text")
+  		// })
+    //   .on("mouseout", function(){
+    //       divTooltip.transition()   
+    //         .duration(100)    
+    //         .style("opacity", 0)
+    //         .style("z-index", "-10");
+    //         });
+    g.append("text")
       .attr("class", "chart-title")
       .attr("x", width/2)
       .attr("y", 0 - (margin.top / 2))
