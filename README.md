@@ -2,8 +2,8 @@
 
 * Alex - show and hide karta, zoom på kommuner
 * Filip - kollar på om jag kan lösa dropdown-buggen
-* Joel - Ta bort "disabled" från dropdown-elementet när man valt något (så den inte längre är greyed out)
-* Calle - Knappar för snabbreset av tidsspann och kategrifiltren
+* Joel - 
+* Calle - 
 * Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
 * Carl - 
 
