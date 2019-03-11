@@ -545,7 +545,7 @@ function filterCategories(e, data, type) {
   }
   else if (type == 2) {
     //d3.select("#category-label").text("Alla");
-    d3.select("#selectedValue").text("Välj kateogori");
+    d3.select("#selectedValue").text("Välj Kategori");
   }
 }
 
