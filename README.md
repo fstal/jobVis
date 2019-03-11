@@ -1,7 +1,7 @@
 # jobVis
 
 * Alex - show and hide karta, zoom på kommuner
-* Filip - Kollar på att förbätrra lineplotten
+* Filip - axis ledger för lineplot
 * Joel - Ta bort "disabled" från dropdown-elementet när man valt något (så den inte längre är greyed out)
 * Calle - Knappar för snabbreset av tidsspann och kategrifiltren
 * Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
@@ -9,8 +9,8 @@
 
 ## Behöver (typ) göras
 * ~~Loader för comparemode (!)~~ (Ballar ur med vår slider, måste typ sätta fake timeout eller byta slider för loader)
-* Mouseover för linegraph plot points (förbättrad)
-* Stödlinjer för mouseover på plot points i linepraph
+* ~~Mouseover för linegraph plot points (förbättrad)~~
+* ~~Stödlinjer för mouseover på plot points i linepraph~~
 * ~~Loader eller förtydligad animation på att en re-render sker när man trycker på en kategori. Ofta är det knapp skillnad och då märker man inte om ny data har renderat eller ej~~
 * ~~Disabled look på dropdown ska bort~~
 * Bug: Man kan inte se hela dropdownen
