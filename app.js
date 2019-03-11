@@ -16,6 +16,15 @@ var diffMode = false;
 var selectedCounty;
 var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
 
+/*
+Att en annons är aktiv under ett tidsspann =
+
+Att annonsens start datum är mindre eller samma som vårat valda slutdatum 
+och slutdatumet av annonsen är större eller samma som valda start datumet. 
+Med andra ord alla annonser som börjar, slutar eller  både slutar och börjar 
+innom de datumen som är valda
+*/
+
 //reads external svg file
 d3.xml('./maps/mapLan.svg')
     .then(data => {
@@ -635,7 +644,7 @@ function drawLegend2 (minvalue, averagenegative, middle, average, maxvalue) {
 }
 
 function openModal(){
-  $('.ui.modal')
+  $('.ui.longer.modal')
   .modal('show');
 }
 
