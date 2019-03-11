@@ -2,6 +2,7 @@
 
 * Alex - show and hide karta, zoom på kommuner
 * Filip - Fixar learnings
+* Joel -
 * Calle - 
 * Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
 * Carl - 
@@ -12,7 +13,7 @@
 * ~~Stödlinjer för mouseover på plot points i linepraph~~
 * ~~Loader eller förtydligad animation på att en re-render sker när man trycker på en kategori. Ofta är det knapp skillnad och då märker man inte om ny data har renderat eller ej~~
 * ~~Disabled look på dropdown ska bort~~
-* Fixa about page med learnings också
+* ~~Fixa about page med learnings också~~
 * Bug: Man kan inte se hela dropdownen alltid
 
 ## Borde kanske göras
