@@ -157,7 +157,6 @@ g {
 	stroke-width:0.3px;
 }
 
-
 h2{
 	font-weight: 200 !important;
 	font-size: 20px !important;
@@ -259,4 +258,10 @@ h2{
 
 .description {
 	padding: 6px;
+}
+
+.img {
+	border-radius: 20px;
+	width: 150px;
+	height: 200px;
 }
