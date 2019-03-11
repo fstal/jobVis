@@ -1,25 +1,21 @@
 var dataArray;
-var circles = [];
-var regioncnt = {};
-var regionlist;
-var dates = [];
+var circles = [], dates = [];
+var regioncnt = {}, areacnt = {};
 var mapColors = ["#f7bff", "#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c", "#08306b"];
-var currentDateMax;
-var currentDateMin;
-var selectedCat;
-var selectedCatName = "Alla";
-var categoryList;
-var countyList;
-var selectedLan;
-var diffPainter;
-var diffMode = false;
-var selectedCounty;
+var currentDateMax, currentDateMin;
+var selectedCat, selectedCatName = "Alla", selectedLan, selectedCounty;
+var categoryList, countyList, regionlist;
+var diffPainter, diffMode = false;
 var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
 
-//reads external svg file
+/***** reads external svg file *****/
 d3.xml('./maps/mapLan.svg')
     .then(data => {
-        d3.select('div#mapContainer').node().append(data.documentElement)  
+        d3.select('div#mapRegionContainer').node().append(data.documentElement)  
+})
+d3.xml('./maps/mapKommuner.svg')
+    .then(data => {
+        d3.select('div#mapMunicipalitiesContainer').node().append(data.documentElement)  
 })
 
 
@@ -31,7 +27,10 @@ var divTooltip = d3.select("body").append("div")   // Define the div for the too
 var daten = new Date("2019-02-04");
 
 const checkbox = document.getElementById('modeChange')
-
+var countyMap, areaMap, zoom, transform, active = d3.select(null);
+var placeholder = d3.select('div#mapPlaceholder').append('svg')
+  .attr('width', 320)
+  .attr('height', 660);
 
 d3.tsv("./data/data.tsv").then(function(data){
   data.forEach(d => {
@@ -53,26 +52,45 @@ d3.tsv("./data/data.tsv").then(function(data){
     regionCount(d);
   });
 
-  var maxvalue = 0;
-  var minvalue = 10000;
-  var average = 0;
-  var counter = 0;
+  var maxvalue = 0, minvalue = 10000, average = 0, counter = 0;
+  var maxvalueA = 0, minvalueA = 10000, averageA = 0, counterA = 0;
   for (var key in regioncnt) {
     average += parseInt(regioncnt[key]);
     counter ++;
-      if (parseInt(regioncnt[key])>maxvalue) {
-        maxvalue =parseInt(regioncnt[key]);
-      }
-      if (parseInt(regioncnt[key])<minvalue) {
-        minvalue =parseInt(regioncnt[key]);
-      }
+    if (parseInt(regioncnt[key])>maxvalue) {
+      maxvalue =parseInt(regioncnt[key]);
     }
-    average = (average/counter);
-
+    if (parseInt(regioncnt[key])<minvalue) {
+      minvalue =parseInt(regioncnt[key]);
+    }
+  }
+  average = (average/counter);
+  
+  for (var key in areacnt) {
+    averageA += parseInt(areacnt[key]);
+    counterA ++;
+    if (parseInt(areacnt[key])>maxvalueA) {
+      maxvalueA =parseInt(areacnt[key]);
+    }
+    if (parseInt(areacnt[key])<minvalueA) {
+      minvalueA =parseInt(areacnt[key]);
+    }
+  }
+  averageA = (averageA/counterA);
   var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
+  var color_scaleA = d3.scaleLinear().domain([minvalueA,averageA, maxvalueA]).range(['#c6dbef','#6baed6', '#08306b']);
+  
   drawLegend1(minvalue, average, maxvalue);
 
-  d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){      
+  countyMap = d3.select('#svg2').on('click', stopped, true);
+  areaMap = d3.select('#svg1')
+    .attr('visibility', 'hidden')
+    .on('click', stopped, true);
+  
+  zoom = d3.zoom().on('zoom', zoomed);
+  countyMap.call(zoom)
+
+  countyMap.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){      
     var regionalAds = regioncnt[d.id.replace("a", "")];
     if (maxvalue == 0){
       var colorIndex = 8;
@@ -84,16 +102,34 @@ d3.tsv("./data/data.tsv").then(function(data){
       colorIndex = colorIndex - 1;
     }
     return color_scale(regionalAds)
-      //return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
     })
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout)
+    .on("mousemove", mousemove)
+    .on("click",clicked,(d) => {
+      selectedLan  = parseInt(d.id.replace("a", ""));
+      setSelectCounty(d.id);
+      diffDraw(data);
+    });
+
+    areaMap.selectAll("path").datum((d,i,k) => { return k[i];})
+      .attr("fill", function (d){      
+        var areaAds = areacnt[d.id];
+        if (maxvalueA == 0){
+          var colorIndex = 8;
+        }
+        else{
+          var colorIndex = Math.round(((areaAds/maxvalueA)*8)+1);
+        }
+        if (colorIndex == 9){
+          colorIndex = colorIndex - 1;
+        }
+        return color_scaleA(areaAds)
+        })
+      .on('click', clicked)
       .on("mouseover", mouseover)
       .on("mouseout", mouseout)
-      .on("mousemove", mousemove)
-      .on("click",(d) => {
-        selectedLan  = parseInt(d.id.replace("a", ""));
-        setSelectCounty(d.id);
-        diffDraw(data);
-      });
+      .on("mousemove", mousemove);
 
   d3.select("#transfer").on("mysel", ()=>{
     selectedCat = d3.event.detail;
@@ -105,11 +141,15 @@ d3.tsv("./data/data.tsv").then(function(data){
     if (event.target.checked) {
       document.getElementById("legend1").style.display = "none";
       document.getElementById("legend2").style.display = "block";
+      document.getElementById('svg1').style.display = 'none';
+      document.getElementById('mapPlaceholder').style.display = 'block';
       diffMode = true;
       reDraw(data);
     } else {
       document.getElementById("legend2").style.display = "none";
       document.getElementById("legend1").style.display = "block";
+      document.getElementById('svg1').style.display = 'block';
+      document.getElementById('mapPlaceholder').style.display = 'none';
       diffMode = false;
       reDraw(data);
       document.getElementById("dumt").style.background = "#BCE"
@@ -118,7 +158,55 @@ d3.tsv("./data/data.tsv").then(function(data){
   })
 }).catch(error => console.error(error));
 
+/***** Functions for zoom function *****/
 
+function clicked() {
+
+  if (areaMap.attr('vivibility') === 'hidden') {
+    areaMap.attr('visibility', 'visible')
+  }
+  if ( active.node() === this ) {
+    return reset();
+  }
+  active = d3.select(this);
+  var bbox = active.node().getBBox(),
+      dx = bbox.width,
+      dy = bbox.height,
+      x = bbox.x,
+      y = bbox.y,
+      scale = Math.max(1, Math.min(8, 1 / Math.max(dx / 290, dy / 450))),
+      translate = [200 / 9 - scale * x, 660 / 9 - scale * y];
+
+  transform = d3.zoomIdentity
+    .translate(translate[0], translate[1])
+    .scale(scale);
+
+  countyMap.transition()
+    .duration(750)
+    .call(zoom.transform, transform);
+  areaMap.attr('visibility', 'visible');
+}
+
+function reset() {
+  active.classed("active", false);
+  active = d3.select(null);
+  countyMap.transition()
+    .duration(750)
+    .call(zoom.transform, d3.zoomIdentity);
+  areaMap.attr("visibility", "hidden");
+}
+
+function zoomed() {
+  var transform = d3.event.transform; 
+    //areaMap.selectAll('g').style("stroke-width", 1.5 / transform.k + "px");
+    areaMap.selectAll('g').attr("transform", transform); 
+}
+
+function stopped() {
+  if (d3.event.defaultPrevented) d3.event.stopPropagation();
+}
+
+/***** ***** ***** ***** ***** ***** *****/ 
 
 function populateCountyList(counties, data) {
   for (i = 0; i < counties.length; i++) {
@@ -153,6 +241,7 @@ function populateCountyList(counties, data) {
 
 
 function regionCount(data) {
+
   var firstDate = new Date(data.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(data.last_date.replace(/\s+/g, ""));
   //lastDate får aldrig vara mindre än det valde minDate
@@ -167,7 +256,13 @@ function regionCount(data) {
   else if (!(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat=="Alla"|| selectedCat==undefined || data.category == selectedCat || subCats.indexOf(selectedCat) != -1)) {
     regioncnt[data.region] = 1;
   }
-//  colorMap(regioncnt);
+  
+  if (data.area in areacnt && !(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat== "Alla" ||selectedCat==undefined || data.category == selectedCat || subCats.indexOf(selectedCat) != -1)  ) {
+    areacnt[data.area] = areacnt[data.area] + 1;
+  }
+  else if (!(firstDate > currentDateMax) && !(lastDate < currentDateMin) && (selectedCat=="Alla"|| selectedCat==undefined || data.category == selectedCat || subCats.indexOf(selectedCat) != -1)) {
+    areacnt[data.area] = 1;
+  }
 }
 
 function dateAdd(d) {
@@ -192,22 +287,25 @@ function dateAdd(d) {
 }
 
 function reDraw(data) {
-  if (diffMode){diffPaint(data);}else{
-  for (alla in regioncnt){
-    regioncnt[alla]= 0;
-  }
-//regioncnt= {};
-  data.forEach(d => {
-    regionCount(d);
-  });
+  if (diffMode){diffPaint(data);}
+  else{
+    for (alla in regioncnt){
+      regioncnt[alla]= 0;
+    }
+    for (alla in areacnt){
+      areacnt[alla]= 0;
+    }
+  //regioncnt= {};
+    data.forEach(d => {
+      regionCount(d);
+    });
 
-  var maxvalue = 0;
-  var minvalue = 10000;
-  var average = 0;
-  var counter = 0;
-  for (var key in regioncnt) {
-    average += parseInt(regioncnt[key]);
-    counter ++;
+    var maxvalue = 0, minvalue = 10000, average = 0, counter = 0;
+    var maxvalueA = 0, minvalueA = 10000, averageA = 0, counterA = 0;
+
+    for (var key in regioncnt) {
+      average += parseInt(regioncnt[key]);
+      counter ++;
       if (parseInt(regioncnt[key])>maxvalue) {
         maxvalue =parseInt(regioncnt[key]);
       }
@@ -216,15 +314,33 @@ function reDraw(data) {
       }
     }
     average = (average/counter);
+
+    for (var key in areacnt) {
+      averageA += parseInt(areacnt[key]);
+      counterA ++;
+      if (parseInt(areacnt[key])>maxvalueA) {
+        maxvalueA =parseInt(areacnt[key]);
+      }
+      if (parseInt(areacnt[key])<minvalueA) {
+        minvalueA =parseInt(areacnt[key]);
+      }
+    }
+    averageA = (averageA/counterA);
+
     var color_scale = d3.scaleLinear().domain([minvalue,average, maxvalue]).range(['#c6dbef','#6baed6', '#08306b']);
-    d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
-    var regionalAds = regioncnt[d.id.replace("a", "")];
-    return color_scale(regionalAds)
-    //return d3.interpolateBlues((Math.log(regioncnt[d.id.replace("a", "")])/Math.log(maxvalue)));
-        //return d3.color("lightblue").darker(-1*(1-(regioncnt[d.id.replace("a", "")]*(20/(maxvalue)))));
-        //return "green";
-  })
-}
+    var color_scaleA = d3.scaleLinear().domain([minvalueA,averageA, maxvalueA]).range(['#c6dbef','#6baed6', '#08306b']);
+
+    countyMap.selectAll("g").datum((d,i,k) => { return k[i];})
+      .attr("fill", function (d){
+        var regionalAds = regioncnt[d.id.replace("a", "")];
+        return color_scale(regionalAds)
+      });
+    areaMap.selectAll("path").datum((d,i,k) => { return k[i];})
+      .attr("fill", function (d){
+        var areaAds = areacnt[d.id];
+        return color_scaleA(areaAds)
+      });
+  }
 }
 
 function diffPaint(data){
@@ -260,7 +376,7 @@ function diffPaint(data){
     averagenegative = (average/counter);
     var color_scale = d3.scaleLinear().domain([minvalue-1,averagenegative-1,0,average+1, maxvalue+1]).range(['#9e0142','#f46d43','#ffff7b','#66bd63', '#006837']);
     drawLegend2(minvalue, averagenegative, 0, average, maxvalue);
-  d3.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
+  countyMap.selectAll("g").datum((d,i,k) => { return k[i];}).attr("fill", function (d){
     var regionalAds = diffPainter[d.id.replace("a", "")].last.count - diffPainter[d.id.replace("a", "")].first.count;
     return color_scale(regionalAds)
   });
@@ -402,7 +518,7 @@ function mapHeader(){
   }
   
   
-  console.log(selectedCatName + " " + currentDateMax + " " + currentDateMin);
+  // console.log(selectedCatName + " " + currentDateMax + " " + currentDateMin);
 }
 
 function diffDraw(data) {
@@ -648,7 +764,7 @@ function openModal(){
   $('.ui.modal')
   .modal('show');
 }
-
+/***** For the pageloader *****/
 function myFunction() {
   myVar = setTimeout(showPage, 1000);
 };
@@ -658,7 +774,7 @@ function showPage() {
   document.getElementById("myDiv").style.display =  "initial";
   d3.select("#transfer").dispatch('other',{detail:"loaded"});
 }
-
+/***** ***** ***** ***** *****/
 function removeOverRegionTooltip(d){
   divTooltip.transition()   
       .duration(100)    
@@ -680,8 +796,7 @@ function setSelectCounty(id) {
     selectedCounty = region
 }
 
-//Tooltip mouse-handling for map of sweden
-//
+/***** Tooltip mouse-handling for map of sweden *****/
 var mouseover = function(d) {
   if (d.parentElement.id == "svg2"){
     let formatId = d.id.replace("a", "");
@@ -707,6 +822,15 @@ var mouseover = function(d) {
     .style("opacity", "1")
     .style("font-weight", "bold");
   }
+  if(d.parentElement.parentElement.id === 'svg1'){
+    let formatId = d.id; //id för area
+    console.log(formatId)
+    let regionId = d.parentElement.id.replace('a',''); //id för regionen som arean ligger i
+    console.log(regionId)
+
+    let areaArray = regionlist.region_list[regionId-1].municipalities;
+
+  }
 }
 
 var mouseout = function(d) {
@@ -723,7 +847,8 @@ var mouseout = function(d) {
     d3.select("#" + region)
       .style("opacity", "0.8")
       .style("font-weight", "normal");   
- }
+  }
+
 }
 
 var mousemove = function(d) {
@@ -731,9 +856,9 @@ var mousemove = function(d) {
     divTooltip
       .style("left", (d3.mouse(this)[0]) + "px")
       .style("top", (d3.mouse(this)[1]) + 20 + "px") 
- }
+  }
 }
-
+/***** ***** ***** ***** ***** ***** *****/
 //Mouseovers for countylist
 var highlight = function(d) {
   let mousedCounty = document.getElementById(d.name);

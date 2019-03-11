@@ -2,14 +2,31 @@
   background: #336193;
 }
 
+.background {
+	fill: none;
+	pointer-events: all;
+	z-index: 5;
+}
+@media screen{
+	body {
+		width: 100vw;
+	}
+	#header {
+		width: 100vw;
+	}
+}
 #header {
-  height: 10%;
+	height: 10%;
 }
 
 #header img {
   width: 168px;
   height: 27px;
   margin-left: 2%;
+}
+#mapPlaceholder {
+	display: none;
+	opacity: 0;
 }
 
 .tooltip{
@@ -78,7 +95,7 @@
 	text-align: center;
 }
 #countyContainer{
-	padding-right: 10%;
+	padding-right: 2%;
 }
 .county-text {
 	cursor: default;

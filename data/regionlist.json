@@ -1059,12 +1059,12 @@
       {
          "rID": "19",
          "name": "Gotland",
-         "municipalities": {
-            "munic": {
+         "municipalities": 
+            {
                "mID": "238",
                "#text": "Gotland"
             }
-         }
+         
       },
       {
          "rID": "20",

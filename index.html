@@ -19,131 +19,140 @@
 
   <body onload="myFunction()">
 
-    <h1 id="header" class="ui header backgroundcolor"><img alt="logo" src="https://jobb.blocket.se/img/jobb-horizontal-vector.svg" width="168" height="27"></img><i onclick="openModal()" id="modalbtn" class="fas fa-info-circle"></i></h1>
+    <h1 id="header" class="ui header backgroundcolor">
+      <img alt="logo" src="https://jobb.blocket.se/img/jobb-horizontal-vector.svg" width="168" height="27"></img>
+        <i onclick="openModal()" id="modalbtn" class="fas fa-info-circle"></i>
+    </h1>
 
     <div id="loader"></div>
 
     <div style="display:none;" id="myDiv" class="animate-bottom">
-      <div class="ui  grid">
+      <div class="ui grid">
 
-        <div style="padding-right: 0px;" class="left floated seven wide column">
-          <div id="mapHeader" class="sixteen wide column">hej</div>
+        <div style="padding-right: 0px;" class="left floated nine wide column">
 
+          <div id="mapHeader" class="center floated sixteen wide column"></div>
+    
           <div id="legend1" class="left floated two wide column"><p style="float:right; width: 10%; padding-top:2%;">(%) av maxantal.</p></div>
           <div id="legend2" class="left floated two wide column" style="display:none;"></div>
-          <div id="countyContainer" class="right floated four wide column"></div>
-          <div id="mapContainer" class="center floated ten wide column"></div>
+          
+          <div id="mapContainer" class="six wide column">
+            <div id="mapRegionContainer" class="left floated three wide column"></div>
+            <div id="mapMunicipalitiesContainer" class="left floated three wide column"></div>
+            <div id='mapPlaceholder' class="left floated three wide column"></div>
+          </div>
+          <div id="countyContainer" class="left floated three wide column"></div>
 
         </div>
 
-          <div id="searchContainer" class="center floated five wide column">
-            <label class="checkboxDiv">
-              <input type="checkbox" id="modeChange" value="A" autocomplete="off" >Förändring över tid
-              <span class="checkmark"></span>
-            </label>
+        <div id="searchContainer" class="center floated five wide column">
+          <label class="checkboxDiv">
+            <input type="checkbox" id="modeChange" value="A" autocomplete="off" >Förändring över tid
+            <span class="checkmark"></span>
+          </label>
 
-            <div style="margin-top: 2%" class="ui grid">
-              <h2 class="sixteen wide column">Tidsspann</h2>
-              <div class="nine wide column" style="padding: 0px;">
-                <div id="slider-container"></div>
-              </div>
-              <div id="btndiv" style="padding: 0px; margin-left:0.25em; height: 42px;" class="six wide column">
-
-              </div>
-              <!--<div id="resettimeBtn" style="margin-left: 0.25em;" class="ui button six wide column" onclick="resetTime()">
-                Återställ tidsspann
-              </div>-->
-              <div id="range-label"></div>
+          <div style="margin-top: 2%" class="ui grid">
+            <h2 class="sixteen wide column">Tidsspann</h2>
+            <div class="nine wide column" style="padding: 0px;">
+              <div id="slider-container"></div>
             </div>
-
-
-            <div class="ui grid">
-              <div id ="cat" class="ui dropdown button nine wide column">
-                <span id="selectedValue" class="text">Välj Kategori</span>
-                <!--<span id="selectedValue" class="text">Välj Kategori</span>-->
-                <i class="dropdown icon" style="float:right;"></i>
-              
-              </div>
-              <div id="resetcatBtn" style="margin-top: 20px; font-size: 13px" class="ui button six wide column">
-                  Återställ kategori
-              </div>
+            <div id="btndiv" style="padding: 0px; margin-left:0.25em; height: 42px;" class="six wide column">
 
             </div>
-
-            <div id="category-label"></div>
-            <div id="linegraph"></div>
+            <!--<div id="resettimeBtn" style="margin-left: 0.25em;" class="ui button six wide column" onclick="resetTime()">
+              Återställ tidsspann
+            </div>-->
+            <div id="range-label"></div>
           </div>
 
 
-          <div class="right floated four wide column" id= "transfer"></div>
+          <div class="ui grid">
+            <div id ="cat" class="ui dropdown button nine wide column">
+              <span id="selectedValue" class="text">Välj Kategori</span>
+              <!--<span id="selectedValue" class="text">Välj Kategori</span>-->
+              <i class="dropdown icon" style="float:right;"></i>
+            
+            </div>
+            <div id="resetcatBtn" style="margin-top: 20px; font-size: 13px" class="ui button six wide column">
+                Återställ kategori
+            </div>
+
+          </div>
+
+          <div id="category-label"></div>
+          <div id="linegraph"></div>
+        </div>
+
+
+        <div class="right floated two wide column" id= "transfer"></div>
         
-        </div>
-
-        <div id="modal" class="ui modal">
-          <i class="close icon"></i>
-          <div class="header">
-            About
-          </div>
-          <div class="image content">
-            <div class="description">
-              <div class="ui header">This project</div>
-              <p>This application was made by 6 students studying a course in information visualization at KTH in Stockholm.</p>
-              <p>The goal has been to visualize data generated by Blocket Jobb. For this project, mapping data to geographical locations and visualizing changes over time has been in the main focus.</p>
-              <p>This application provides two modes of comparison: </p>
-              <ul>
-                  <li>In the first mode, you can compare the amount of job ads of different Swedish regions.</li>
-                  <li>In the second mode, you can view regional changes in job ad distributions.</li>
-              </ul>
-              <p>Filtering of the data can be done by setting a time span for comparison, as well as by filtering data by category of job.</p>
-                 
-            </div>
-            <div class="description">
-              <div class="ui header">Us</div>
-              <p>Here, we present the names of the group members as well as their position within this project. Before project work started, each group member was assigned two areas of responsibilites.</p>
-              <ul>
-                  <li>Alexander Nordh</li>
-                  <ul>
-                      <li>Group Leader</li>
-                      <li>Front-end programmer</li>
-                  </ul>
-                  <li>Carl Kernell</li>
-                  <ul>
-                      <li>Back-end programmer</li>
-                      <li>Company correspondance</li>
-                  </ul>
-                  <li><a href="https://se.linkedin.com/in/carl-svedhag-2a4934109" target="_blank">Carl Svedhag</a></li>
-                  <ul>
-                      <li>Front-end programmer</li>
-                      <li>UX-design and UI</li>
-                  </ul>
-                  <li><a href="https://www.linkedin.com/in/filip-stal/" target="_blank">Filip Stål</a></li>
-                  <ul>
-                      <li>Front-end programmer</li>
-                      <li>UX-design and UI</li>
-                  </ul>
-                  <li>Joel Weidenmark</li>
-                  <ul>
-                      <li>Front-end programmer</li>
-                      <li>UX-design and UI</li>
-                  </ul>
-                  <li>Oskar Norinder</li>
-                  <ul>
-                      <li>Back-end programmer</li>
-                      <li>Fullstack programmer</li>
-                  </ul>
-              </ul>
-            </div>
-          </div>
-          <div class="actions">
-            <div href="https://github.com/fstal/jobVis" target="_blank" class="ui black deny button">
-              Project source code
-            </div>
-          </div>
-        </div>
-      
       </div>
+
+      <div id="modal" class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+          About
+        </div>
+        <div class="image content">
+          <div class="description">
+            <div class="ui header">This project</div>
+            <p>This application was made by 6 students studying a course in information visualization at KTH in Stockholm.</p>
+            <p>The goal has been to visualize data generated by Blocket Jobb. For this project, mapping data to geographical locations and visualizing changes over time has been in the main focus.</p>
+            <p>This application provides two modes of comparison: </p>
+            <ul>
+                <li>In the first mode, you can compare the amount of job ads of different Swedish regions.</li>
+                <li>In the second mode, you can view regional changes in job ad distributions.</li>
+            </ul>
+            <p>Filtering of the data can be done by setting a time span for comparison, as well as by filtering data by category of job.</p>
+                
+          </div>
+          <div class="description">
+            <div class="ui header">Us</div>
+            <p>Here, we present the names of the group members as well as their position within this project. Before project work started, each group member was assigned two areas of responsibilites.</p>
+            <ul>
+                <li>Alexander Nordh</li>
+                <ul>
+                    <li>Group Leader</li>
+                    <li>Front-end programmer</li>
+                </ul>
+                <li>Carl Kernell</li>
+                <ul>
+                    <li>Back-end programmer</li>
+                    <li>Company correspondance</li>
+                </ul>
+                <li><a href="https://se.linkedin.com/in/carl-svedhag-2a4934109" target="_blank">Carl Svedhag</a></li>
+                <ul>
+                    <li>Front-end programmer</li>
+                    <li>UX-design and UI</li>
+                </ul>
+                <li><a href="https://www.linkedin.com/in/filip-stal/" target="_blank">Filip Stål</a></li>
+                <ul>
+                    <li>Front-end programmer</li>
+                    <li>UX-design and UI</li>
+                </ul>
+                <li>Joel Weidenmark</li>
+                <ul>
+                    <li>Front-end programmer</li>
+                    <li>UX-design and UI</li>
+                </ul>
+                <li>Oskar Norinder</li>
+                <ul>
+                    <li>Back-end programmer</li>
+                    <li>Fullstack programmer</li>
+                </ul>
+            </ul>
+          </div>
+        </div>
+        <div class="actions">
+          <div href="https://github.com/fstal/jobVis" target="_blank" class="ui black deny button">
+            Project source code
+          </div>
+        </div>
+      </div>
+      
     </div>
-    <script src="app.js"></script>
+
+  <script src="app.js"></script>
 
   </body>
 </html>
