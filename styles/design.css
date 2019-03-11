@@ -96,6 +96,12 @@
 	stroke-width: 3;
 }
 
+.hover-line {
+  stroke: #6F257F;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
+
 .overlay {
 fill: none;
 pointer-events: all;
@@ -110,6 +116,10 @@ pointer-events: all;
 .focus circle {
 fill: none;
 stroke: steelblue;
+}
+
+.focus text {
+	z-index: 3;
 }
 
 .checkboxDiv{
