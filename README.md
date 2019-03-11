@@ -1,6 +1,6 @@
 # jobVis
 
-* Alex - show and hide karta, zoom på kommuner
+* Alex - legend
 * Filip - kollar på om jag kan lösa dropdown-buggen
 * Joel - 
 * Calle - 
