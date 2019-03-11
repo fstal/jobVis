@@ -1,7 +1,7 @@
 # jobVis
 
 * Alex - show and hide karta, zoom på kommuner
-* Filip - axis ledger för lineplot
+* Filip - kollar på om jag kan lösa dropdown-buggen
 * Joel - Ta bort "disabled" från dropdown-elementet när man valt något (så den inte längre är greyed out)
 * Calle - Knappar för snabbreset av tidsspann och kategrifiltren
 * Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
@@ -22,6 +22,7 @@
 * ~~Kort summering ovanför kartan om vad den visar, ex "Antal annonser för 1jan19-16jan19", eller "Administrativa jobb för 1jan10-16jan19"~~
 * Mer enhetlighet i variabel- och funktionsnamn, ex. inte ha "county" "lan" och "region" för samma sak.
 * Separera konvertering från kartelement "id", ex. "#a1" eller "#a15" till "Norrbotten" osv och andra hållet skall separeras till separata hjälpfunktioner
+* ~~Axis ledger line plot~~
 
 ## Feedback från Final Presentation
 * ~~Knapp för snappreset av tidsspann~~
