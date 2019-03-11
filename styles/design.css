@@ -116,6 +116,10 @@ fill: none;
 stroke: steelblue;
 }
 
+.focus text {
+	z-index: 3;
+}
+
 .checkboxDiv{
 	margin-bottom: 10px;
 }
