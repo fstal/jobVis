@@ -148,12 +148,10 @@ function populateCountyList(counties, data) {
         });
 }
 
-
 function regionCount(data) {
   var firstDate = new Date(data.first_date.replace(/\s+/g, ""));
   var lastDate = new Date(data.last_date.replace(/\s+/g, ""));
   //lastDate får aldrig vara mindre än det valde minDate
-  //console.log("dafds",selectedCat,"bell")
   let subCats = data.sub_category.split(",").map(function(item) {
     return item.trim();
   }); 
@@ -392,9 +390,7 @@ function mapHeader(){
   else if (selectedCatName == "Alla"){
     textbox.innerHTML = "Annonser för " + "<text style='font-style:italic'>Alla</text>" + " jobbkategorier " + " under tidspannet " + "<text style='font-style:italic'>" +  currentDateMin.getDate() + "-" + months[currentDateMin.getMonth()] + "-" + currentDateMin.getFullYear() + "</text>" +  " till " + "<text style='font-style:italic'>" + currentDateMax.getDate() + "-" + months[currentDateMax.getMonth()] + "-" + currentDateMax.getFullYear() + "</text>.";
   }
-  
-  
-  console.log(selectedCatName + " " + currentDateMax + " " + currentDateMin);
+  //console.log(selectedCatName + " " + currentDateMax + " " + currentDateMin);
 }
 
 function diffDraw(data) {
@@ -522,7 +518,6 @@ function diffDraw(data) {
 
 function dayCount(dayitem,data,selRegion) {
   if (!(selRegion)) selRegion = selectedLan;
-  //console.log(data.region);
   var formatTime = d3.timeFormat("%d %b, %Y");
   todaysDateasDate = dayitem.day;
   data.forEach(d=> {
@@ -535,8 +530,6 @@ function dayCount(dayitem,data,selRegion) {
   
   })}; //|| subCats.indexOf(selectedCat) != -1)
   //lastDate får aldrig vara mindre än det valde minDate
-  //console.log("dafds",selectedCat,"bell")
-  //console.log(firstDate,todaysDateasDate,lastDate);
   if (d.region == selRegion && (firstDate <= todaysDateasDate ) && (lastDate >= todaysDateasDate) && (selectedCat== "Alla" ||selectedCat==undefined || d.category == selectedCat || subCats.includes(selectedCat)) )  {
     dayitem.count += 1;
   }
@@ -672,7 +665,6 @@ function highlightCountyHelper(d) {
 
 function setSelectCounty(id) {
     let formatId = id.replace("a", "");
-    console.log(formatId);
     let region = regionlist.region_list[formatId-1].name;
     selectedCounty = region
 }
