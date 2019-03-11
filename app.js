@@ -7,12 +7,14 @@ var mapColors = ["#f7bff", "#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2
 var currentDateMax;
 var currentDateMin;
 var selectedCat;
+var selectedCatName = "Alla";
 var categoryList;
 var countyList;
 var selectedLan;
 var diffPainter;
 var diffMode = false;
 var selectedCounty;
+var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
 
 //reads external svg file
 d3.xml('./maps/mapLan.svg')
@@ -167,7 +169,7 @@ function populateCountyList(counties, data) {
 
 function setSelectCounty(id) {
     let formatId = id.replace("a", "");
-    console.log(formatId);
+    //console.log(formatId);
     let region = regionlist.region_list[formatId-1].name;
     selectedCounty = region
 }
@@ -428,6 +430,7 @@ function resetTime(e, data) {
   currentDateMin = d3.min(dates);
   generateSlider2(data);
   reDraw(data);
+  mapHeader();
 }
 
 function generateSlider2(data){
@@ -447,13 +450,13 @@ function generateSlider2(data){
   var slider = createD3RangeSlider(dateMin, dateMax, "#slider-container");
   slider.range(dateMin, dateMax);
   
-  var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
   d3.select("#range-label").text(timeConverter(dateMin).getDate() + " " + months[timeConverter(dateMin).getMonth()] + " " + timeConverter(dateMin).getFullYear() + " - " + timeConverter(dateMax).getDate() + " " + months[timeConverter(dateMax).getMonth()] + " " + timeConverter(dateMax).getFullYear());
   slider.onChange(function(newRange){
       d3.select("#range-label").text(timeConverter(newRange.begin).getDate() + " " + months[timeConverter(newRange.begin).getMonth()] + " " + timeConverter(newRange.begin).getFullYear() + " - " + timeConverter(newRange.end).getDate() + " " + months[timeConverter(newRange.end).getMonth()] + " " + timeConverter(newRange.end).getFullYear());
       currentDateMin = timeConverter(timeConverter(timeConverter(newRange.begin).setHours(00,00,00)).setMilliseconds(000));
       currentDateMax = timeConverter(timeConverter(timeConverter(newRange.end).setHours(23,59,59)).setMilliseconds(999));
       reDraw(data);
+      mapHeader();
 
   });
 
@@ -518,7 +521,6 @@ function createDropDown() {
 }
 
 function filterCategories(e, data, type) {
-  console.log(e);
   e.stopPropagation(); 
   d3.select("#transfer").dispatch('mysel',{detail:data});
   //var categoryLabel = document.getElementById("category-label");
@@ -530,6 +532,7 @@ function filterCategories(e, data, type) {
       if (data == categoryList[i].cgID){
         //d3.select("#category-label").text(categoryList[i].name);
         d3.select("#selectedValue").text(categoryList[i].name);
+        selectedCatName = categoryList[i].name;
       }
     }
   }
@@ -539,6 +542,7 @@ function filterCategories(e, data, type) {
         if (data == categoryList[i].subcategories[j].scgID){
           //d3.select("#category-label").text(categoryList[i].subcategories[j]['#text']);
           d3.select("#selectedValue").text(categoryList[i].subcategories[j]['#text']);
+          selectedCatName = categoryList[i].subcategories[j]['#text'];
         }
       }
     }
@@ -546,7 +550,22 @@ function filterCategories(e, data, type) {
   else if (type == 2) {
     //d3.select("#category-label").text("Alla");
     d3.select("#selectedValue").text("Välj kateogori");
+    selectedCatName = "Alla";
   }
+  mapHeader();
+}
+function mapHeader(){
+  var textbox = document.getElementById("mapHeader");
+  textbox.innerHTML = "";
+  if (!(selectedCatName == "Alla")) {
+    textbox.innerHTML = "Annonser i jobbkategorin " + "<text style='font-style:italic'>" + selectedCatName + "</text>" + " under tidspannet " + "<text style='font-style:italic'>" +  currentDateMin.getDate() + "-" + months[currentDateMin.getMonth()] + "-" + currentDateMin.getFullYear() + "</text>" +  " till " + "<text style='font-style:italic'>" + currentDateMax.getDate() + "-" + months[currentDateMax.getMonth()] + "-" + currentDateMax.getFullYear() + "</text>.";
+  }
+  else if (selectedCatName == "Alla"){
+    textbox.innerHTML = "Annonser för " + "<text style='font-style:italic'>Alla</text>" + " jobbkategorier " + " under tidspannet " + "<text style='font-style:italic'>" +  currentDateMin.getDate() + "-" + months[currentDateMin.getMonth()] + "-" + currentDateMin.getFullYear() + "</text>" +  " till " + "<text style='font-style:italic'>" + currentDateMax.getDate() + "-" + months[currentDateMax.getMonth()] + "-" + currentDateMax.getFullYear() + "</text>.";
+  }
+  
+  
+  console.log(selectedCatName + " " + currentDateMax + " " + currentDateMin);
 }
 
 function myFunction() {
