@@ -306,6 +306,7 @@ function generateSlider2(data){
 
   d3.select(".slider-container").style("height", "100%").style("width", "100%");
   d3.select(".slider").style("left","0px").style("position", "relative").style("height", "100%"). style("width", "100%");
+  mapHeader();
 }
 
 //Creates dynamic dropdown with categories

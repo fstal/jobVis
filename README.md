@@ -19,7 +19,7 @@
 ### Städa kod och DRY:a lite
 * Bestående stroke för SelectedCounty på karta och i lista medan du har den plottad i linegraph
 * Knapp, snappval eller default för senaste dagens data för slidern (gårdagens) (bara för icke-compare mode)
-* Kort summering ovanför kartan om vad den visar, ex "Antal annonser för 1jan19-16jan19", eller "Administrativa jobb för 1jan10-16jan19"
+* ~~Kort summering ovanför kartan om vad den visar, ex "Antal annonser för 1jan19-16jan19", eller "Administrativa jobb för 1jan10-16jan19"~~
 * Mer enhetlighet i variabel- och funktionsnamn, ex. inte ha "county" "lan" och "region" för samma sak.
 * Separera konvertering från kartelement "id", ex. "#a1" eller "#a15" till "Norrbotten" osv och andra hållet skall separeras till separata hjälpfunktioner
 
