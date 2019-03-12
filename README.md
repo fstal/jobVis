@@ -1,32 +1,45 @@
-# jobVis
+# JobVis
+Project work in [Information Visualization](https://www.kth.se/student/kurser/kurs/DH2321) at KTH. A live version of the project can be found here: https://fstal.github.io/jobVis/
 
-* Alex - show and hide karta, zoom på kommuner
-* Filip - Fixar learnings
+## Creators
+Filip Stål, Alexander Nordh, Carl Svedhag, Joel Weidenmark, Oskar Norinder, Carl Kernell.
+
+## About
+
+Project description
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------
+# Project Dashboard
+
+## Currently working on:
+* Alex - 
+* Filip - 
 * Joel -
 * Calle - 
-* Oskar - kolla på subkategorier för comparemode och elsticsearch för regioncount
+* Oskar - 
 * Carl - 
 
-## Behöver (typ) göras
-* ~~Loader för comparemode (!)~~ (Ballar ur med vår slider, måste typ sätta fake timeout eller byta slider för loader)
-* ~~Mouseover för linegraph plot points (förbättrad)~~
-* ~~Stödlinjer för mouseover på plot points i linepraph~~
-* ~~Loader eller förtydligad animation på att en re-render sker när man trycker på en kategori. Ofta är det knapp skillnad och då märker man inte om ny data har renderat eller ej~~
-* ~~Disabled look på dropdown ska bort~~
-* ~~Fixa about page med learnings också~~
-* Bug: Man kan inte se hela dropdownen alltid
+## Prioritized issues and implementions
+- [ ] ~~Loader for comparemode (Will not work satisfactory with current slider lib, need to reimplement slider entirely)~~
+- [x] Improved mouseover for the lineplot with y-value
+- [x] Aiding lines for x/y-axes while mouseover in lineplot
+- [x] Fix the disabled look on the semantic dropdown
+- [ ] Bug: Dropdown may get wonky if submenues extend outside orgiginal window size
 
-## Borde kanske göras
-### Städa kod och DRY:a lite
-* Bestående stroke för SelectedCounty på karta och i lista medan du har den plottad i linegraph
-* Knapp, snappval eller default för senaste dagens data för slidern (gårdagens) (bara för icke-compare mode)
-* ~~Kort summering ovanför kartan om vad den visar, ex "Antal annonser för 1jan19-16jan19", eller "Administrativa jobb för 1jan10-16jan19"~~
-* Mer enhetlighet i variabel- och funktionsnamn, ex. inte ha "county" "lan" och "region" för samma sak.
-* Separera konvertering från kartelement "id", ex. "#a1" eller "#a15" till "Norrbotten" osv och andra hållet skall separeras till separata hjälpfunktioner
-* ~~Axis ledger line plot~~
+## Suggested improvements if we have the time
+- [ ] Go over variable and functions names and unify them
+- [ ] Some DRY:ing
+- [ ] Persisting stroke for selected county
+- [x] Summary of current filters and brushes in text
+- [x] Axis ledger for lineplot
 
-## Feedback från Final Presentation
-* ~~Knapp för snappreset av tidsspann~~
-* ~~Knapp / funktionalitet för snappreset av categorifilters~~
-* Mer tydligen och intiutiv color-mapping
-* ~~Ökad kontrast på länlistan~~
+## Feedback from Final Presentation
+- [x] Button for reset of time span
+- [x] Button foor reset of profession-filtering
+- [ ] Ledger clarification for color-mapping
+- [x] Incresed contrast in county list
