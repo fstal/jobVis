@@ -1,7 +1,7 @@
 # JobVis
 Project work in [Information Visualization](https://www.kth.se/student/kurser/kurs/DH2321) at KTH, created for Blocket Job. A live version of the project with dummy data can be found here: https://fstal.github.io/jobVis/
 
-## Creators
+## Developers
 Filip Stål, Alexander Nordh, Carl Svedhag, Joel Weidenmark, Oskar Norinder, Carl Kernell.
 
 ## About the project
