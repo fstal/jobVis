@@ -5,7 +5,7 @@ Project work in [Information Visualization](https://www.kth.se/student/kurser/ku
 Filip Stål, Alexander Nordh, Carl Svedhag, Joel Weidenmark, Oskar Norinder, Carl Kernell.
 
 ## About the project
-The team was asked to develop and design a fully functioning analysis tool for the sales department at Blocket Jobb, mapping copious amounts of raw employment-ad-data extracted from their website over the years, with a primary focus on geographical place of employment, line of business and sub-categories of lines - as well as trends in employment advertisements over time.
+The team was asked to develop and design a fully functioning analysis tool for the sales department at Blocket Jobb, mapping huge amounts of raw employment-ad-data extracted from their website over the years, with a primary focus on geographical place of employment, line of business and sub-categories of lines - as well as trends in employment advertisements over time.
 
 This data visualization tool provides two modes of comparison:
 
